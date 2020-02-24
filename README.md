@@ -1,2 +1,222 @@
-# image-research-computing-tutorial
-Rob created as a case study in cloud use: Maps to the cloudbank AWS account only
+# Research Computing on a Cloud Image
+
+This tutorial introduces a virtual machine *image* as a basis for research computing. 
+You may be familiar with a *zip* file that contains an entire directory's contents. A
+*machine image* is analogous; think of it as a zip file of the entire computer's contents
+from operating system to home directory to code to data files. Our example takes up 
+32 GBytes. 
+
+Here is the outline of our procedure.
+
+- Obtain credentials to log in to the cloud console: Contact cloudbank for details
+- Identify the proper *image* and use it to jumpstart a Virtual Machine *instance*
+- Log on to this *instance* and start up a Jupyter Lab server
+- Create an **ssh** tunnel from your computer to this server
+- Use your browser to connect to the Jupyter Lab and use this to explore some data
+
+
+## Tutorial
+
+
+We would like to visually explore some (ocean) data. This data took years to collect and 
+months to bring together in one location. Hopefully it will take you less than an hour to
+open up a Jupyter Lab notebook in your browser to explore this data. 
+
+
+> Prerequisites: Cloudbank credentials to connect to the cloud and an available bash shell.
+
+
+We are using in this case the AWS (Amazon Web Services) cloud. You will log on to the AWS 
+console, start a Virtual Machine (called an EC2 *instance*) and on that machine start a 
+Jupyter Lab server. If you were starting from nothing you would be installing Python 
+packages and importing datasets for quite some time; but our objective here is to avoid 
+all of that by using a pre-built environment stored as an *image*. Once you have identified
+this image you can start it on virtually any size machine; from a small cheap one say
+costing $0.04 per hour to a very powerful computer that might cost $1.00 / hour or more. 
+Cloud users choose a computer based on computational needs.
+
+
+Once the computer is running (with everything pre-installed) you will create 
+an *ssh tunnel*. This is a secure connection that associates a local address with a Jupyter Lab 
+server running on the cloud instance. By connecting through this tunnel the cloud instance 
+becomes the backing engine for exploring the data. 
+
+
+The procedure is presented in 25 steps with interspersed comments.
+Upon completion you will have your own full-blown data science research environment. 
+Don't forget to turn the lights out when you are done exploring. 
+
+
+### Procedure
+
+
+1. Log on to the AWS console using your credentials.
+
+
+2. Set your Region (upper right drop-down) to Oregon and choose Services (upper left) to see an 
+array of what you can do on the AWS cloud.
+
+
+3. Choose EC2 in the upper left region of the Services listing. 
+
+
+4. Choose AMIs from the left sidebar.
+
+
+5. Ensure that the upper drop-down menu reads 'Owned By Me'. You should see an AMI listed called `jupyter1`. 
+
+
+6. Select this AMI by clicking on it so a blue dot appears at the left edge of the table.
+
+
+7. Choose Actions > Launch 
+
+
+8. choose a VM type `c5.large` (you may have to scroll down a bit to find this)
+
+
+9. choose Review and Launch at the bottom right
+
+
+> WARNING: If this is done as a class activity there is a potential collision scenario. Let's 
+take a moment to outline this and how to resolve it.
+
+> The AWS EC2 Launch Wizard goes through seven steps, of which step 6 involves choosing a 
+Security Group. This SG is given a name by default; and a classroom full of people will get
+the same default as they proceed. So the way to avoid this (which will obstruct the next 
+couple of steps) is to click on the Security Group step (step 6) and give a name for the 
+Security Group that is unique. As below with keypair and instance names the best choice 
+for a Security Group name is simply <yourname>. Now you can proceed to step 7 of the wizard;
+which is step 10 in this procedural. 
+
+
+10. Choose Launch at the bottom right
+
+
+11. In the keypair dialog choose Create new keypair and name it `<yourname>.pem`. 
+This will be the key to finding your instance in what follows.
+
+
+12. Download the keypair file that is generated; then click Launch Instance in the dialog box
+
+ 
+You now have a Virtual Machine ("EC2 instance") starting up on the public cloud. If you are in
+a class with many people doing the same thing at the same time it can be difficult to identify
+which machine is *yours*. Once you identify your computer you should name it using <yourname> 
+just as you did for the keypair name in steps 11 and 12.
+
+ 
+
+13. Continuing in the AWS console: Click View Instances at the lower right. This takes 
+you to a table of EC2 instances (Virtual Machines), where one instance is listed per row. 
+Therefore one of the rows in this table should be your instance.
+
+
+14. Locate your instance by the key name: Scroll across to the right in the instance table to find the 
+key name column; 
+and scan down until you find your keypair name. That row will be the row for your EC2 instance.
+
+
+15. Hover in the left-most box of this row--the row for your instance--to bring up a little pencil in the "Name" column
+
+
+16. Click the pencil so you can enter the name of this instance. Call it <yourname>.
+
+
+17. Wait for the instance state to change to running (a green dot in the Status column). 
+
+
+18. While you wait for your instance to finish starting up: Write down its `ip address`. 
+Find this address by scrolling a bit over to the right. Let's suppose for example that 
+your ip address is `12.23.34.45`. We use this in what follows.
+
+ 
+
+> Now you are ready to log in to this virtual machine (EC2 instance). 
+Once you log in you will start a Jupyter Lab session. This session start
+will give you a *token* -- a long string of letters and numbers -- that 
+you use to authenticate when you first log in to the Jupyter Lab.
+
+ 
+
+19.Open a `bash` shell and ensure the keypair file `<yourname>.pem` is present in your working directory.
+
+
+20. Issue this command in bash: `chmod 400 yourname.pem`
+
+ 
+
+For **Windows** Users: If you are using Windows you may need to install or enable the native `bash` shell. 
+As an alternative you can install an **Ubuntu** `bash` shell. In either case it is useful to realize that
+the *home directoy* of this shell is not the same thing as the Windows User home directory. So for example
+if the keypair file `yourname.pem` was downloaded to `C:\\Users\yourname\Downloads` you should move this 
+file to your `bash` home directory, for example using a command like this: 
+
+
+```
+bash> cd ~
+bash> mv /mnt/c/Users/yourname/Downloads/yourname.pem .
+bash> chmod 400 yourname.pem
+```
+
+There is some method to this madness based in security. The `ssh` command insists that the 
+authentication keypair file `yourname.pem` has read-only permission; and files in your Windows User file system
+are not amenable to the `chmod` command issued in the `bash` shell. 
+These details can very frustrating so we go to the trouble to elaborate this here.
+
+ 
+
+21. In bash run `ssh -i yourname.pem ubuntu@12.23.34.45` to log in to your EC2 instance. (Use the correct ip address.)
+
+ 
+
+After you respond `yes` at the prompt you are logged on to your EC2 instance on the AWS cloud. The prompt should reflect this.
+Note that the default username is `ubuntu`. 
+
+ 
+
+22. On the command line of your EC2 instance run `(jupyter lab --no-browser --port=8889) &`
+
+
+Notice this command produces multiple lines of output including a couple occurrences of a 
+**token string**, as in...
+
+ 
+```
+...token=ae948dc6923848982349fbc48a2938d4958f23409eea427
+...token=ae948dc6923848982349fbc48a2938d4958f23409eea427
+```
+
+
+This token string `ae948...` is used in step 25. 
+
+
+Note: The Linux structure `(command) &` causes `command` to run as a background job. 
+This means you can log off your EC2 instance and return to the bash prompt on your own computer. 
+
+
+23. Copy the token string and type `exit` to return to your local machine bash prompt.
+
+
+24. In bash run `ssh -N -f -i yourname.pem -L localhost:7005:localhost:8889 ubuntu@12.23.34.45`. Make the appropriate substitutions.
+
+ 
+
+Remember that you must substitute the correct name of the `yourname.pem` keypair file; 
+and you must use the proper ip address in place of `12.23.34.45`. 
+This is 'creating an ssh tunnel': You associating a location on your own computer 
+with the connection point on the EC2 instance via port numbers. Your machines port 7005 is actually a tunnel to the 
+EC2 instance port 8889.
+
+ 
+You are almost there. 
+
+
+25. In your browser address bar type `localhost:7005`
+
+ 
+This should change to `localhost:7005/lab?` and a brief pause will ensue. You should be prompted for the token,  
+the long string you copied from the output in step 23. After this login / pause you should see a Jupyter lab 
+environment with a notebook listed at the left called `chlorophyll.ipynb`. Click on this notebook to open it.
+In the notebook you can run cells -- blocks of Python code together with explanatory sections -- 
+and explore the ocean science data provided.
