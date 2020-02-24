@@ -3,10 +3,10 @@
 This tutorial introduces a virtual machine *image* as a basis for research computing. 
 You may be familiar with a *zip* file that contains an entire directory's contents. A
 *machine image* is analogous; think of it as a zip file of the entire computer's contents
-from operating system to home directory to code to data files. Our example takes up 
-32 GBytes. 
+from operating system to home directory to code to data files. In the example we use
+here the computer will have a single drive with a capacity of 32 Gigabytes. 
 
-Here is the outline of our procedure.
+## Outline
 
 - Obtain credentials to log in to the cloud console: Contact cloudbank for details
 - Identify the proper *image* and use it to jumpstart a Virtual Machine *instance*
@@ -15,7 +15,7 @@ Here is the outline of our procedure.
 - Use your browser to connect to the Jupyter Lab and use this to explore some data
 
 
-## Tutorial
+## Procedure
 
 
 We would like to visually explore some (ocean) data. This data took years to collect and 
@@ -220,3 +220,30 @@ the long string you copied from the output in step 23. After this login / pause 
 environment with a notebook listed at the left called `chlorophyll.ipynb`. Click on this notebook to open it.
 In the notebook you can run cells -- blocks of Python code together with explanatory sections -- 
 and explore the ocean science data provided.
+
+
+## Using Jupyter Lab
+
+There are very comprehensive guides to using Jupyter Lab. Here we provide a very minimal description.
+
+* A Jupyter Lab environment has a left, narrow panel and a primary, larged notebook panel
+  * Notebooks are listed in the left panel
+  * Double-click them to open them in the main panel
+  * In our example the primary notebook of interest is called `chlorophyll.ipynb`
+* A Jupyter Lab *notebook* such as `chlorophyll.ipynb` consists of a sequence of cells.
+  * Each cell contains some text
+  * For our purposes each cell is either a *Python code* cell or a *markdown* cell
+    * Python code executes (or tries to execute) when the cell runs
+    * Markdown renders as formatted readable text -- like a narrative -- when the cell is run
+* How to run Jupyter Lab notebook cells
+  * Notice that a cell is selected when it has a vertical blue bar at its left border
+  * Select a cell by clicking on it with the cursor; or by using up/down arrows 
+  * Run a cell using Shift-Enter (this advances the selected cell to the next cell down)
+  * Run a cell using Ctrl-Enter (this does not advance the selected cell)
+  * Run a cell using Alt-Enter (this runs the cell and opens a new empty cell below it)
+* Modifying cells
+  * Double-click on a cell to open it as a text editor
+  * Edit the text to change what the cell does; and then run it to see the results
+* The *kernel* is the program that executes the Python code
+  * The kernel status is indicated by a circle at the upper right of the notebook
+  * Hover over the circle with the cursor for elaboration
