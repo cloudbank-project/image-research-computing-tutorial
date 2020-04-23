@@ -63,7 +63,7 @@ array of what you can do on the AWS cloud.
 4. Choose AMIs from the left sidebar.
 
 
-5. Ensure that the upper drop-down menu reads 'Owned By Me'. You should see an AMI listed called `jupyter1-cb`. 
+5. Ensure that the upper drop-down menu reads 'Private Images'. You should see an AMI listed called `jupyter1-cb`. 
 
 
 6. Select this AMI by clicking on it so a blue dot appears at the left edge of the table.
