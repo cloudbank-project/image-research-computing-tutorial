@@ -178,7 +178,7 @@ Note that the default username is `ubuntu`.
 22. On the command line of your EC2 instance run `(jupyter lab --no-browser --port=8889) &`
 
 
-Notice this command produces multiple lines of output including a couple occurrences of a 
+Wait ~1 min for this command to produce multiple lines of output including a couple occurrences of a 
 **token string**, as in...
 
  
