@@ -8,6 +8,7 @@ here the computer will have a single drive with a capacity of 32 Gigabytes.
 
 ## Outline
 
+- In what follows please customize your resources by substituting your own name for `hedylamarr`.
 - Obtain credentials to log in to the cloud console: Contact cloudbank for details
 - Identify the proper *image* and use it to jumpstart a Virtual Machine *instance*
 - Log on to this *instance* and start up a Jupyter Lab server
@@ -86,14 +87,15 @@ Security Group. This SG is given a name by default; and a classroom full of peop
 the same default as they proceed. So the way to avoid this (which will obstruct the next 
 couple of steps) is to click on the Security Group step (step 6) and give a name for the 
 Security Group that is unique. As below with keypair and instance names the best choice 
-for a Security Group name is simply <yourname>. Now you can proceed to step 7 of the wizard;
+for a Security Group name is simply **yourname**. In our instructions we use the name
+`hedylamarr` as an example of your name. Now you can proceed to step 7 of the wizard;
 which is step 10 in this procedural. 
 
 
 10. Choose Launch at the bottom right
 
 
-11. In the keypair dialog choose Create new keypair and name it `<yourname>.pem`. 
+11. In the keypair dialog choose Create new keypair and name it `hedylamarr.pem`. 
 This will be the key to finding your instance in what follows.
 
 
@@ -102,7 +104,7 @@ This will be the key to finding your instance in what follows.
  
 You now have a Virtual Machine ("EC2 instance") starting up on the public cloud. If you are in
 a class with many people doing the same thing at the same time it can be difficult to identify
-which machine is *yours*. Once you identify your computer you should name it using <yourname> 
+which machine is *yours*. Once you identify your computer you should name it using **yourname** 
 just as you did for the keypair name in steps 11 and 12.
 
  
@@ -120,7 +122,7 @@ and scan down until you find your keypair name. That row will be the row for you
 15. Hover in the left-most box of this row--the row for your instance--to bring up a little pencil in the "Name" column
 
 
-16. Click the pencil so you can enter the name of this instance. Call it <yourname>.
+16. Click the pencil so you can enter the name of this instance. Call it **yourname**.
 
 
 17. Wait for the instance state to change to running (a green dot in the Status column). 
@@ -139,34 +141,34 @@ you use to authenticate when you first log in to the Jupyter Lab.
 
  
 
-19.Open a `bash` shell and ensure the keypair file `<yourname>.pem` is present in your working directory.
+19.Open a `bash` shell and ensure the keypair file `hedylamarr.pem` is present in your working directory.
 
 
-20. Issue this command in bash: `chmod 400 yourname.pem`
+20. Issue this command in bash: `chmod 400 hedylamarr.pem`
 
  
 
 For **Windows** Users: If you are using Windows you may need to install or enable the native `bash` shell. 
 As an alternative you can install an **Ubuntu** `bash` shell. In either case it is useful to realize that
 the *home directoy* of this shell is not the same thing as the Windows User home directory. So for example
-if the keypair file `yourname.pem` was downloaded to `C:\\Users\yourname\Downloads` you should move this 
+if the keypair file `hedylamarr.pem` was downloaded to `C:\\Users\hedylamarr\Downloads` you should move this 
 file to your `bash` home directory, for example using a command like this: 
 
 
 ```
 bash> cd ~
-bash> mv /mnt/c/Users/yourname/Downloads/yourname.pem .
-bash> chmod 400 yourname.pem
+bash> mv /mnt/c/Users/hedylamarr/Downloads/hedylamarr.pem .
+bash> chmod 400 hedylamarr.pem
 ```
 
 There is some method to this madness based in security. The `ssh` command insists that the 
-authentication keypair file `yourname.pem` has read-only permission; and files in your Windows User file system
+authentication keypair file `hedylamarr.pem` has read-only permission; and files in your Windows User file system
 are not amenable to the `chmod` command issued in the `bash` shell. 
 These details can very frustrating so we go to the trouble to elaborate this here.
 
  
 
-21. In bash run `ssh -i yourname.pem ubuntu@12.23.34.45` to log in to your EC2 instance. (Use the correct ip address.)
+21. In bash run `ssh -i hedylamarr.pem ubuntu@12.23.34.45` to log in to your EC2 instance. (Use the correct ip address.)
 
  
 
@@ -198,11 +200,11 @@ This means you can log off your EC2 instance and return to the bash prompt on yo
 23. Copy the token string and type `exit` to return to your local machine bash prompt.
 
 
-24. In bash run `ssh -N -f -i yourname.pem -L localhost:7005:localhost:8889 ubuntu@12.23.34.45`. Make the appropriate substitutions.
+24. In bash run `ssh -N -f -i hedylamarr.pem -L localhost:7005:localhost:8889 ubuntu@12.23.34.45`. Make the appropriate substitutions.
 
  
 
-Remember that you must substitute the correct name of the `yourname.pem` keypair file; 
+Remember that you must substitute the correct name of the `hedylamarr.pem` keypair file; 
 and you must use the proper ip address in place of `12.23.34.45`. 
 This is 'creating an ssh tunnel': You associating a location on your own computer 
 with the connection point on the EC2 instance via port numbers. Your machines port 7005 is actually a tunnel to the 
