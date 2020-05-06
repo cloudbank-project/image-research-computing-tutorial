@@ -16,7 +16,20 @@ here the computer will have a single drive with a capacity of 32 Gigabytes.
 - Use your browser to connect to the Jupyter Lab and use this to explore some data
 
 
+## For Windows Users
+
+A brief interruption anticipating a possible issue: Further down we are going to build 
+something called an "ssh tunnel" to use our Virtual Machine as a Jupyter notebook server. 
+If you are doing this on a PC running Windows: No problem, that's perfectly feasible but
+Windows does not natively make this Linux-y step trivial.  So be ready: We will introduce
+the idea of installing a small Linux bash shell on the Windows PC. It is a bit of a 
+"yet another step, really??" situation but on balance it can help save time and avoid frustration. 
+[Instructions are here](https://ubuntu.com/tutorials/tutorial-ubuntu-on-windows#1-overview).
+
+
 ## Procedure
+
+Moving on. 
 
 
 We would like to visually explore some (ocean) data. This data took years to collect and 
