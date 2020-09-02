@@ -54,5 +54,32 @@ Or you might be on the wrong cloud! The Jupyter server building covered in this 
 
 Here is a listing of AWS **Regions**.
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk02.png" alt="regions" width="500"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk02.png" alt="regions" width="300"/>
+
+## Demystify #3
+
+
+*I've been told that *image* is everything... but that sounds very superficial. Is it really all about image???*
+
+
+Yes. But only in the context of this talk. On the cloud the term ***image*** means -- for our purposes -- a `tar` file or if you prefer a `zip` file of an entire operating system including a working environment, home directories, sub-directories, code, installed software, and even data. This image you can think of as sitting on a shelf
+(costing very little money) just waiting for the opportunity to be converted back into a real computing environment. 
+
+
+To make this picture complete we need a couple of additional bits of jargon. An ***instance*** is a Virtual Machine on the cloud. That is, it is a functional 
+computer. So once you have made an *image* you load it onto an *instance*. Then you work on the instance normally as you would work on your own computer. The
+difference is that the instance can be much more powerful than your own computer if you need the compute power. And that instance is physically located deep 
+within a regional cloud computing facility. 
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk03.png" alt="regions" width="700"/>
+
+## Demystify #4
+
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk04.png" alt="regions" width="700"/>
+
+
+## Demystify #5
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk05.png" alt="regions" width="700"/>
 
