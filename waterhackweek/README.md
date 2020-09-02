@@ -35,5 +35,24 @@ How do I interact with the cloud?
 
 ## Demystify #2 
 
+*Where is the cloud? Is it somewhere? Is it in Cloud City?*
+
+
+The cloud is actually in a huge computing facility in Oregon. And there is another in Ohio. And in Paris and in Milan... but not Prague. 
+These are called *Regions* and each one is actually a collection of facilities. 
+
+
+*Does this matter?*
+
+
+Yes! Once you know that there are multiple regions... and you are looking for something that you know is there... but you can’t find it: 
+You might be looking in the wrong region even if you are on the right cloud.
+
+
+Or you might be on the wrong cloud! The Jupyter server building covered in this tutorial works equally well on AWS, Azure or Google Cloud Platform and for about the same cost. While these instructions are specific to AWS they are in essence completely adaptable to other clouds.
+
+
+Here is a listing of AWS **Regions**.
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk02.png" alt="regions" width="500"/>
 
