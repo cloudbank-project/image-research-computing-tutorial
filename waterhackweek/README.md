@@ -27,8 +27,13 @@ Paying for it: Start with free credits (trial account provides $100). See if thi
 ## Demystify #1
 
 How do I interact with the cloud?
-* Usually first is through a browser, authenticate to a console.
-* Next is to learn the command line language of the cloud
-* Use a coding interface. For example using Python with AWS: `boto3`
+* Usually first is through a browser, authenticating to a console interface. The AWS console is shown below.
+* Next is to install and learn the command line language for the particular cloud
+* Third is to use a coding interface. For example using Python with AWS: `boto3`
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk01.png" alt="drawing" width="700"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk01.png" alt="screencap" width="700"/>
+
+## Demystify #2 
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk02.png" alt="regions" width="500"/>
+
