@@ -31,4 +31,4 @@ How do I interact with the cloud?
 * Next is to learn the command line language of the cloud
 * Use a coding interface. For example using Python with AWS: `boto3`
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk01.png" alt="drawing" width="500"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk01.png" alt="drawing" width="700"/>
