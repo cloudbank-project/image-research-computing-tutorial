@@ -123,13 +123,17 @@ No, in three sub-answers:
 If you are accustomed to using the command line, like say the `bash` shell: You connect to your cloud instance using `ssh`. For this to work
 you need three things: 
 
-* a keypair file for that `ssh` will use to authenticate
+* First thing: a keypair file for that `ssh` will use to authenticate
   * you can generate this using the wizard as you start up the virtual machine (see above)
   * the file has a `.pem` file extension so it might be called `mycloudinstance.pem`
   * `ssh` requires that this file have user read-only permission so you will probably run the command
     * `mycomputer> chmod 400 mycloudinstance.pem`
-* a username which in our case will be the default `ubuntu`
-* an ip address for your computer
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk05.png" alt="regions" width="700"/>
+
+
+* Second thing: a username which in our case will be the default `ubuntu`
+* Third thing: an ip address for your computer
   * you note this in the cloud console after your instance starts up
   * let's assume it is 12.23.34.45
 
@@ -139,15 +143,11 @@ With these three things in hand you can construct an `ssh` connect command like 
 ssh -i mycloudinstance.pem ubuntu@12.23.34.45
 ```
 
-If all goes well you confirm the command and find yourself logged in to your cloud instance.
+Here is what the connection exchange looks like. Notice the prompt changes when you are logged in to the cloud instance.
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk05.png" alt="regions" width="700"/>
-
-## Demystify #7
-
-*Question?*
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk06.png" alt="regions" width="700"/>
+
 
 ## Demystify #7
 
@@ -181,6 +181,11 @@ use GitHub for this purpose; which is closely tied to the Linux `git` version co
 The point is: At the end of any given day you can issue four `git` commands to synch your local work on the cloud instance with your 
 GitHub repository. Now you have a completely independent copy of your work which means that if human error intervenes to mess up
 the cloud situation in some way: You will still have your GitHub copy.
+
+
+Here are some screen captures from the tunnel process, up to turning on the Jupyter Lab server. To recreate this: Follow the steps in the
+tutorial README at the root of this repository. 
+
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk07.png" alt="regions" width="700"/>
 
