@@ -101,8 +101,21 @@ It will come back when you power it up tomorrow morning, just as you left it.
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk04.png" alt="regions" width="700"/>
 
-
 ## Demystify #5
+
+*Once I start up my Virtual Machine (VM) aka *instance* am I always paying $2.47 per hour for it?*
+
+No, in three sub-answers: 
+
+* You can **Stop** the instance so that you are not paying for it. (You are paying a very small amount now to keep it around 'stopped'.)
+* You can ask for your instance to be from the '*pre-emptible*' pool which means it costs much less (say 1/5th) but there is a catch
+  * The catch is that it may evaporate on short notice... so you should be ready for that with no serious consequences
+  * The pre-emptible resource pool is called the SPOT market on AWS by the way
+  * Pre-emptible instances require a bit more learning how to manage but can stretch your computing budget
+* You can stop your instance and re-start the image on a smaller, cheaper machine
+  * This is a good strategy if all you are going to do today is edit code for example 
+  
+## Demystify #6
 
 *Now that my machine is up and running... how do I log in so I can actually use it?*
 
