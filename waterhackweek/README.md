@@ -143,3 +143,25 @@ If all goes well you confirm the command and find yourself logged in to your clo
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk05.png" alt="regions" width="700"/>
 
+## Demystify #7
+
+*Question?*
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk06.png" alt="regions" width="700"/>
+
+## Demystify #7
+
+*Question?*
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk07.png" alt="regions" width="700"/>
+
+
+## Conclusion
+
+This presentation is an unvarnished summary of ‘what you need to know’ to operate your own Jupyter notebook server (Jupyter Lab) independent of other infrastructure. 
+Some key takeaways…
+
+* You choose to dial up / dial down the machine power and cost
+* Setting up a pre-built image allows you to treat your work environment like a tar file
+* This process applies to any cloud 
+* Using an ssh tunnel is one approach; using remote desktop is another
