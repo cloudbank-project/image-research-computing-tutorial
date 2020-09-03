@@ -151,7 +151,36 @@ If all goes well you confirm the command and find yourself logged in to your clo
 
 ## Demystify #7
 
-*Question?*
+
+*What is an ssh tunnel and why do I need one?*
+
+
+First `ssh` is a secure connection protocol or utility. The tunnel allows data to flow in both directions between computers in a secure
+manner. We use this to create a browser view on our local computer that corresponds to Jupyter Lab activity on a remote computer. In this
+case the remote computer is the instance on the cloud we have set up. As a result of all this fussing about: The browser tab look and acts
+just like a Jupyter Lab notebook server that we are running locally, for example on our laptop or desktop computer. However the actual 
+Jupyter Lab server is running on the cloud instance; and if that happens to be a powerful instance like the one described above: We are
+able to do some pretty heavy computational work.
+
+
+### An advisory note on preserving your work
+
+
+Something to bear in mind as you get familiar with working in the cloud environment: If you develop code in a Jupyter notebook and save that
+on your virtual machine (instance): You have a nice stable copy of your work. You can stop and then restart the instance and your work
+will still be there. You can make an image of your instance and then ***Terminate*** the instance (completely wipe it clean
+and return it to the cloud resource pool) and your work will still be preserved in the image you created. Then you can start a new instance 
+from that image and your work will be there on it. So far so good; but it is a good idea to check all of this out before taking it for granted.
+
+
+The point is your work on the cloud is stable... but sometimes human error can intervene. So let's go one step further in keeping your work safe. 
+
+
+We strongly recommend that you tie your work to a git repository that has nothing to do with your cloud account. For example we
+use GitHub for this purpose; which is closely tied to the Linux `git` version control utility. 
+The point is: At the end of any given day you can issue four `git` commands to synch your local work on the cloud instance with your 
+GitHub repository. Now you have a completely independent copy of your work which means that if human error intervenes to mess up
+the cloud situation in some way: You will still have your GitHub copy.
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk07.png" alt="regions" width="700"/>
 
