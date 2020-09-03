@@ -62,7 +62,7 @@ Here is a listing of AWS **Regions**.
 *I've been told that *image* is everything... but that sounds very superficial. Is it really all about image???*
 
 
-Yes. But only in the context of this talk. On the cloud the term ***image*** means -- for our purposes -- a `tar` file or if you prefer a `zip` file of an entire operating system including a working environment, home directories, sub-directories, code, installed software, and even data. This image you can think of as sitting on a shelf
+Yes. But only in the context of this repository. On the cloud the term ***image*** means -- for our purposes -- a `tar` file or if you prefer a `zip` file of an entire operating system including a working environment, home directories, sub-directories, code, installed software, and even data. This image you can think of as sitting on a shelf
 (costing very little money) just waiting for the opportunity to be converted back into a real computing environment. 
 
 
@@ -71,15 +71,62 @@ computer. So once you have made an *image* you load it onto an *instance*. Then 
 difference is that the instance can be much more powerful than your own computer if you need the compute power. And that instance is physically located deep 
 within a regional cloud computing facility. 
 
+
+Now for the payoff: Once you have created an **image** of your research computing environment: You can log on to the cloud console and start an 
+**instance** (on AWS these are called *EC2* instances) by going through a seven step Wizard as shown below with the red ovals being the seven steps. 
+That very first step is "define your operating system" which normally would be a blank slate, like say "give me Ubuntu Linux on my instance"; 
+but instead we can choose that research computing image (which includes Ubuntu Linux). Then in step 2 we choose how powerful of a computer we want
+and so on through the remaining five steps. At the end of this process there will be a cloud computer or cloud virtual machine or cloud instance
+up and running at some ip address, waiting for us to log in and get to work. 
+
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk03.png" alt="regions" width="700"/>
+
 
 ## Demystify #4
 
+
+*How much does my rented computer on the cloud cost me? And how do I save my work?*
+
+
+Suppose I look at the dozens of instance type choices and settle on one called **`m5ad.12xlarge`** and I think 'What does that machine cost me
+per hour?' In my browser search bar I type `cost m5ad.12xlarge` and the search engine instantly pops up my answer: $2.47 per hour.  
+
+A little bit more investigation shows that this virtual machine (or instance) comes with 24 cores, 192 GB of RAM and 1.8TB of attached
+disk volume. So as computers go this one is reasonably powerful. 
+
+Once I am done for the day do I need to create an *image* of this computer? No. It is a good idea to create an image if you want to have a second
+version of "everything you have done" to date. But generally speaking you can simply **Stop** the instance. This is like shutting down a computer: 
+It will come back when you power it up tomorrow morning, just as you left it. 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk04.png" alt="regions" width="700"/>
 
 
 ## Demystify #5
+
+*Now that my machine is up and running... how do I log in so I can actually use it?*
+
+
+If you are accustomed to using the command line, like say the `bash` shell: You connect to your cloud instance using `ssh`. For this to work
+you need three things: 
+
+* a keypair file for that `ssh` will use to authenticate
+  * you can generate this using the wizard as you start up the virtual machine (see above)
+  * the file has a `.pem` file extension so it might be called `mycloudinstance.pem`
+  * `ssh` requires that this file have user read-only permission so you will probably run the command
+    * `mycomputer> chmod 400 mycloudinstance.pem`
+* a username which in our case will be the default `ubuntu`
+* an ip address for your computer
+  * you note this in the cloud console after your instance starts up
+  * let's assume it is 12.23.34.45
+
+With these three things in hand you can construct an `ssh` connect command like this: 
+
+```
+ssh -i mycloudinstance.pem ubuntu@12.23.34.45
+```
+
+If all goes well you confirm the command and find yourself logged in to your cloud instance.
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk05.png" alt="regions" width="700"/>
 
