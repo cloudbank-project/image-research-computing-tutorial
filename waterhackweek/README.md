@@ -184,10 +184,23 @@ the cloud situation in some way: You will still have your GitHub copy.
 
 
 Here are some screen captures from the tunnel process, up to turning on the Jupyter Lab server. To recreate this: Follow the steps in the
-tutorial README at the root of this repository. 
+tutorial README at the root of this repository. The steps shown are, in descending order:
+
+
+* On the cloud machine: Starting a Jupyter notebook server (Jupyter Lab) with no browser output and input expected on port 8889
+* Part of the token string returned when the previous step is successful: The token is for authentication
+* Completing the ssh tunnel from my computer to the cloud computer running Jupyter Lab
+* Entering the localhost (port 7005) on my computer, i.e. connecting my browser to the `ssh` tunnel to the cloud Jupyter server
+* Jupyter Lab starting in my browser; where I enter the token to authenticate
 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk07.png" alt="regions" width="700"/>
+
+
+## Still to complete
+
+
+We would like to add in here some material on cloning a repo and getting it to run properly. 
 
 
 ## Conclusion
