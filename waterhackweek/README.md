@@ -3,8 +3,11 @@
 ## Introduction
 On September 2, 2020, Cloudbank team members presented "images" for research computing to the annual Water Hackweek hosted by Christina Bandarogoda and others. 
 
-* Objective: De-Mystify cloud use in relation to Jupyter notebooks
-* Starting with https://github.com/ChristinaB/dhsvm-opt: Build a working environment from `requirements.txt` or `environment.yml`
+* Objective 1: De-Mystify cloud use in relation to Jupyter notebooks (largely done)
+* Objective 2: Demonstrate "unpacking / building / running" a Python environment with respect to specific code and data (not done)
+
+
+* The target repository is https://github.com/ChristinaB/dhsvm-opt: Build a working environment from `requirements.txt` or `environment.yml`
   * Data is on a public repository (separate from above)
   * Which cloud platform can I use to run another version of this experiment? (any)
   * Interactive example notebook: How to get from a repo to the Amazon cloud? (stay tuned)
@@ -155,7 +158,7 @@ Here is what the connection exchange looks like. Notice the prompt changes when 
 *What is an ssh tunnel and why do I need one?*
 
 
-First `ssh` is a secure connection protocol or utility. The tunnel allows data to flow in both directions between computers in a secure
+First `ssh` is a secure connection utility. The tunnel allows data to flow in both directions between computers in a secure
 manner. We use this to create a browser view on our local computer that corresponds to Jupyter Lab activity on a remote computer. In this
 case the remote computer is the instance on the cloud we have set up. As a result of all this fussing about: The browser tab look and acts
 just like a Jupyter Lab notebook server that we are running locally, for example on our laptop or desktop computer. However the actual 
@@ -183,6 +186,8 @@ GitHub repository. Now you have a completely independent copy of your work which
 the cloud situation in some way: You will still have your GitHub copy.
 
 
+### Completing the `ssh` tunnel
+
 Here are some screen captures from the tunnel process, up to turning on the Jupyter Lab server. To recreate this: Follow the steps in the
 tutorial README at the root of this repository. The steps shown are, in descending order:
 
@@ -200,7 +205,15 @@ tutorial README at the root of this repository. The steps shown are, in descendi
 ## Still to complete
 
 
-We would like to add in here some material on cloning a repo and getting it to run properly. 
+We would like to add in here some material on cloning a repo and getting it to run properly. The clone step is easy: On a terminal 
+window in the Jupyter Lab environment type in
+
+```
+prompt> cd ~
+prompt> git clone https://github.com/ChristinaB/dhsvm-opt
+```
+
+Now comes the missing part...
 
 
 ## Conclusion
