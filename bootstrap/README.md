@@ -35,8 +35,12 @@ The above five steps are the bootstrapping covered on this page.
       * Notice that this is a "bare machine" with just the Ubuntu operating system
   * The VM selected is an `m5ad.4xlarge` which is quite expensive: About $5 per day or $2000 per year
       * ***We strongly recommend following through this tutorial to the Terminate stage!!!***
-      * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
-      * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not.
+          * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
+          * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not!
+  * Configure instance: Default values
+  * Add storage: Default values (note 2 x 300GB SSD drives are included)
+  * Add Tags: Added key values `Name`, `Project`, `Date`, `Owner`, `URL`
+  * 
 
 ### Configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
 
