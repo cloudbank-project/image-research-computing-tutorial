@@ -38,16 +38,34 @@ The above five steps are the bootstrapping covered on this page.
             * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
             * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not!
     * Configure instance: Default values
-    * Add storage: Default values (note 2 x 300GB SSD drives are included)
+    * Add storage: Default values 
+        * Note
+            * By selecting the `m5ad.4xlarge` we already have 2 300 GB SSD EBS drives on this instance
+            * EBS = Elastic Block Storage (AWS acronym), meaning "big empty disk drives"
+            * See the note below on mounting these drives to make them useful
     * Add Tags: Added key values `Name`, `Project`, `Date`, `Owner`, `URL`
     * Configure Security Group: Default values
     * Review and Launch: Created a temporary keypair file, downloaded
         * See the main page of this repo for details
-    * Launh: Note resulting ip address of the VM; let's say it is `12.23.34.45`.
+    * Launch: Note resulting ip address of the VM; let's say it is `12.23.34.45`
 * On my own computer
     * Relocate the downloaded keypair file to my `bash` home directory
     * `chmod 400` applied to keypair file
-    * `ssh -i keypair.pem ubuntu@12.23.34.45`
+    * `my computer> ssh -i keypair.pem ubuntu@12.23.34.45`
+* On the VM 
+    * (This follows from the `ssh` command issued from a terminal window on my computer, last command above)
+    * Mount the two 300 GB SSD 'EBS' drives for use
+        * Search engine 'AWS EC2 EBS mount` turns up [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
+        * `VM> lsblk` produces a device listing
+            * In this case (again with an `m5ad.4xlarge` we see three devices `nvme0n1`, `nvme1n1`, `nvme2n1` of type `disk`
+                * These would have a full path `/dev/nvme0n1` etcetera
+                * Of these three only the third one `nvme2n1` has an associated partition
+                    * This is the root device where the operating system resides
+                    * The remaining two disks `nvme0n1` and `nvme1n1` are the empty volumes; these must be mounted for use
+                * Verify that there is no file system on the 
+                
+        * 
+
 
 ### Configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
 
