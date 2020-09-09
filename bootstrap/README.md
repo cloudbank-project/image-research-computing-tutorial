@@ -80,7 +80,8 @@ The above five steps are the bootstrapping covered on this page.
                     
 > Left off here: ommitted the step of ensuring the data directories mount on boot; see same link as given above for details.
  
- 
+ * to
+     * continue...
         * Install the Jupyter Lab notebook server
             * Install Anaconda
                 * search `install Anaconda Linux` and follow the instructions
@@ -93,7 +94,9 @@ The above five steps are the bootstrapping covered on this page.
             * Test this using the `ssh tunnel` described in the main page tutorial of this repository
 
 
+
 > Left off here: Install some packages, grab a data tar file from S3 and unpack it.
+
 
 
 ### Configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
