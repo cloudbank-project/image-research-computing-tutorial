@@ -19,7 +19,10 @@ Here is the sequence of events.
     * Notice though that the ***image*** persists and will be used in the future
     * This is where the main tutorial begins, assuming the existence of such an ***image***
 
-The above five steps are the bootstrapping covered on this page.
+
+The above five steps are the bootstrapping covered on this page. The image created here does not precisely match the one 
+started on the main page. This one includes some additional data disks making it more expensive to operate. To avoid this
+(cost of 600 GB of disk space) choose a smaller / cheaper instance. 
 
 
 ## Tutorial
@@ -95,22 +98,20 @@ The above five steps are the bootstrapping covered on this page.
 
 
 
-> Left off here: Install some packages, grab a data tar file from S3 and unpack it.
+### What else did I do / want to do
 
 
-
-### Configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
-
-
-### Add other useful tools / libraries / packages / datasets / etcetera to this VM
-
-
-* Let's install `cmocean`
-* Let's add a dataset
-* Let's install a Jupyter notebook repository
+* `conda install xarray`
+* `conda install -c conda-forge cmocean`
+* Graph visualization package...
+* Data...
+* More repos...
 
 
 ### Use cloud management tools to create an ***image*** of this VM
 
+
 * Make sure to record the name and location of the image so as to make it findable in two years
+
+
 ### Terminate / delete / destroy the VM so they are not paying for it by the hour
