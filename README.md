@@ -1,10 +1,45 @@
 # Research Computing on a Cloud Image
 
-This tutorial introduces a virtual machine *image* as a basis for research computing. 
-You may be familiar with a *zip* file that contains an entire directory's contents. A
-*machine image* is analogous; think of it as a zip file of the entire computer's contents
-from operating system to home directory to code to data files. In the example we use
-here the computer will have a single drive with a capacity of 32 Gigabytes. 
+This tutorial introduces a virtual machine ***image*** as a basis for research computing.
+
+
+You may be familiar with a *zip* or *tar* file containing an entire directory. 
+A *machine image* is analogous; think of it as a zip file of the entire computer's contents
+from operating system to home directory to code to data files. The idea is that once 
+a cloud Virtual Machine (VM) is *configured* for use: It can be stored as a machine 
+image. This image is then un-packed back onto a Virtual Machine. The image is used
+to creating a working research computing environment for a scientist to use. 
+
+
+Our specific example here takes advantage of the Jupyterlab notebook server. This page
+is a tutorial for going from a pre-built Linux environment with Jupyterlab installed 
+as an *image* and reconstituting it on the AWS cloud as a Virtual Machine. We will use
+a secure tunnel called an `ssh` tunnel to enable you the researcher to connect to the
+Jupyterlab server through your web browser. 
+
+
+In the sub-folder called `bootstrap` we go through the process of building this machine image. 
+
+I the sub-folder called `waterhackweek` we go from the rebuilt Jupyterlab VM to cloning a 
+repository of notebooks on the VM for a particular research topic. 
+
+
+## Important remark on cost management
+
+
+In what follows on this page: The VM has a single disk drive (filesystem) with a fairly small 
+capacity of 32 Gigabytes. However it is common practice to create images that bundle large
+datasets. The sub-folder `bootstrap` tutorial spins up a Virtual Machine, for example, that has
+600 GB of attached SSD data directory capacity. This allows the image *builder* to include 
+a moderately large dataset with the image and provide some working space as well. 
+
+Our point of emphasis here -- as with all cloud resource allocation actions -- is that one 
+should understand and track the costs associated with cloud resources. 'Block' or 'disk' 
+storage -- for example -- runs about $60 per month for 600 GB.
+
+> Again our main admonition: The cloud is very powerful but it is
+important to understand and manage the cost of using it. 
+
 
 ## Outline
 
