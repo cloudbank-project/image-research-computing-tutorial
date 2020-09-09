@@ -28,19 +28,26 @@ The above five steps are the bootstrapping covered on this page.
 ### Start a Virtual Machine (VM) and log in to it
 
 * Log on to the AWS console and select Services > Compute > EC2 > Launch Instance
-  * This could also be done using the Command Line Interface (CLI) to AWS
-  * This could also be done using the AWS API through a package such as `boto3`
+    * This could also be done using the Command Line Interface (CLI) to AWS
+    * This could also be done using the AWS API through a package such as `boto3`
 * Run through the launch Wizard; here are some details from our example run
-  * The image selected will be 64 but x86 Ubuntu Server (username = `ubuntu`)
-      * Notice that this is a "bare machine" with just the Ubuntu operating system
-  * The VM selected is an `m5ad.4xlarge` which is quite expensive: About $5 per day or $2000 per year
-      * ***We strongly recommend following through this tutorial to the Terminate stage!!!***
-          * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
-          * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not!
-  * Configure instance: Default values
-  * Add storage: Default values (note 2 x 300GB SSD drives are included)
-  * Add Tags: Added key values `Name`, `Project`, `Date`, `Owner`, `URL`
-  * 
+    * The image selected will be 64 but x86 Ubuntu Server (username = `ubuntu`)
+        * Notice that this is a "bare machine" with just the Ubuntu operating system
+    * The VM selected is an `m5ad.4xlarge` which is quite expensive: About $5 per day or $2000 per year
+        * ***We strongly recommend following through this tutorial to the Terminate stage!!!***
+            * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
+            * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not!
+    * Configure instance: Default values
+    * Add storage: Default values (note 2 x 300GB SSD drives are included)
+    * Add Tags: Added key values `Name`, `Project`, `Date`, `Owner`, `URL`
+    * Configure Security Group: Default values
+    * Review and Launch: Created a temporary keypair file, downloaded
+        * See the main page of this repo for details
+    * Launh: Note resulting ip address of the VM; let's say it is `12.23.34.45`.
+* On my own computer
+    * Relocate the downloaded keypair file to my `bash` home directory
+    * `chmod 400` applied to keypair file
+    * `ssh -i keypair.pem ubuntu@12.23.34.45`
 
 ### Configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
 
