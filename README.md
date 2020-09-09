@@ -62,38 +62,36 @@ the idea of installing a small Linux bash shell on the Windows PC. It is a bit o
 [Instructions are here](https://ubuntu.com/tutorials/tutorial-ubuntu-on-windows#1-overview).
 
 
-## Procedure
-
-Moving on. 
+## Connecting to a Jupyterlab server built on a cloud Virtual Machine
 
 
-We would like to visually explore some (ocean) data. This data took years to collect and 
-months to bring together in one location. Hopefully it will take you less than an hour to
-open up a Jupyter Lab notebook in your browser to explore this data. 
+Suppose we would like to visually explore some (ocean) data. This data took years to collect and 
+months to bring together in one location. Hopefully it takes less than an hour to
+deploy and connect to a Jupyterlab notebook server on the cloud. 
 
 
-> Prerequisites: Cloudbank credentials to connect to the cloud and an available bash shell.
+> Prerequisites: Cloudbank credentials to connect to the cloud and an available `bash` shell.
 
 
 We are using in this case the AWS (Amazon Web Services) cloud. You will log on to the AWS 
 console, start a Virtual Machine (called an EC2 *instance*) and on that machine start a 
-Jupyter Lab server. If you were starting from nothing you would be installing Python 
-packages and importing datasets for quite some time; but our objective here is to avoid 
-all of that by using a pre-built environment stored as an *image*. Once you have identified
-this image you can start it on virtually any size machine; from a small cheap one say
-costing $0.04 per hour to a very powerful computer that might cost $1.00 / hour or more. 
-Cloud users choose a computer based on computational needs.
+Jupyterlab server. If you were starting from nothing you would be installing Python 
+packages and importing datasets.  Our objective here is to avoid 
+all of that by using a pre-built environment stored on the cloud as an *image*. 
+Once you have identified this image you can start it on virtually any size machine; 
+from a small cheap one say costing $0.04 per hour to a very powerful computer that 
+might cost $2.40 / hour or more. Cloud users choose a computer based on computational needs.
 
 
 Once the computer is running (with everything pre-installed) you will create 
-an *ssh tunnel*. This is a secure connection that associates a local address with a Jupyter Lab 
-server running on the cloud instance. By connecting through this tunnel the cloud instance 
+an *ssh tunnel*. This is a secure connection that associates a local address on your
+local comoputer with the Jupyterlab 
+server running on the cloud VM. By connecting through this tunnel the cloud VM 
 becomes the backing engine for exploring the data. 
 
 
-The procedure is presented in 25 steps with interspersed comments.
-Upon completion you will have your own full-blown data science research environment. 
-Don't forget to turn the lights out when you are done exploring. 
+The procedure is presented in 13-or-so steps with interspersed comments.
+Upon completion you will have your own data science research environment. 
 
 
 ### Procedure
