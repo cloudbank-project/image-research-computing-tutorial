@@ -99,35 +99,20 @@ Don't forget to turn the lights out when you are done exploring.
 ### Procedure
 
 
-1. Log on to the AWS console using your credentials.
+1. Log on to the AWS console using your credentials; and be sure to set your Region (upper right drop-down) to Oregon
+    o Sidebar: You can choose Services (upper left) to see a listing of services, i.e. what you can do on the AWS cloud
 
 
-2. Set your Region (upper right drop-down) to Oregon and choose Services (upper left) to see an 
-array of what you can do on the AWS cloud.
+2. Navigate to Amazon Machine Image choices (AMIs): Services > Compute > EC2. Then choose AMIs from the left sidebar. 
 
 
-3. Choose EC2 in the upper left region of the Services listing. 
+3. In the upper left drop down menu of the AMI pane select 'Private Images' (it may say 'Owned by Me' or 'Public Images' by default). When 'Private Images' is selected, you should see an AMI listed called `jupyter1-cb`. Select this AMI by clicking on it so a blue dot appears at the left edge of the table.
 
 
-4. Choose AMIs from the left sidebar.
+4. Choose Actions > Launch. Choose a VM type `c5.large` (you may have to scroll down a bit to find this). Choose Review and Launch at the bottom right.
 
 
-5. In the upper left drop down menu of the AMI pane, select 'Private Images' (it may say 'Owned by Me' or 'Public Images' by default). When 'Private Images' is selected, you should see an AMI listed called `jupyter1-cb`. 
-
-
-6. Select this AMI by clicking on it so a blue dot appears at the left edge of the table.
-
-
-7. Choose Actions > Launch 
-
-
-8. choose a VM type `c5.large` (you may have to scroll down a bit to find this)
-
-
-9. choose Review and Launch at the bottom right
-
-
-> WARNING: If this is done as a class activity there is a potential collision scenario. Let's 
+> WARNING: If this tutorial is a class-sized activity there is a potential collision scenario. Let's 
 take a moment to outline this and how to resolve it.
 
 > The AWS EC2 Launch Wizard goes through seven steps, of which step 6 involves choosing a 
@@ -138,6 +123,9 @@ Security Group that is unique. As below with keypair and instance names the best
 for a Security Group name is simply **yourname**. In our instructions we use the name
 `hedylamarr` as an example of your name. Now you can proceed to step 7 of the wizard;
 which is step 10 in this procedural. 
+
+
+Steps 5 -- 9 ommitted because Rob is re-writing this tutorial so they don't exist at the moment. 
 
 
 10. Choose Launch at the bottom right
