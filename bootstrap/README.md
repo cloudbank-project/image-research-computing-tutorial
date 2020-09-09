@@ -2,7 +2,7 @@
 
 ## Introduction: What is this sub-folder about? 
 
-This is a tutorial for creating the image referenced on the main page of this repository. It is very much a ***prequel***.
+This is a tutorial for creating the image referenced on the main page of this repository. It is a ***prequel*** to the main tutorial.
 Here is the sequence of events. 
 
 1. A Researcher **R** decides to do some work on the public cloud; and gets access
@@ -76,9 +76,16 @@ The above five steps are the bootstrapping covered on this page.
                         * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
                         * I use this without any qualms; but please be aware that it is a security-relevant choice
                     * Test the data directories by `cd /data` and creating a new file
-                    
-                
-        * 
+        * Install the Jupyter Lab notebook server
+            * Install Anaconda
+                * search `install Anaconda Linux` and follow the instructions
+                * Once the download path is determined I used `wget` to download the installer on the VM
+                    * `wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh`
+                * On Ubuntu I installed in the `/home/ubuntu` directory and needed to add the path for `conda`
+                    * `export PATH=~/anaconda3/bin:$PATH`
+            * Once Anaconda is installed: use the `conda` package manager to install Jupyterlab
+                * `conda install -c conda-forge jupyterlab`
+            * Test this using the `ssh tunnel` described in the main page tutorial of this repository
 
 
 ### Configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
