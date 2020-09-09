@@ -6,8 +6,8 @@ This is a tutorial for creating the image referenced on the main page of this re
 Here is the sequence of events. 
 
 1. A Researcher decides to do some work on the public cloud; and gets access
-  * Through Cloudbank the mechanism is a *billing account*
-  * By public cloud we mean for example the Google Cloud, Azure Cloud, or Amazon Cloud
+    * Through Cloudbank the mechanism is a *billing account*
+    * By public cloud we mean for example the Google Cloud, Azure Cloud, or Amazon Cloud
 3. They start up a Virtual Machine (VM) and log in to it (we will use AWS here as the example)
 4. They configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
 5. They add other useful tools / libraries / packages / datasets / etcetera to this VM
