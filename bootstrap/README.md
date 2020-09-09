@@ -55,14 +55,28 @@ The above five steps are the bootstrapping covered on this page.
 * On the VM 
     * (This follows from the `ssh` command issued from a terminal window on my computer, last command above)
     * Mount the two 300 GB SSD 'EBS' drives for use
-        * Search engine 'AWS EC2 EBS mount` turns up [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
-        * `VM> lsblk` produces a device listing
+        * Search engine: 'AWS EC2 EBS mount` turns up [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
+        * `lsblk` produces a device listing
             * In this case (again with an `m5ad.4xlarge` we see three devices `nvme0n1`, `nvme1n1`, `nvme2n1` of type `disk`
                 * These would have a full path `/dev/nvme0n1` etcetera
                 * Of these three only the third one `nvme2n1` has an associated partition
                     * This is the root device where the operating system resides
                     * The remaining two disks `nvme0n1` and `nvme1n1` are the empty volumes; these must be mounted for use
-                * Verify that there is no file system on the 
+                * Verify that there is no file system on the empty volumes: `sudo file -s /dev/nvme1n1` --> `/dev/nvme1n1: data`
+                * ***WARNING!!! If you use the following command on a file system that has data on it: You will wipe that data out.***
+                    * `sudo mkfs -t xfs /dev/nvme0n1` and likewise for `nvme1n1`
+                        * This should print out some confirmational stats
+                        * If `mkfs.xfs` is *not found*: Do a search on installing it using `sudo yum install xfsprogs`
+                    * `sudo file -s /dev/nvme0n1` should now show an XFS filesystem
+                    * Create a data directory for each disk
+                        * `sudo mkdir /data` and `sudo mkdir /data1`
+                        * `sudo mount /dev/nvme0n1 /data` and `sudo mount /dev/nvme1n1 /data1`
+                    * You will find that root owns these data directories. By default nobody else including the `ubuntu` user can write to them.
+                        * It is a security risk to make a data directory world-writable
+                        * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
+                        * I use this without any qualms; but please be aware that it is a security-relevant choice
+                    * Test the data directories by `cd /data` and creating a new file
+                    
                 
         * 
 
