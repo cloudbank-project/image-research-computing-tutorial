@@ -76,6 +76,11 @@ The above five steps are the bootstrapping covered on this page.
                         * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
                         * I use this without any qualms; but please be aware that it is a security-relevant choice
                     * Test the data directories by `cd /data` and creating a new file
+                    
+                    
+> Left off here: ommitted the step of ensuring the data directories mount on boot; see same link as given above for details.
+ 
+ 
         * Install the Jupyter Lab notebook server
             * Install Anaconda
                 * search `install Anaconda Linux` and follow the instructions
@@ -86,6 +91,9 @@ The above five steps are the bootstrapping covered on this page.
             * Once Anaconda is installed: use the `conda` package manager to install Jupyterlab
                 * `conda install -c conda-forge jupyterlab`
             * Test this using the `ssh tunnel` described in the main page tutorial of this repository
+
+
+> Left off here: Install some packages, grab a data tar file from S3 and unpack it.
 
 
 ### Configure the VM to act as a Jupyter Lab notebook server supporting a Python 3 kernel
