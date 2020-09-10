@@ -209,6 +209,11 @@ Copy this string to a text editor for later use. Issue `exit` to log out of your
 This allows you to log out of your instance, leaving it to function as a Jupyterlab server.
 
 
+> Note: The above token is used the first time connecting to the Jupyterlab server. It may not
+be used in subsequent sessions but it is worth keeping it around. If it is lost for some reason:
+Re-start the Jupyterlab server on the VM and re-copy the token. 
+
+
 12. In the `bash` shell issue `ssh -N -f -i hedylamarr.pem -L localhost:7005:localhost:8889 ubuntu@12.23.34.45`. 
 (Make appropriate substitutions.)
 
