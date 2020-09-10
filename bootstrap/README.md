@@ -79,22 +79,26 @@ started on the main page. This one includes some additional data disks making it
                         * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
                         * I use this without any qualms; but please be aware that it is a security-relevant choice
                     * Test the data directories by `cd /data` and creating a new file
-                    
-                    
-> Left off here: ommitted the step of ensuring the data directories mount on boot; see same link as given above for details.
- 
- * to
-     * continue...
-        * Install the Jupyter Lab notebook server
-            * Install Anaconda
-                * search `install Anaconda Linux` and follow the instructions
-                * Once the download path is determined I used `wget` to download the installer on the VM
-                    * `wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh`
-                * On Ubuntu I installed in the `/home/ubuntu` directory and needed to add the path for `conda`
-                    * `export PATH=~/anaconda3/bin:$PATH`
-            * Once Anaconda is installed: use the `conda` package manager to install Jupyterlab
-                * `conda install -c conda-forge jupyterlab`
-            * Test this using the `ssh tunnel` described in the main page tutorial of this repository
+    * Set up these data directories to mount automatically when the instance reboots
+        * Backup copy: `sudo cp /etc/fstab /etc/fstab.orig`
+        * Get the UUID: `sudo lsblk -o +UUID` 
+        * Edit the `fstab` file: `sudo vim /etc/fstab`
+        * Add this entry to the file: `UUID=aebf131c-6957-451e-8d34-ec978d9581ae  /data  xfs  defaults,nofail  0  2`
+        * Test it out: 
+            * `sudo umount /data`
+            * `sudo mount -a`
+        * Refer to the link given above for more detail on this procedure. A broken `fstab` file can prevent the VM from booting.
+
+     * Install the Jupyter Lab notebook server
+         * Install Anaconda
+             * search `install Anaconda Linux` and follow the instructions
+             * Once the download path is determined I used `wget` to download the installer on the VM
+                 * `wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh`
+             * On Ubuntu I installed in the `/home/ubuntu` directory and needed to add the path for `conda`
+                 * `export PATH=~/anaconda3/bin:$PATH`
+         * Once Anaconda is installed: use the `conda` package manager to install Jupyterlab
+             * `conda install -c conda-forge jupyterlab`
+         * Test this using the `ssh tunnel` described in the main page tutorial of this repository
 
 
 
