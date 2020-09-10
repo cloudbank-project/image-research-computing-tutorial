@@ -133,4 +133,8 @@ started on the main page. This one includes some additional data disks making it
 
 * Do not re-start a running Jupyterlab server: It can't possibly turn out well... `ps -ef | grep jupyter` is helpful.
 
+* Enabling widgets is a confusing detail...
 
+```
+jupyter nbextension enable --py widgetsnbextension
+```
