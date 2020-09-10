@@ -127,3 +127,10 @@ started on the main page. This one includes some additional data disks making it
 
 * Once per month is a common Anaconda update tempo...
 * Operating system: `sudo yum update` and so on
+
+
+## When Does What Happen?
+
+* Do not re-start a running Jupyterlab server: It can't possibly turn out well... `ps -ef | grep jupyter` is helpful.
+
+
