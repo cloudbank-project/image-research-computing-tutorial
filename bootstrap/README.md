@@ -121,3 +121,9 @@ started on the main page. This one includes some additional data disks making it
 
 
 ### Terminate / delete / destroy the VM so they are not paying for it by the hour
+
+
+## Updating Anaconda and the machine image
+
+* Once per month is a common Anaconda update tempo...
+* Operating system: `sudo yum update` and so on
