@@ -257,3 +257,9 @@ There are comprehensive guides to using Jupyterlab. Here we include some minimal
 * The *kernel* is the program that executes the Python code
     * The kernel status is indicated by a circle at the upper right of the notebook
     * Hover over the circle with your cursor for elaboration
+
+
+## Updating Anaconda and the machine image
+
+* Once per month is a common Anaconda update tempo...
+* See this comment in full on the `bootstrap` README
