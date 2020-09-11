@@ -110,9 +110,17 @@ started on the main page. This one includes some additional data disks making it
 * `conda install boto` was apparently already done...
 * `conda install netcdf4`
 * `conda install -c conda-forge ffmpeg`
-* Graph visualization package...
-* Data...
-* More repos...
+* `conda install networkx`
+* Imported datasets to the `/data` file system (300 GB capacity)
+    * Three glodap files from an S3 bucket to /data/glodap
+    * NEED: hydrophone data in /data/hydrophone
+    * NEED: argo data in /data/argo
+    * NEED: rca data in /data/rca
+* Imported repositories into ~
+    * chlorophyll
+    * golive
+* NEED: generated requirements.txt files inside repos
+
 
 
 ### Use cloud management tools to create an ***image*** of this VM
