@@ -111,16 +111,18 @@ started on the main page. This one includes some additional data disks making it
 * `conda install netcdf4`
 * `conda install -c conda-forge ffmpeg`
 * `conda install networkx`
+* `pip install git+https://github.com/cormorack/yodapy.git`
+
 * Imported datasets to the `/data` file system (300 GB capacity)
-    * Three glodap files from an S3 bucket to /data/glodap
-    * NEED: hydrophone data in /data/hydrophone
-    * NEED: argo data in /data/argo
-    * NEED: rca data in /data/rca
+    * The quick-and-easy approach is to use `sftp -r` from the data directory in the Pangeo JupyterHub pod
+        * Three glodap files from an S3 bucket to /data/glodap
+        * hydrophone data in /data/hydrophone
+        * argo data in /data/argo
+        * rca data in /data/rca
 * Imported repositories into ~
     * chlorophyll
     * golive
-* NEED: generated requirements.txt files inside repos
-
+* NEED: generated requirements.txt files inside repos: Look into `pip freeze`
 
 
 ### Use cloud management tools to create an ***image*** of this VM
