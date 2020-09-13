@@ -112,6 +112,7 @@ started on the main page. This one includes some additional data disks making it
 * `conda install -c conda-forge ffmpeg`
 * `conda install networkx`
 * `pip install git+https://github.com/cormorack/yodapy.git`
+* `pip install utm`
 
 * Imported datasets to the `/data` file system (300 GB capacity)
     * The quick-and-easy approach is to use `sftp -r` from the data directory in the Pangeo JupyterHub pod
