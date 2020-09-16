@@ -78,7 +78,7 @@ Before beginning let's review some important concepts to have firmly in mind
     * `my computer> ssh -i keypair.pem ubuntu@12.23.34.45`
 * On the VM 
     * (This follows from the `ssh` command issued from a terminal window on my computer, last command above)
-    * ***Mount two drives for use***
+    * ***Mount any drives for use***
         * This example works with temporary *instance store* volumes; will also work with EBS volumes
         * Search engine: 'AWS EC2 EBS mount` gives [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
         * `lsblk` produces a device listing
@@ -102,7 +102,7 @@ Before beginning let's review some important concepts to have firmly in mind
                         * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
                         * I use this without any qualms; but please be aware that it is a security-relevant choice
                     * Test the data directories by `cd /data` and creating a new file
-    * Set up these data directories to mount automatically when the instance reboots
+    * ***Set up these automated mount on reboot***
         * Backup copy: `sudo cp /etc/fstab /etc/fstab.orig`
         * Get the UUID: `sudo lsblk -o +UUID` 
         * Edit the `fstab` file: `sudo vim /etc/fstab`
@@ -112,7 +112,7 @@ Before beginning let's review some important concepts to have firmly in mind
             * `sudo mount -a`
         * Refer to the link given above for more detail on this procedure. A broken `fstab` file can prevent the VM from booting.
 
-     * Install the Jupyter Lab notebook server
+     * ***Install the Jupyter Lab notebook server***
          * Install Anaconda
              * search `install Anaconda Linux` and follow the instructions
              * Once the download path is determined I used `wget` to download the installer on the VM
@@ -122,52 +122,48 @@ Before beginning let's review some important concepts to have firmly in mind
          * Once Anaconda is installed: use the `conda` package manager to install Jupyterlab
              * `conda install -c conda-forge jupyterlab`
          * Test this using the `ssh tunnel` described in the main page tutorial of this repository
-
-
-
-### What else did I do / want to do
-
-
-* `conda install xarray`
-* `conda install -c conda-forge cmocean`
-* `conda install boto` was apparently already done...
-* `conda install netcdf4`
-* `conda install -c conda-forge ffmpeg`
-* `conda install networkx`
-* `pip install git+https://github.com/cormorack/yodapy.git`
-* `pip install utm`
-
-* Imported datasets to the `/data` file system (300 GB capacity)
-    * The quick-and-easy approach is to use `sftp -r` from the data directory in the Pangeo JupyterHub pod
-        * Three glodap files from an S3 bucket to /data/glodap
-        * hydrophone data in /data/hydrophone
-        * argo data in /data/argo
-        * rca data in /data/rca
-* Imported repositories into ~
-    * chlorophyll
-    * golive
-* NEED: generated requirements.txt files inside repos: Look into `pip freeze`
-
-
-### Use cloud management tools to create an ***image*** of this VM
-
-
-* Make sure to record the name and location of the image so as to make it findable in two years
-
-
-### Terminate / delete / destroy the VM so they are not paying for it by the hour
-
+    * ***Configure the machine for research***
+        * Install software packages
+            * The following are installation commands by way of example (geoscience-oriented)
+                * `conda install xarray`
+                * `conda install -c conda-forge cmocean`
+                * `conda install boto` was apparently already done...
+                * `conda install netcdf4`
+                * `conda install -c conda-forge ffmpeg`
+                * `conda install networkx`
+                * `pip install git+https://github.com/cormorack/yodapy.git`
+                * `pip install utm`
+        * Import datasets, typically to data volumes
+            * Example approach: Use `sftp -r` from the data directory of a source computer
+        * Imported code repositories (for example from GitHub) into the ubuntu user home directory
+        * Generate `requirements.txt` or `environment.yml`; look into `pip freeze` for example
+    * ***Create an image (AMI) of this Virtual Machine***
+        * On the AWS console: EC2 'running instances table: Locate and select this instance
+        * Actions menu > Image > Create Image
+        * Be sure to attach extensive metadata (typically add Tags) to the AMI to make it recognizable
+    * ***Share the AMI with other AWS accounts***
+        * On the AWS console > AMI listing (see left sidebar) > Permissions editor
+        * Add the AWS 12-digit account of a destination account where you wish this AMI to be available
+    * ***Terminate the VM so as not to continue paying for it***
+        * ***WARNING: This will completely delete this EC2 instance. To mitigate concern...***
+            * Consider starting a new EC2 instance using the AMI you created above.
+            * You can verify everything is preserved as you expect in this new instance
+            * At this point the AMI has been demonstrated as correct and you can Terminate both EC2 instances
+        * On the AWS console > EC2 'Running Instances' table: Locate and select an instance to Terminate
+        * Actions menu > Instance State > Terminate and confirm
 
 ## Updating Anaconda and the machine image
 
-* Once per month is a common Anaconda update tempo...
-* Operating system: `sudo yum update` and so on
+* Once per month is a common Anaconda update tempo
+* Consider updating the operating system as well, for example using `sudo yum update`
+* Upon doing updates: Create a new AMI; and manage your AMI catalog to avoid zombie charges
 
 
-## When Does What Happen?
+## Remaining open topics
 
-* Do not re-start a running Jupyterlab server: It can't possibly turn out well... `ps -ef | grep jupyter` is helpful.
-
+* Linking to M's content
+* Do not re-start a running Jupyterlab server. Check for it with `ps -ef | grep jupyter` is helpful.
+    * If the local machine disconnects it is usually sufficient to re-issue the ssh tunnel command from your computer
 * Enabling widgets is a confusing detail...
 
 ```
