@@ -78,19 +78,21 @@ Before beginning let's review some important concepts to have firmly in mind
     * `my computer> ssh -i keypair.pem ubuntu@12.23.34.45`
 * On the VM 
     * (This follows from the `ssh` command issued from a terminal window on my computer, last command above)
-    * ***Mount the two 300 GB SSD 'EBS' drives for use***
-        * Search engine: 'AWS EC2 EBS mount` turns up [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
+    * ***Mount two drives for use***
+        * This example works with temporary *instance store* volumes; will also work with EBS volumes
+        * Search engine: 'AWS EC2 EBS mount` gives [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
         * `lsblk` produces a device listing
-            * In this case (again with an `m5ad.4xlarge` we see three devices `nvme0n1`, `nvme1n1`, `nvme2n1` of type `disk`
-                * These would have a full path `/dev/nvme0n1` etcetera
-                * Of these three only the third one `nvme2n1` has an associated partition
-                    * This is the root device where the operating system resides
-                    * The remaining two disks `nvme0n1` and `nvme1n1` are the empty volumes; these must be mounted for use
-                * Verify that there is no file system on the empty volumes: `sudo file -s /dev/nvme1n1` --> `/dev/nvme1n1: data`
-                * ***WARNING!!! If you use the following command on a file system that has data on it: You will wipe that data out.***
+            * For this `m5ad.4xlarge` instance we see three devices `nvme0n1`, `nvme1n1`, `nvme2n1` of type `disk`
+                * Full path is in fact `/dev/nvme0n1` and so on
+                * Only the third volume `nvme2n1` has an associated partition
+                    * This is the root device where the operating system and ubuntu home directory resides
+                    * The remaining two disks `nvme0n1` and `nvme1n1` are the empty instance store volumes; must be mounted
+                * Verify that there is no file system on the empty volumes
+                    * `sudo file -s /dev/nvme1n1` --> `/dev/nvme1n1: data` (The result `data` indicates nothing there.)
+                * ***WARNING!!! The following command wipes a file system. Any data will be lost. ***
                     * `sudo mkfs -t xfs /dev/nvme0n1` and likewise for `nvme1n1`
-                        * This should print out some confirmational stats
-                        * If `mkfs.xfs` is *not found*: Do a search on installing it using `sudo yum install xfsprogs`
+                        * This should print out some confirmation stats
+                        * If `mkfs.xfs` is `not found`: Search on installing it using `sudo yum install xfsprogs`
                     * `sudo file -s /dev/nvme0n1` should now show an XFS filesystem
                     * Create a data directory for each disk
                         * `sudo mkdir /data` and `sudo mkdir /data1`
