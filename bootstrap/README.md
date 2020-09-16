@@ -38,7 +38,10 @@ started on the main page. This one includes some additional data disks making it
         * Notice that this is a "bare machine" with just the Ubuntu operating system
     * The VM selected is an `m5ad.4xlarge` which is quite expensive: About $5 per day or $2000 per year
         * ***Actual cost proved to be $20 / day: This is an open issue to resolve!***
-        * ***On Stop / Start there proved to be no 2 x 300GB filesystem preserved!!! Another issue!!!***
+        * ***WARNING: Know the distinction between EBS and [(ephemeral) instance store block devices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)***
+            * Some EC2 instance types come with directly attached, block-device storage known as the instance store
+            * The instance store is ideal for *temporary* storage
+            * Instance store data vanishes on stops, terminations, or hardware failures
         * ***We strongly recommend following through this tutorial to the Terminate stage!!!***
             * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
             * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not!
