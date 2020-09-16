@@ -37,6 +37,8 @@ started on the main page. This one includes some additional data disks making it
     * The image selected will be 64 but x86 Ubuntu Server (username = `ubuntu`)
         * Notice that this is a "bare machine" with just the Ubuntu operating system
     * The VM selected is an `m5ad.4xlarge` which is quite expensive: About $5 per day or $2000 per year
+        * ***Actual cost proved to be $20 / day: This is an open issue to resolve!***
+        * ***On Stop / Start there proved to be no 2 x 300GB filesystem preserved!!! Another issue!!!***
         * ***We strongly recommend following through this tutorial to the Terminate stage!!!***
             * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
             * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not!
@@ -57,7 +59,7 @@ started on the main page. This one includes some additional data disks making it
     * `my computer> ssh -i keypair.pem ubuntu@12.23.34.45`
 * On the VM 
     * (This follows from the `ssh` command issued from a terminal window on my computer, last command above)
-    * Mount the two 300 GB SSD 'EBS' drives for use
+    * ***Mount the two 300 GB SSD 'EBS' drives for use***
         * Search engine: 'AWS EC2 EBS mount` turns up [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
         * `lsblk` produces a device listing
             * In this case (again with an `m5ad.4xlarge` we see three devices `nvme0n1`, `nvme1n1`, `nvme2n1` of type `disk`
