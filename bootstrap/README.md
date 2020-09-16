@@ -27,6 +27,25 @@ started on the main page. This one includes some additional data disks making it
 
 ## Tutorial
 
+Before beginning let's review some important concepts to have firmly in mind
+
+* Virtual Machines (VM / instance / EC2)
+    * On AWS a Virtual Machine or VM is also called an *instance*.
+    * The instance service is called EC2. Hence 'EC2 instance' is an AWS virtual machine. 
+    * There are a wide variety of instance types available for us to choose from.
+        * Any given instance type will have associated memory, processing power and storage (see below).
+        * The cost of the instance -- per hour -- varies with these characteristics.
+        * It can be challenging to find instance cost on the AWS console.
+            * Costing shortcut: Enter `cost <instance-type> <region>` in a browser search bar; for example:
+                * `cost m5ad.4xlarge oregon` shows $1.00 per hour as the first result
+* Storage
+    * Disk drive version 1: Elastic Block Storage (EBS) is persistent storage, acting as a disk drive + file system
+    * AWS also supports temporary disk storage through the [*instance store*](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)
+    * It is essential to distinguish between **Elastic Block Strage (EBS) volumes** and **(ephemeral) instance store volumes**
+        * Instance store volumes evaporate; so they are only useful for temporary storage. 
+        * If we Stop and then Start an image: The instance store file system will still be there but all data/files are gone. 
+    * Use AWS S3 Object Storage to store any amount of data completely independent from EC2 instances
+    * Use AWS EFS as storage shared by multiple instances
 
 ### Start a Virtual Machine (VM) and log in to it
 
@@ -36,15 +55,12 @@ started on the main page. This one includes some additional data disks making it
 * Run through the launch Wizard; here are some details from our example run
     * The image selected will be 64 but x86 Ubuntu Server (username = `ubuntu`)
         * Notice that this is a "bare machine" with just the Ubuntu operating system
-    * The VM selected is an `m5ad.4xlarge` which is quite expensive: About $5 per day or $2000 per year
-        * ***Actual cost proved to be $20 / day: This is an open issue to resolve!***
-        * ***WARNING: Know the distinction between EBS and [(ephemeral) instance store block devices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)***
-            * Some EC2 instance types come with directly attached, block-device storage known as the instance store
-            * The instance store is ideal for *temporary* storage
-            * Instance store data vanishes on stops, terminations, or hardware failures
+    * The VM selected is an `m5ad.4xlarge` which $1.00 / hour in Oregon at time of writing
+        * This instance type includes two 300 GB instance store volumes (temporary storage)
+            * Data on these volumes will vanish on stops, terminations, or hardware failures
         * ***We strongly recommend following through this tutorial to the Terminate stage!!!***
-            * Failure to do so may result in you being charged for this Virtual Machine at this exhorbitant rate.
-            * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not!
+            * Failure to do so may result in you being charged for this Virtual Machine at this rate.
+            * We refer to this as zombie resource charges: You may forget about it but the cloud provider will not.
     * Configure instance: Default values
     * Add storage: Default values 
         * Note
