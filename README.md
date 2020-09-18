@@ -202,7 +202,9 @@ After about one minute this command should produce multiple lines of output incl
 ```
 
 
-Copy this string to a text editor for later use. Issue `exit` to log out of your cloud instance.
+Copy this string to a text editor for later use. 
+If you lose this token just log on to the instance where it is running and issue `jupyter notebook list` to see it.
+Issue `exit` to log out of your cloud instance.
 
 
 > Note: The Linux structure `(command) &` causes `command` to run as a background job. 
