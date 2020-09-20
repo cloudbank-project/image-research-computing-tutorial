@@ -236,14 +236,23 @@ and explore the contents.
 
 ## Idiosyncratic Cloud Matters
 
-This section covers some details of the main program that may or may not apply. 
+This section covers some details of the main program beyond the basics given above.  
 
-- If you are attaching Elastic Block Storage (EBS) which is informally seen as 'additional
-disk drives beyond your root drive' you may need to mount those drives before they are usable
-- If your EC2 instance includes device store drives: These are ephemeral and will evaporate
-when you stop the instance. It is therefore unwise to put anything on these volumes that you
-expect to access in the future. 
-
+- You may need to 
+[mount storage volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
+on your EC2 VM as file systems in addition to 
+your root file system. This is commonly done for managing large datasets for example. 
+See the [sub-README on image bootstrapping](https://github.com/cloudbank-project/image-research-computing-tutorial/tree/master/bootstrap)
+for more on this.
+    - You may choose to attach Elastic Block Storage (EBS) volumes which can be understood as 
+'additional persistent disk drives' (above the capacity of your root drive).  You may 
+need to mount those drives to make them usable.
+    - Your EC2 VM may also include *instance store volumes*. These may be understood as 
+'addtional ephemeral (temporary) disk drives'. That is: They evaporate when the instance stops. 
+It is therefore unwise to put anything on these volumes that you expect to access in the future. 
+- Updating Anaconda and the machine image operating system
+    - Once per month is a common Anaconda update tempo...
+    - See this comment in full on the `bootstrap` README
 
 ## Using Jupyterlab
 
@@ -274,7 +283,4 @@ There are comprehensive guides to using Jupyterlab. Here we include some minimal
     * Hover over the circle with your cursor for elaboration
 
 
-## Updating Anaconda and the machine image
 
-* Once per month is a common Anaconda update tempo...
-* See this comment in full on the `bootstrap` README
