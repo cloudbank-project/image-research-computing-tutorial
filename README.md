@@ -1,6 +1,8 @@
 # Research Computing on a Cloud Image
 
 This tutorial introduces a virtual machine ***image*** as a basis for research computing.
+We ***strongly encourage*** you to read the section on idiosyncratic cloud matters 
+that follows the main 'how to'. 
 
 
 You may be familiar with a *zip* or *tar* file containing an entire directory. 
@@ -230,6 +232,17 @@ When prompted for the token paste in the token string you copied earlier. You sh
 Jupyterlab environment. When using the instructional image for this tutorial there should be 
 a notebook listed on the left called `chlorophyll.ipynb`. You may click on this notebook to open it
 and explore the contents. 
+
+
+## Idiosyncratic Cloud Matters
+
+This section covers some details of the main program that may or may not apply. 
+
+- If you are attaching Elastic Block Storage (EBS) which is informally seen as 'additional
+disk drives beyond your root drive' you may need to mount those drives before they are usable
+- If your EC2 instance includes device store drives: These are ephemeral and will evaporate
+when you stop the instance. It is therefore unwise to put anything on these volumes that you
+expect to access in the future. 
 
 
 ## Using Jupyterlab
