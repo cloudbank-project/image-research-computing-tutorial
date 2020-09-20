@@ -242,8 +242,8 @@ This section covers some details of the main program beyond the basics given abo
 [mount storage volumes](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
 on your EC2 VM as file systems in addition to 
 your root file system. This is commonly done for managing large datasets for example. 
-See the [sub-README on image bootstrapping](https://github.com/cloudbank-project/image-research-computing-tutorial/tree/master/bootstrap)
-for more on this.
+See the [sub-folder **bootstrap** in this repo](https://github.com/cloudbank-project/image-research-computing-tutorial/tree/master/bootstrap)
+for more.
     - You may choose to attach Elastic Block Storage (EBS) volumes which can be understood as 
 'additional persistent disk drives' (above the capacity of your root drive).  You may 
 need to mount those drives to make them usable.
