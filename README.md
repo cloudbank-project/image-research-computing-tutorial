@@ -253,6 +253,13 @@ It is therefore unwise to put anything on these volumes that you expect to acces
 - Updating Anaconda and the machine image operating system
     - Once per month is a common Anaconda update tempo...
     - See this comment in full on the `bootstrap` README
+- Locking down the ip address of the instance
+    - AWS provides a (not-unlimited) number of dedicated ip addresses
+        - These allow you to use the same ip address despite stopping and re-starting your instance
+        - To use follow these steps
+            - Use the left sidebar to navigate to the Elastic IP page of the AWS console
+            - Allocate an Elastic IP address
+            - Associate this IP address with your running instance
 
 ## Using Jupyterlab
 
