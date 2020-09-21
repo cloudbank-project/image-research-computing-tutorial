@@ -1,7 +1,10 @@
 # Research Computing on a Cloud Image
 
 This tutorial introduces a virtual machine ***image*** as a basis for research computing.
-We ***strongly encourage*** you to read the section on idiosyncratic cloud matters 
+
+
+
+> We ***strongly encourage*** you to read the section on idiosyncratic cloud matters 
 that follows the main 'how to'. 
 
 
