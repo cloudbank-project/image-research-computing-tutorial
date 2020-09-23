@@ -25,7 +25,7 @@ Jupyterlab server through your web browser.
 
 In the sub-folder called `bootstrap` we go through the process of building this machine image. 
 
-I the sub-folder called `waterhackweek` we go from the rebuilt Jupyterlab VM to cloning a 
+In the sub-folder called `waterhackweek` we go from the rebuilt Jupyterlab VM to cloning a 
 repository of notebooks on the VM for a particular research topic. 
 
 
@@ -35,18 +35,22 @@ repository of notebooks on the VM for a particular research topic.
 In what follows on this page: The VM has a single disk drive (filesystem) with a fairly small 
 capacity of 32 Gigabytes. However it is common practice to create images that bundle large
 datasets. The sub-folder `bootstrap` tutorial spins up a Virtual Machine, for example, that has
-600 GB of attached SSD data directory capacity. This allows the image *builder* to include 
-a moderately large dataset with the image and provide some working space as well. 
+200 GB of block storage (disk drive) volume mounted as two data filesystems. 
+This allows the image *builder* to include a moderately large dataset with the image 
+and provide some working space as well. 
+
 
 Our point of emphasis here -- as with all cloud resource allocation actions -- is that one 
 should understand and track the costs associated with cloud resources. 'Block' or 'disk' 
-storage -- for example -- runs about $60 per month for 600 GB.
+storage -- for example -- runs about $20 per month for 200 GB.
+
 
 > Again our main admonition: The cloud is very powerful but it is
 important to understand and manage the cost of using it. 
 
 
 ## Outline
+
 
 - In what follows please customize your resources by substituting your own name for `hedylamarr`.
 - Obtain credentials to log in to the cloud console: Contact cloudbank for details
@@ -57,6 +61,7 @@ important to understand and manage the cost of using it.
 
 
 ## For Windows Users
+
 
 A brief interruption anticipating a possible issue: Further down we are going to build 
 something called an "ssh tunnel" to use our Virtual Machine as a Jupyter notebook server. 
