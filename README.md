@@ -1,4 +1,4 @@
-# Research Computing on a Cloud Image
+# CloudBank Solution Repo: Research Computing and Cloud Images
 
 This tutorial introduces a virtual machine ***image*** as a basis for research computing.
 
