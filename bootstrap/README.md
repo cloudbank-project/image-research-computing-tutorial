@@ -22,7 +22,21 @@ Here is the sequence of events.
 
 The above five steps are the bootstrapping covered on this page. The image created here does not precisely match the one 
 started on the main page. This one includes some additional data disks making it more expensive to operate. To avoid this
-(cost of 600 GB of disk space) choose a smaller / cheaper instance. 
+(cost of 200 GB of disk space, $20/month) choose a smaller / cheaper instance.
+
+
+## Summary of Tutorial
+
+This section describes what the following **Tutorial** runs through in fine detail.
+
+
+* Set aside an available computer on the cloud for my use (a blank slate)
+* Log in to the at computer and begin customizing it
+    * Install Jupyter Lab, import code, import data and so on
+* Capture this customized environment on the cloud as an *image*
+* Shut down and terminate the computer
+    * The idea is: You don't need it right now
+    * In the future you can recreate this environment using the image
 
 
 ## Tutorial
@@ -102,7 +116,7 @@ Before beginning let's review some important concepts to have firmly in mind
                         * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
                         * I use this without any qualms; but please be aware that it is a security-relevant choice
                     * Test the data directories by `cd /data` and creating a new file
-    * ***Set up these automated mount on reboot***
+    * ***Set up these disks with an automated mount on reboot***
         * Backup copy: `sudo cp /etc/fstab /etc/fstab.orig`
         * Get the UUID: `sudo lsblk -o +UUID` 
         * Edit the `fstab` file: `sudo vim /etc/fstab`
