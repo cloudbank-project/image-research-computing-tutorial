@@ -27,39 +27,73 @@ started on the main page. This one includes some additional data disks making it
 
 ## Summary of Tutorial
 
-This section describes what the following **Tutorial** runs through in fine detail.
+This section describes what the following **Tutorial** runs through. The tutorial contains rather a lot of detail 
+so this is what's happening more briefly.
 
 
-* Set aside an available computer on the cloud for my use (a blank slate)
-* Log in to the at computer and begin customizing it
-    * Install Jupyter Lab, import code, import data and so on
-* Capture this customized environment on the cloud as an *image*
-* Shut down and terminate the computer
-    * The idea is: You don't need it right now
-    * In the future you can recreate this environment using the image
+* You will set aside an available computer on the cloud for your sole use.
+    * This computer begins as a blank slate: Just an operating system and a user login.
+    * We use Ubuntu Linux in our example. 
+* You log in to this computer and begin customizing it
+    * Install Jupyter Lab, you import code, you import data, you install additional software, etcetera
+* You "save" this customized version of your computer on the cloud as an *image*
+* You halt and delete the customized computer: Your goal was just to create the image
+    * You don't need the actual computer at the moment
+    * In the future you or someone else will reconstitute the computer from the image you created
 
 
 ## Tutorial
 
+### Key concepts
+
 Before beginning let's review some important concepts to have firmly in mind
+
+* Authentication
+    * Pardon us belaboring this but in some cases this can save you from weeks of wasted time and aggravation.
+    * *Authentication* means "logging in", i.e. you are authenticated to use resources on the cloud
+    * On the cloud there are (at least) three authentication paths: Username/passord, login keypairs and IAM Access Keys
+    * Authentication is generally **credential** use over a **secure connection**
+        * The **secure connection** is built into applications like **ssh** as a protocol: You don't need to worry about this; it just works.
+        * The **credential** is sometimes a file containing long text strings akin to passwords: You need to worry about these not falling into unintended hands.
+    * The reason to be aware of and vigiliant about your authentication credentials is as follows...
+        * Suppose you have AWS credentials in the form of an Access Key file
+        * Suppose you place these on a *Virtual Machine* (see below) so that you can use them to access data storage
+        * Suppose you then make an *image* of this Virtual Machine (see below)
+        * Suppose that this image is shared with other people, perhaps unintentionally with the wrong people
+        * What could go wrong? 
+            * An inimical person (or their bot agent) finds this Access Key
+            * They use it 'as you' to spin up a vast pool of resources on AWS costing hundreds of dollars per minute
+            * These resources incur charges that *you* are expected to pay for
+    * ***Bottom line: Do not place credentials on AWS Virtual Machines intended to become EC2 images per this tutorial.***
+
 
 * Virtual Machines (VM / instance / EC2)
     * On AWS a Virtual Machine or VM is also called an *instance*.
-    * The instance service is called EC2. Hence 'EC2 instance' is an AWS virtual machine. 
+    * The instance service is called EC2. Hence 'EC2 instance' is an AWS VM. 
     * There are a wide variety of instance types available for us to choose from.
         * Any given instance type will have associated memory, processing power and storage (see below).
         * The cost of the instance -- per hour -- varies with these characteristics.
-        * It can be challenging to find instance cost on the AWS console.
-            * Costing shortcut: Enter `cost <instance-type> <region>` in a browser search bar; for example:
-                * `cost m5ad.4xlarge oregon` shows $1.00 per hour as the first result
+        * On the AWS console you select the EC2 service and then Launch Instance
+            * This runs a launch wizard where your first step is to choose an operating system.
+            * The second step is to choose an instance *type* which gives you a short name for the type of VM you will be launching
+            * You should have a good idea of what this <instance-type> will cost per hour of operation
+            * It can be challenging to find instance cost on the AWS console
+                * Costing shortcut: Enter `cost <instance-type> <region>` in a browser search bar; for example:
+                    * `cost m5ad.4xlarge oregon` shows $1.00 per hour as the first result
+
+
 * Storage
     * Disk drive version 1: Elastic Block Storage (EBS) is persistent storage, acting as a disk drive + file system
     * AWS also supports temporary disk storage through the [*instance store*](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)
     * It is essential to distinguish between **Elastic Block Strage (EBS) volumes** and **(ephemeral) instance store volumes**
         * Instance store volumes evaporate; so they are only useful for temporary storage. 
-        * If we Stop and then Start an image: The instance store file system will still be there but all data/files are gone. 
-    * Use AWS S3 Object Storage to store any amount of data completely independent from EC2 instances
-    * Use AWS EFS as storage shared by multiple instances
+        * If we Stop and then Start an image: The instance store file system will still be there but all files are gone. 
+    * To summarize
+        * Use EC2 instance store volumes for temporary storage where you do not need to keep data
+        * Use EC2 EBS block storage as persistent disk space when you need to keep data
+        * Use AWS EFS (Elastic File System) as storage shared by multiple instances; analogous to UNIX NFS
+        * Use AWS S3 Object Storage to store any (large) amounts of data cheaply, independent of EC2 resources
+
 
 ### Start a Virtual Machine (VM) and log in to it
 
@@ -147,6 +181,7 @@ Before beginning let's review some important concepts to have firmly in mind
                 * `conda install networkx`
                 * `pip install git+https://github.com/cormorack/yodapy.git`
                 * `pip install utm`
+                * `pip3 install manimlib` is Grant Sanderson's explanatory math visualization library
         * Import datasets, typically to data volumes
             * Example approach: Use `sftp -r` from the data directory of a source computer
         * Imported code repositories (for example from GitHub) into the ubuntu user home directory
