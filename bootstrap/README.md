@@ -182,6 +182,7 @@ Before beginning let's review some important concepts to have firmly in mind
                 * `pip install git+https://github.com/cormorack/yodapy.git`
                 * `pip install utm`
                 * `pip3 install manimlib` is Grant Sanderson's explanatory math visualization library
+                * `sudo apt install nodejs` working towards widgets...
         * Import datasets, typically to data volumes
             * Example approach: Use `sftp -r` from the data directory of a source computer
         * Imported code repositories (for example from GitHub) into the ubuntu user home directory
