@@ -135,7 +135,7 @@ Before beginning let's review some important concepts to have firmly in mind
 
 
 >Intermezzo: If like me you use `vi` or `vim` as a text editor and are puzzled at the profusion of colorized text: You can easily disable this "feature". 
-To do so in the editor: In escape mode type `:context off`. To do so permanently append the text line `context off` to the 
+To do so in the editor: In escape mode type `:syntax off`. To do so permanently append the text line `syntax off` to the 
 file `~/.vimrc` (which you may be obliged to create). 
 
 
