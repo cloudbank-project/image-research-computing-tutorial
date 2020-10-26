@@ -27,8 +27,7 @@ started on the main page. This one includes some additional data disks making it
 
 ## Summary of Tutorial
 
-This section describes what the following **Tutorial** runs through. The tutorial contains rather a lot of detail 
-so this is what's happening more briefly.
+This section describes what the subsequent **Tutorial** covers: Before we dig into the many details. 
 
 
 * You will set aside an available computer on the cloud for your sole use.
@@ -95,7 +94,11 @@ Before beginning let's review some important concepts to have firmly in mind
         * Use AWS S3 Object Storage to store any (large) amounts of data cheaply, independent of EC2 resources
 
 
-### Start a Virtual Machine (VM) and log in to it
+### Start a Virtual Machine (VM) and configure it
+
+
+#### Start up a VM from the AWS console
+
 
 * Log on to the AWS console and select Services > Compute > EC2 > Launch Instance
     * This could also be done using the Command Line Interface (CLI) to AWS
@@ -120,89 +123,109 @@ Before beginning let's review some important concepts to have firmly in mind
     * Review and Launch: Created a temporary keypair file, downloaded
         * See the main page of this repo for details
     * Launch: Note resulting ip address of the VM; let's say it is `12.23.34.45`
-* On my own computer
-    * Relocate the downloaded keypair file to my `bash` home directory
-    * `chmod 400` applied to keypair file
-    * `my computer> ssh -i keypair.pem ubuntu@12.23.34.45`
-* On the VM 
-    * (This follows from the `ssh` command issued from a terminal window on my computer, last command above)
-    * ***Mount any drives for use***
-        * This example works with temporary *instance store* volumes; will also work with EBS volumes
-        * Search engine: 'AWS EC2 EBS mount` gives [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
-        * `lsblk` produces a device listing
-            * For this `m5ad.4xlarge` instance we see three devices `nvme0n1`, `nvme1n1`, `nvme2n1` of type `disk`
-                * Full path is in fact `/dev/nvme0n1` and so on
-                * Only the third volume `nvme2n1` has an associated partition
-                    * This is the root device where the operating system and ubuntu home directory resides
-                    * The remaining two disks `nvme0n1` and `nvme1n1` are the empty instance store volumes; must be mounted
-                * Verify that there is no file system on the empty volumes
-                    * `sudo file -s /dev/nvme1n1` --> `/dev/nvme1n1: data` (The result `data` indicates nothing there.)
-                * ***WARNING!!! The following command wipes a file system. Any data will be lost. ***
-                    * `sudo mkfs -t xfs /dev/nvme0n1` and likewise for `nvme1n1`
-                        * This should print out some confirmation stats
-                        * If `mkfs.xfs` is `not found`: Search on installing it using `sudo yum install xfsprogs`
-                    * `sudo file -s /dev/nvme0n1` should now show an XFS filesystem
-                    * Create a data directory for each disk
-                        * `sudo mkdir /data` and `sudo mkdir /data1`
-                        * `sudo mount /dev/nvme0n1 /data` and `sudo mount /dev/nvme1n1 /data1`
-                    * You will find that root owns these data directories. By default nobody else including the `ubuntu` user can write to them.
-                        * It is a security risk to make a data directory world-writable
-                        * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
-                        * I use this without any qualms; but please be aware that it is a security-relevant choice
-                    * Test the data directories by `cd /data` and creating a new file
-    * ***Set up these disks with an automated mount on reboot***
-        * Backup copy: `sudo cp /etc/fstab /etc/fstab.orig`
-        * Get the UUID: `sudo lsblk -o +UUID` 
-        * Edit the `fstab` file: `sudo vim /etc/fstab`
-        * Add this entry to the file: `UUID=aebf131c-6957-451e-8d34-ec978d9581ae  /data  xfs  defaults,nofail  0  2`
-        * Test it out: 
-            * `sudo umount /data`
-            * `sudo mount -a`
-        * Refer to the link given above for more detail on this procedure. A broken `fstab` file can prevent the VM from booting.
 
-     * ***Install the Jupyter Lab notebook server***
-         * Install Anaconda
-             * search `install Anaconda Linux` and follow the instructions
-             * Once the download path is determined I used `wget` to download the installer on the VM
-                 * `wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh`
-             * On Ubuntu I installed in the `/home/ubuntu` directory and needed to add the path for `conda`
-                 * `export PATH=~/anaconda3/bin:$PATH`
-         * Once Anaconda is installed: use the `conda` package manager to install Jupyterlab
-             * `conda install -c conda-forge jupyterlab`
-         * Test this using the `ssh tunnel` described in the main page tutorial of this repository
-    * ***Configure the machine for research***
-        * Install software packages
-            * The following are installation commands by way of example (geoscience-oriented)
-                * `conda install xarray`
-                * `conda install -c conda-forge cmocean`
-                * `conda install boto` was apparently already done...
-                * `conda install netcdf4`
-                * `conda install -c conda-forge ffmpeg`
-                * `conda install networkx`
-                * `pip install git+https://github.com/cormorack/yodapy.git`
-                * `pip install utm`
-                * `pip3 install manimlib` is Grant Sanderson's explanatory math visualization library
-                * `sudo apt install nodejs` working towards widgets...
-        * Import datasets, typically to data volumes
-            * Example approach: Use `sftp -r` from the data directory of a source computer
-        * Imported code repositories (for example from GitHub) into the ubuntu user home directory
-        * Generate `requirements.txt` or `environment.yml`; look into `pip freeze` for example
-    * ***Create an image (AMI) of this Virtual Machine***
-        * On the AWS console: EC2 'running instances table: Locate and select this instance
-        * Actions menu > Image > Create Image
-        * Be sure to attach extensive metadata (typically add Tags) to the AMI to make it recognizable
-    * ***Share the AMI with other AWS accounts***
-        * On the AWS console > AMI listing (see left sidebar) > Permissions editor
-        * Add the AWS 12-digit account of a destination account where you wish this AMI to be available
-    * ***Terminate the VM so as not to continue paying for it***
-        * ***WARNING: This will completely delete this EC2 instance. To mitigate concern...***
-            * Consider starting a new EC2 instance using the AMI you created above.
-            * You can verify everything is preserved as you expect in this new instance
-            * At this point the AMI has been demonstrated as correct and you can Terminate both EC2 instances
-        * On the AWS console > EC2 'Running Instances' table: Locate and select an instance to Terminate
-        * Actions menu > Instance State > Terminate and confirm
+#### From my own computer log on to the AWS EC2 instance
 
-## Updating Anaconda and the machine image
+* Relocate the downloaded keypair file to my `bash` home directory
+* `chmod 400` applied to keypair file
+* `my computer> ssh -i keypair.pem ubuntu@12.23.34.45`
+
+
+#### On the EC2 instance (VM) mount any added storage drives
+
+
+*Intermezzo: If like me you use `vi` or `vim` and are puzzled at the profusion of colorized text you can disable this "feature"
+easily. To do so in the editor from escape mode type `:context off`. To do so permanently append the text line `context off` to the 
+end of the file `~/.vimrc`. 
+
+
+* Assumes you are logged on with a bash shell
+* This example works with temporary *instance store* volumes; will also work with EBS volumes
+* Search engine: 'AWS EC2 EBS mount` gives [this instructive link](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
+* `lsblk` produces a device listing
+    * For this `m5ad.4xlarge` instance we see three devices `nvme0n1`, `nvme1n1`, `nvme2n1` of type `disk`
+        * Full path is in fact `/dev/nvme0n1` and so on
+            * Only the third volume `nvme2n1` has an associated partition
+            * This is the root device where the operating system and ubuntu home directory resides
+            * The remaining two disks `nvme0n1` and `nvme1n1` are the empty instance store volumes; must be mounted
+        * Verify that there is no file system on the empty volumes
+            * `sudo file -s /dev/nvme1n1` --> `/dev/nvme1n1: data` (The result `data` indicates nothing there.)
+        * ***WARNING!!! The following command wipes a file system. Any data will be lost. ***
+            * `sudo mkfs -t xfs /dev/nvme0n1` and likewise for `nvme1n1`
+                * This should print out some confirmation stats
+                * If `mkfs.xfs` is `not found`: Search on installing it using `sudo yum install xfsprogs`
+            * `sudo file -s /dev/nvme0n1` should now show an XFS filesystem
+            * Create a data directory for each disk
+                * `sudo mkdir /data` and `sudo mkdir /data1`
+                * `sudo mount /dev/nvme0n1 /data` and `sudo mount /dev/nvme1n1 /data1`
+            * You will find that root owns these data directories. By default nobody else including the `ubuntu` user can write to them.
+                * It is a security risk to make a data directory world-writable
+                * The command to make a data directory world-writable is `sudo chmod a+rwx /data`
+                * I use this without any qualms; but please be aware that it is a security-relevant choice
+            * Test the data directories by `cd /data` and creating a new file
+
+#### Set up these storage disks to auto-mount on reboot
+
+* Backup copy: `sudo cp /etc/fstab /etc/fstab.orig`
+* Get the UUID: `sudo lsblk -o +UUID` 
+* Edit the `fstab` file: `sudo vim /etc/fstab`
+* Add this entry to the file: `UUID=aebf131c-6957-451e-8d34-ec978d9581ae  /data  xfs  defaults,nofail  0  2`
+* Test it out: 
+    * `sudo umount /data`
+    * `sudo mount -a`
+* Refer to the link given above for more detail on this procedure. A broken `fstab` file can prevent the VM from booting.
+
+#### Install the Jupyter Lab notebook serve
+* Install Anaconda
+    * search `install Anaconda Linux` and follow the instructions
+    * Once the download path is determined I used `wget` to download the installer on the VM
+        * `wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh`
+    * On Ubuntu I installed in the `/home/ubuntu` directory and needed to add the path for `conda`
+        * `export PATH=~/anaconda3/bin:$PATH`
+    * Once Anaconda is installed: use the `conda` package manager to install Jupyterlab
+    * `conda install -c conda-forge jupyterlab`
+* Test this using the `ssh tunnel` described in the main page tutorial of this repository
+
+#### Configure the machine for research
+
+* Install software packages
+    * The following are installation commands by way of example (geoscience-oriented)
+        * `conda install xarray`
+        * `conda install -c conda-forge cmocean`
+        * `conda install boto` was apparently already done...
+        * `conda install netcdf4`
+        * `conda install -c conda-forge ffmpeg`
+        * `conda install networkx`
+        * `pip install git+https://github.com/cormorack/yodapy.git`
+        * `pip install utm`
+        * `pip3 install manimlib` is Grant Sanderson's explanatory math visualization library
+        * `sudo apt install nodejs` working towards widgets...
+    * Import datasets, typically to data volumes
+        * Example approach: Use `sftp -r` from the data directory of a source computer
+    * Imported code repositories (for example from GitHub) into the ubuntu user home directory
+    * Generate `requirements.txt` or `environment.yml`; look into `pip freeze` for example
+
+#### Create an image (AMI) of this Virtual Machine
+* On the AWS console: EC2 'running instances table: Locate and select this instance
+    * Actions menu > Image > Create Image
+    * Be sure to attach extensive metadata (typically add Tags) to the AMI to make it recognizable
+
+## Share the AMI with other AWS accounts
+    
+* On the AWS console > AMI listing (see left sidebar) > Permissions editor
+* Add the AWS 12-digit account of a destination account where you wish this AMI to be available
+
+## Terminate the VM so as not to continue paying for it
+
+* ***WARNING: This will completely delete this EC2 instance. To mitigate concern...***
+    * Consider starting a new EC2 instance using the AMI you created above.
+    * You can verify everything is preserved as you expect in this new instance
+    * At this point the AMI has been demonstrated as correct and you can Terminate both EC2 instances
+* On the AWS console > EC2 'Running Instances' table: Locate and select an instance to Terminate
+* Actions menu > Instance State > Terminate and confirm
+
+
+## Updating Anaconda and refreshing the machine image
 
 * Once per month is a common Anaconda update tempo
 * Consider updating the operating system as well, for example using `sudo yum update`
@@ -219,3 +242,5 @@ Before beginning let's review some important concepts to have firmly in mind
 ```
 jupyter nbextension enable --py widgetsnbextension
 ```
+
+* Making mpeg videos from chart sequences
