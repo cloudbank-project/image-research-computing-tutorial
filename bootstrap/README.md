@@ -134,9 +134,9 @@ Before beginning let's review some important concepts to have firmly in mind
 #### On the EC2 instance (VM) mount any added storage drives
 
 
-*Intermezzo: If like me you use `vi` or `vim` and are puzzled at the profusion of colorized text you can disable this "feature"
-easily. To do so in the editor from escape mode type `:context off`. To do so permanently append the text line `context off` to the 
-end of the file `~/.vimrc`. 
+>Intermezzo: If like me you use `vi` or `vim` as a text editor and are puzzled at the profusion of colorized text: You can easily disable this "feature". 
+To do so in the editor: In escape mode type `:context off`. To do so permanently append the text line `context off` to the 
+file `~/.vimrc` (which you may be obliged to create). 
 
 
 * Assumes you are logged on with a bash shell
