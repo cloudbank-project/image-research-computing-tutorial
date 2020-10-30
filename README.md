@@ -1,6 +1,9 @@
 # CloudBank Solution Repo: Research Computing and Cloud Images
 
-This tutorial introduces a virtual machine ***image*** as a basis for research computing.
+This tutorial introduces you, the researcher, to using a virtual machine ***image*** 
+on the cloud as a basis for research computing. This page describes using an image
+that has *already been built for you*. If you want to see how to do that preparatory
+build: Dive down into the `bootstrap` sub-folder. 
 
 
 
