@@ -3,6 +3,9 @@
 ## Introduction: What is this sub-folder about? 
 
 This is a tutorial for creating the image referenced on the main page of this repository. It is a ***prequel*** to the main tutorial.
+What we build here is a Linux virtual machine with Jupyter Lab installed and some other useful features. 
+
+
 Here is the sequence of events. 
 
 1. A Researcher **R** decides to do some work on the public cloud; and gets access
