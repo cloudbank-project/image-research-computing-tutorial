@@ -137,9 +137,8 @@ Before beginning let's review some important concepts to have firmly in mind
 #### On the EC2 instance (VM) mount any added storage drives
 
 
->Intermezzo: If like me you use `vi` or `vim` as a text editor and are puzzled at the profusion of colorized text: You can easily disable this "feature". 
-To do so in the editor: In escape mode type `:syntax off`. To do so permanently append the text line `syntax off` to the 
-file `~/.vimrc` (which you may be obliged to create). 
+>Intermezzo: If you use the `vim` text editor and would like to turn off color-coded text: Say `:syntax off` from Escape mode; 
+>or append `syntax off` to `~/.vimrc`. For more see [this link on disabling colorized text](https://robfatland.github.io/greenandblack/).
 
 
 * Assumes you are logged on with a bash shell
