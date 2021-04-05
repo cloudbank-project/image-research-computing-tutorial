@@ -14,6 +14,13 @@ the services available on the Azure cloud.
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
 
+
+* this takes you to a Make Image wizard.
+* On this page we needed to create a new image definition: ![image](https://user-images.githubusercontent.com/6199513/113638881-bbe4e600-962c-11eb-854d-2b4a45c7e34e.png)
+
+
+
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_02.png" alt="drawing" width="600"/>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_03.png" alt="drawing" width="600"/>
