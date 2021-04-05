@@ -8,26 +8,40 @@ the services available on the Azure cloud.
 
 ## Walk-through
 
-* Sign in to the [Azure portal](portal.azure.com) and find or create a *Resource Group* in a region nearest to you.
-* Within this Resource Group click on +Add and select Marketplace. This is where we find existing "blank" images.
-
+* Sign in to the [Azure portal](portal.azure.com) and find or create a *Resource Group* (RG) in a region nearest to you.
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
 
 
-* this takes you to a Make Image wizard.
-* On this page we needed to create a new image definition: ![image](https://user-images.githubusercontent.com/6199513/113638881-bbe4e600-962c-11eb-854d-2b4a45c7e34e.png)
+* Select this Resource Group click on `+ Add`
+
 
 
 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_02.png" alt="drawing" width="600"/>
 
+This gives us a drop-down that includes Marketplace. This is where we find existing "blank" images.
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_03.png" alt="drawing" width="600"/>
+
+
+Select from the Marketplace an Ubuntu Server image. Notice that an *image* is what we are building. 
+We start out by selecting an "empty" image that includes nothing more than the Ubuntu operating system. 
+
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_04.png" alt="drawing" width="600"/>
 
+
+From here we have the opportunity to `Create`; which means "build a Virtual Machine using this Ubuntu operating system". 
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_05.png" alt="drawing" width="600"/>
+
+
+This brings us to a multi-step VM builder wizard. Enter a machine name and a Size from the dropdown. 
+Notice that the monthly cost of a given VM size is shown.
+The remaining entries in the first wizard form should be default values.
+
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_06.png" alt="drawing" width="600"/>
 
