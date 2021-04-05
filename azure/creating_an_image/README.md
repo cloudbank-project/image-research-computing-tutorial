@@ -12,7 +12,59 @@ the services available on the Azure cloud.
 * Within this Resource Group click on +Add and select Marketplace. This is where we find existing "blank" images.
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_02.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_03.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_04.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_05.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_06.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_07.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_08.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_09.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_10.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_11.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_12.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_13.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_14.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_15.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_16.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_17.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_18.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_19.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_20.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_21.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_22.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_23.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_24.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_25.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_26.png" alt="drawing" width="600"/>
+
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_27.png" alt="drawing" width="600"/>
 
 
 
