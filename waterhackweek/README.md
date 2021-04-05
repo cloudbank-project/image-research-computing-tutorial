@@ -1,18 +1,22 @@
 # Waterhackweek talk on building and using images
 
 ## Introduction
-On September 2, 2020, Cloudbank team members presented "images" for research computing to the annual Water Hackweek hosted by Christina Bandarogoda and others. 
 
-* Objective 1: De-Mystify cloud use in relation to Jupyter notebooks (largely done)
-* Objective 2: Demonstrate "unpacking / building / running" a Python environment with respect to specific code and data (not done)
+On September 2, 2020, Cloudbank presented "images" for research computing at Water Hackweek, a learning event for the 
+hydrological research community. This page contains some notes from that process.
 
 
-* The target repository is https://github.com/ChristinaB/dhsvm-opt: Build a working environment from `requirements.txt` or `environment.yml`
-  * Data is on a public repository (separate from above)
-  * Which cloud platform can I use to run another version of this experiment? (any)
-  * Interactive example notebook: How to get from a repo to the Amazon cloud? (stay tuned)
-  * How do I configure and run this workflow on the public  cloud without a JupyterHub community service? (ditto)  
-  * What are the costs and benefits of building a custom kernel on a community jupyterhub vs an individual server in the cloud with access to Jupyter Notebooks and terminals? (horsepower)
+* Objective: De-Mystify cloud use in relation to Jupyter notebooks
+* Objective: Demonstrate "unpacking / building / running" a Python environment with respect to specific code and data
+
+
+* The source repository is https://github.com/ChristinaB/dhsvm-opt: Build a working environment from `requirements.txt` or `environment.yml`
+* Data is on a public repository (separate from above)
+* Which cloud platform can I use to run another version of this experiment? (any)
+* Interactive example notebook: How to get from a repo to the Amazon cloud? (stay tuned)
+* How do I configure and run this workflow on the public  cloud without a JupyterHub community service? (ditto)  
+* What are costs / benefits of building a custom kernel on a community Jupyterhub vs one-off Jupyter notebook servers on the cloud? (horsepower)
+
 
 ## Executive Summary in two parts
 
@@ -21,10 +25,7 @@ The path to your own (supercharged) Jupyter environment is not trivial but it is
 * doable
 * super flexible in relation to your data/compute needs
 * available 24/7
-* cost is proportional to use 
-
-
-Paying for it: Start with free credits (trial account provides $100). See if this works for you. If so: Set up a real account backed by funds to pay for your cloud use. Credits programs sponsored by vendors can defray initial expense; emphasis on stopgap, not ongoing support. 
+* cost proportional to use provided you instantiate automatic **stops** in a sensible manner
 
 
 ## Demystify #1
@@ -35,6 +36,7 @@ How do I interact with the cloud?
 * Third is to use a coding interface. For example using Python with AWS: `boto3`
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk01.png" alt="screencap" width="700"/>
+
 
 ## Demystify #2 
 
@@ -58,6 +60,7 @@ Or you might be on the wrong cloud! The Jupyter server building covered in this 
 Here is a listing of AWS **Regions**.
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/whwtalk02.png" alt="regions" width="300"/>
+
 
 ## Demystify #3
 
