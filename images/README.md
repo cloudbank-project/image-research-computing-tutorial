@@ -1,5 +1,11 @@
 # Images folder
 
+
+## whw files
+
+Thes are visuals for the water hack week material
+
+
 ## A Point of Confusion
 
 This repository is about going on the cloud and using machine **images** as a basis for research computing. 
