@@ -12,7 +12,7 @@ the services available on the Azure cloud.
 * Within this Resource Group click on +Add and select Marketplace. This is where we find existing "blank" images.
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/Azure/Azure_image_01.png" alt="drawing" width="600"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
 
 
 
