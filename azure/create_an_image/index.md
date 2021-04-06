@@ -14,13 +14,6 @@ the services available on the Azure cloud.
 
 <img src="../../images/azure/Azure_image_01.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 
-<BR>
-   
-spacer
-   
-<BR>
-   
-![first image]({{ site.url }}/images/azure/Azure_image_01.png")
 
 <BR><BR><BR>
 
@@ -31,7 +24,7 @@ spacer
 <BR><BR><BR>
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_02.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_02.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -39,7 +32,7 @@ spacer
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_03.png" alt="drawing" width="200"/>
+<img src="../../images/azure/Azure_image_03.png" alt="drawing" width="200"/>
 
 <BR><BR><BR>
 
@@ -48,7 +41,7 @@ spacer
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_04.png" alt="drawing" width="200"/>
+<img src="../../images/azure/Azure_image_04.png" alt="drawing" width="200"/>
 
 <BR><BR><BR>
 
@@ -56,7 +49,7 @@ spacer
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_05.png" alt="drawing" width="600"/>
+<img src="../../azure/Azure_image_05.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -67,7 +60,7 @@ spacer
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_06.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_06.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 
