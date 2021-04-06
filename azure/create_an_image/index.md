@@ -16,7 +16,7 @@ the services available on the Azure cloud.
 
 <BR>
 spacer
-<BR>
+<BR><BR>
    
 ![first image]({{ site.url }}/images/azure/Azure_image_01.png")
 
