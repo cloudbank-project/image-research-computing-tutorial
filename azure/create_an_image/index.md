@@ -14,6 +14,12 @@ the services available on the Azure cloud.
 
 <img src="{{site.url}}/images/azure/Azure_image_01.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 
+<BR>
+spacer
+<BR>
+   
+![first image]({{ site.url }}/images/azure/Azure_image_01.png")
+
 <BR><BR><BR>
 
 * Select this Resource Group click on `+ Add`
