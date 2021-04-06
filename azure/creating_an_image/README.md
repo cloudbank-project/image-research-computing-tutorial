@@ -77,32 +77,43 @@ the services available on the Azure cloud.
 
 * Once disk volume is selected you can (**Ok**) confirm you want to **Create a new disk**.
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_09.png" alt="drawing" width="600"/>
+
+<BR><BR><BR>
 
 
 * Next are Networking, Management and Advanced tabs: Defaults are fine. 
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_10.png" alt="drawing" width="800"/>
 
+<BR><BR><BR>
 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_11.png" alt="drawing" width="800"/>
 
+<BR><BR><BR>
 
 * **Tags** tab: Include some tags so that an account administrator knows what these resources are for.
+
+<BR><BR><BR>
 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_12.png" alt="drawing" width="800"/>
 
+<BR><BR><BR>
 
 * At the **Review and Create** tab we can get a sense of what will be built and what it will cost to operate (here 12 cents per hour). 
 
+<BR><BR><BR>
 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_13.png" alt="drawing" width="600"/>
 
+<BR><BR><BR>
 
 * A pop-up dialog gives you the opportunity to download the access key-pair file. 
 * We use this rather than using a password to log in to this VM. 
@@ -113,23 +124,30 @@ the services available on the Azure cloud.
 > For all users: You will need to change the permissions of this `.pem` file to be restrictive.
 > This can be done with the command `chmod 400 fu.pem` once it is downloaded.
 
+<BR><BR><BR>
 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_14.png" alt="drawing" width="400"/>
 
+<BR><BR><BR>
 
 * Deployment complete message:
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_15.png" alt="drawing" width="800"/>
 
+<BR><BR><BR>
 
 * The following graphics provide a lot of the details of operation of this newly-created VM:
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_16.png" alt="drawing" width="800"/>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_17.png" alt="drawing" width="800"/>
+
+<BR><BR><BR>
 
 * Note that the VM is given an ip address. 
     * Let's suppose this happens to be `111.22.33.44`. 
@@ -175,21 +193,52 @@ sudo blkid
    
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_19.png" alt="drawing" width="800"/>
 
+<BR><BR><BR>
+<BR><BR><BR>
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_20.png" alt="drawing" width="600"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_20.png" alt="drawing" width="800"/>
+<BR><BR><BR>
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_21.png" alt="drawing" width="600"/>
+<BR><BR><BR>
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_22.png" alt="drawing" width="600"/>
+<BR><BR><BR>
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_23.png" alt="drawing" width="600"/>
+<BR><BR><BR>
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_24.png" alt="drawing" width="600"/>
 
+<BR><BR><BR>
+
+* To at last make the VM image: Select the VM in the portal and click **Capture**
+
+<BR><BR><BR>
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_25.png" alt="drawing" width="600"/>
 
+<BR><BR><BR>
+
+* The "make image" wizard comes up.
+* On the side dialog select No, capture only a managed image
+
+<BR><BR><BR>
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_26.png" alt="drawing" width="600"/>
+
+
+<BR><BR><BR>
+   
+* The VM stops and the image creation process starts up. Shortly thereafter (minutes) we have an image of the VM available. 
+
+
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_27.png" alt="drawing" width="600"/>
 
