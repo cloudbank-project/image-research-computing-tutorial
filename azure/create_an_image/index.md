@@ -9,6 +9,8 @@ the services available on the Azure cloud.
 ## Walk-through
 
 * Sign in to the [Azure portal](portal.azure.com) and find or create a *Resource Group* (RG) in a region nearest to you.
+* Here is a portal screencapture showing a Resource Group listing with just one Resource Group.
+* This RG will act as a container for the Virtual Machine and associated resources we put together in this walk-through.
 
 <BR><BR>
 
@@ -17,7 +19,7 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Select this Resource Group click on `+ Add`
+* Select the RG and click `+Add v`: We proceed to add a Virtual Machine.
 
 
 
@@ -28,7 +30,7 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* This gives us a drop-down that includes Marketplace. This is where we find existing "blank" images.
+* The `+Ad v` provides a drop-down. Select `Marketplace`. This is where we can get Ubuntu Linux VM images at not cost.
 
 <BR><BR>
 
@@ -37,7 +39,8 @@ the services available on the Azure cloud.
 <BR><BR>
 
 * Select from the Marketplace an Ubuntu Server image. Notice that an *image* is what we are building. 
-    * We start out by selecting an "empty" image that includes nothing more than the Ubuntu operating system. 
+    * We start out by selecting an "empty" image that includes nothing more than the Ubuntu operating system.
+    * Once the Virtual Machine running Ubuntu is functional we will customize it.
 
 <BR><BR>
 
@@ -45,7 +48,7 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* From here we have the opportunity to `Create`; which means "build a Virtual Machine using this Ubuntu operating system". 
+* Click on `Create`; which means "Build a Virtual Machine using this Ubuntu operating system". 
 
 <BR><BR>
 
@@ -54,9 +57,10 @@ the services available on the Azure cloud.
 <BR><BR>
 
 * This brings us to a multi-step VM builder wizard. 
-* Enter a machine name and a Size from the dropdown. 
-* Notice that the monthly cost of a given VM size is shown.
-* The remaining entries in the first wizard form should be default values.
+    * We will work through the multiple tabs fairly quickly, mostly using default values
+    * On the first tab: Enter a machine name and a Size from the dropdown. 
+        * Notice that the monthly cost of a given VM size is shown.
+        * The remaining entries in the first wizard tab should be default values.
 
 <BR><BR>
 
@@ -64,7 +68,8 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Use **Next** to arrive at the disk tab of the VM wizard. Add a 256GB disk in order to create some data capacity on this VM.
+* Click **Next** to arrive at the **Disks** tab of the VM wizard. 
+* Add a 256GB disk to create some data capacity on this VM.
 
 <BR><BR>
 
@@ -277,6 +282,32 @@ sudo blkid
 
 ## Concluding remarks
 
+
 There is a connection between a running Virtual Machine (which costs a certain amount per hour of operation) and the VM image
-created here. There are a couple of important things to emphasize about the Virtual Machine to keep in mind. 
+created here. The VM image acts as a safe backup copy of the VM. 
+
+
+There are a couple of important things to emphasize about the Virtual Machine. First a Virtual Machine can be "forgotten about";
+i.e. it can left running without being in use. This costs perhaps $0.20 per hour; or if it is a powerful machine maybe $1.20 
+per hour, arguably not good for the project budget. However this VM can be stopped, for example through the portal interface. 
+When a VM is stopped it effectively costs nothing; and it can be re-started in a matter of a few minutes. The VM can also be 
+connected to a cloud service that stops it every day at say 7 PM. This is a failsafe cost management technique. Stopping an
+already-stopped machine has no effect.
+
+
+Another important point to keep in mind is that we access VMs through the internet using a `.pem` keypair file. This file
+should be kept in a secure location away from GitHub respository directories. It is sometimes possible to accidentally
+delete files so it might be wise to keep a backup copy of a keypair file in another secure location. Azure has a security
+service for managing access keys called **Key Vault**; worth knowing about but beyond the scope of this tutorial.
+
+
+In this walk-through we created a 256GB data disk that we mounted as a file system on the VM. There is a cost associated 
+with drives like this when they are left running, typically about $0.10 per GB per month. Like VMs an attached storage 
+device can be frozen as a stored snapshot, again reducing cost. 
+
+
+Finally a running Virtual Machine has an ip address when configured as here for remote access. This ip address will change
+each time the VM is restarted, either from a stopped state or from a VM image. It is possible to get a "permanent" ip address
+associated with a VM to avoid having to keep looking up the latest ip address. On Azure these are called Static Public IPs
+whereas on AWS they are called Elastic IPs. 
 
