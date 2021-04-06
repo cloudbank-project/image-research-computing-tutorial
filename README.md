@@ -1,4 +1,4 @@
-# CloudBank Solution: Virtual Machine Images for Research Computing
+# CloudBank Solution: VM *Images* for Research Computing
 
 
 This tutorial introduces you, the researcher, to using a virtual machine ***image*** 
