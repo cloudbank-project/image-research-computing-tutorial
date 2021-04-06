@@ -12,7 +12,7 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="../../images/azure/Azure_image_01.png" alt="drawing" width="600"/>
+<img src="{{site.url}}/images/azure/Azure_image_01.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 
 <BR><BR><BR>
 
