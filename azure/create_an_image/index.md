@@ -30,7 +30,7 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* The `+Ad v` provides a drop-down. Select `Marketplace`. This is where we can get Ubuntu Linux VM images at not cost.
+* The `+Add v` gives us a drop-down. Select `Marketplace`. This is where we can get Ubuntu Linux VM images at no cost.
 
 <BR><BR>
 
@@ -120,6 +120,10 @@ the services available on the Azure cloud.
 <img src="../../images/azure/Azure_image_13.png" alt="drawing" width="600"/>
 
 <BR><BR>
+   
+<img src="../../images/azure/Azure_image_14.png" alt="drawing" width="400"/>
+
+<BR><BR>
 
 * A pop-up dialog gives you the opportunity to download the access key-pair file. 
 * We use this rather than using a password to log in to this VM. 
@@ -127,57 +131,65 @@ the services available on the Azure cloud.
 * You will need to change its read-write-execute permissions to `r--------` or `0400` in octal.
 
 
-> For Windows users: You can use this `.pem` file as-is from a locally installed bash shell.
-> If instead you would like to use the popular Windows PuTTY free ssh client: Be prepared 
-> to do a bit of learning as there is necessary change in file format applied to that `.pem`
-> file. We suggest that installing an Ubuntu bash shell is more in the spirit of the 
-> target Ubuntu operating system; which in turn works well with Anaconda and Jupyter notebook servers.
+*** For Windows users:*** You can use this `.pem` file as-is from a locally installed bash shell.
+We suggest that installing an Ubuntu bash shell is more in the spirit of the 
+target Ubuntu operating system; which in turn works well with Anaconda and Jupyter notebook servers.
+However if you prefer to use the popular Windows PuTTY free ssh client: Be prepared 
+to do a bit of learning as there is necessary change in file format applied to that `.pem` file. 
   
 
-> For all users: As noted above you must change the permissions of the `.pem` file to `r--------`.
-> That is: Only the user can read the file. This is a restrictive step that increases the
-> security of your access to the Virtual Machine you are building. 
-> Changing the permissions in this manner is done with the command `chmod 400 fu.pem`.
-> Once the file is downloaded and its permissions changed: It is used by `ssh` to authenticate 
-> logging in to the VM.
+*** For all users:*** As noted above you must change the permissions of the `.pem` file to `r--------`.
+That is: Only the user can read the file. This is a restrictive step that increases the
+security of your access to the Virtual Machine you are building. 
+Changing the permissions in this manner is done with the command `chmod 400 fu.pem`.
+Once the file is downloaded and its permissions changed: It is used by `ssh` to authenticate 
+logging in to the VM.
+
 
 <BR><BR>
 
-
-<img src="../../images/azure/Azure_image_14.png" alt="drawing" width="400"/>
-
-<BR><BR>
 
 * Here is the "Deployment complete" message you should see once the VM has been launched:
 
+
 <BR><BR>
+
 
 <img src="../../images/azure/Azure_image_15.png" alt="drawing" width="800"/>
 
+
 <BR><BR>
+
 
 * We then see a lot of the details of operation of this newly-created VM:
 
+
 <BR><BR>
+
 
 <img src="../../images/azure/Azure_image_16.png" alt="drawing" width="800"/>
 
 <img src="../../images/azure/Azure_image_17.png" alt="drawing" width="800"/>
 
+
 <BR><BR>
 
+
 * Note that this information includes an ip address for this VM. 
-    * In the example above the ip address is 138.91.145.112
+    * In the example above the ip address is `138.91.145.112`
     * For simplicity let's suppose your ip address comes up as `111.22.33.44`
     * Let's also suppose you have named your `.pem` keypair file to be `fu.pem`  
     * Your ssh login command is then:
+
 
 ```
 ssh -i fu.pem azureuser@111.22.33.44
 ```
 
-* Confirm this to login. You should now have a prompt `azureuser@machimename:~$ `
-    * The primary cause of this step not working is not setting the `0400` permission correctly on the `.pem` file (see above).
+
+* Confirm this to login. You should now have a tell-tale prompt:
+    *  `azureuser@machimename:~$ `
+    * The primary cause of this step not working is not setting the `0400` permission on the `.pem` file (see above).
 
 
 * The next step is to mount the 256GB data disk we added during the VM creation process 
@@ -185,11 +197,15 @@ ssh -i fu.pem azureuser@111.22.33.44
     * The command to get started is `lsblk -o NAME,HCTL,SIZE,MOUNTPOINT`
     * Notice that the 256 GB disk is listed but has no mount point as yet
 
+
 <BR><BR>
+
 
 <img src="../../images/azure/Azure_image_18.png" alt="drawing" width="600"/>
 
+
 <BR><BR>
+
 
 * Follow directions for mounting a disk on an Azure VM
     * [How-to documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
@@ -237,10 +253,9 @@ sudo blkid
 * At this point the Jupyter notebook server should be available for use. 
     * We proceed in two steps here
         * First setting up some interesting content
+            * Need to test this: In `~` run `git clone https://github.com/robfatland/chlorophyll`
         * Second configuring the Jupyter notebook server to work remotely
-
-
-* Insert a link here to 'using an image'
+            * Use [this link](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/use_an_image) for this second step
    
    
 <BR><BR>
@@ -249,7 +264,7 @@ sudo blkid
 
 <BR><BR>
 
-* Finally create an image of this customized VM image
+* Finally the last step, as noted, is quite simple: Create an image of this customized VM image
     * Select the VM in the portal and click **Capture**
 
 <BR><BR>
