@@ -49,7 +49,7 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="../../azure/Azure_image_05.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_05.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -68,11 +68,11 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_07.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_07.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_08.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_08.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -80,7 +80,7 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_09.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_09.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -89,12 +89,12 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_10.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_10.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_11.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_11.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 
@@ -103,7 +103,7 @@ the services available on the Azure cloud.
 <BR><BR><BR>
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_12.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_12.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 
@@ -112,7 +112,7 @@ the services available on the Azure cloud.
 <BR><BR><BR>
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_13.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_13.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -128,7 +128,7 @@ the services available on the Azure cloud.
 <BR><BR><BR>
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_14.png" alt="drawing" width="400"/>
+<img src="../../images/azure/Azure_image_14.png" alt="drawing" width="400"/>
 
 <BR><BR><BR>
 
@@ -136,7 +136,7 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_15.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_15.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 
@@ -144,9 +144,9 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_16.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_16.png" alt="drawing" width="800"/>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_17.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_17.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 
@@ -169,7 +169,7 @@ ssh -i fu.pem azureusuer@111.22.33.44
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_18.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_18.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -192,29 +192,29 @@ sudo blkid
 
 <BR><BR><BR>
    
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_19.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_19.png" alt="drawing" width="800"/>
 
 <BR><BR><BR>
 <BR><BR><BR>
 
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_20.png" alt="drawing" width="800"/>
+<img src="../../images/azure/Azure_image_20.png" alt="drawing" width="800"/>
 <BR><BR><BR>
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_21.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_21.png" alt="drawing" width="600"/>
 <BR><BR><BR>
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_22.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_22.png" alt="drawing" width="600"/>
 <BR><BR><BR>
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_23.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_23.png" alt="drawing" width="600"/>
 <BR><BR><BR>
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_24.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_24.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -222,7 +222,7 @@ sudo blkid
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_25.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_25.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
@@ -231,7 +231,7 @@ sudo blkid
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_26.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_26.png" alt="drawing" width="600"/>
 
 
 <BR><BR><BR>
@@ -241,7 +241,7 @@ sudo blkid
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_27.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_27.png" alt="drawing" width="600"/>
 
 
 
