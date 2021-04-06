@@ -12,7 +12,7 @@ the services available on the Azure cloud.
 
 <BR><BR><BR>
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/gh-pages/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
 
 <BR><BR><BR>
 
