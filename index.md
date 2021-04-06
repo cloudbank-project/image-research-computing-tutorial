@@ -6,10 +6,10 @@ on the cloud as a basis for research computing. This page provides the outline o
 what is going on for a person new to cloud computing. The tutorial content is broken
 down by provider (Azure, AWS etcetera) and then by *create* and *use* tutorials.
 
-* [AWS create image]()
-* [AWS use image]()
+* [AWS create image](https://cloudbank-project.github.io/image-research-computing-tutorial/aws/create_an_image)
+* [AWS use image](https://cloudbank-project.github.io/image-research-computing-tutorial/aws/use_an_image)
 * [Azure create image](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image)
-* [Azure use image]()
+* [Azure use image](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/use_an_image)
 
 
 ## Overview of Virtual Machine *images*
