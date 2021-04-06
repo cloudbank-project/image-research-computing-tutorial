@@ -8,7 +8,7 @@ down by provider (Azure, AWS etcetera) and then by *create* and *use* tutorials.
 
 * [AWS create image]()
 * [AWS use image]()
-* [Azure create image]()
+* [Azure create image](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image)
 * [Azure use image]()
 
 
