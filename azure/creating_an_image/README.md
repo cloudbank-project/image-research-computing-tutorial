@@ -10,52 +10,70 @@ the services available on the Azure cloud.
 
 * Sign in to the [Azure portal](portal.azure.com) and find or create a *Resource Group* (RG) in a region nearest to you.
 
+<BR><BR><BR>
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_01.png" alt="drawing" width="600"/>
 
+<BR><BR><BR>
 
 * Select this Resource Group click on `+ Add`
 
 
 
+<BR><BR><BR>
 
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_02.png" alt="drawing" width="600"/>
 
+<BR><BR><BR>
+
 * This gives us a drop-down that includes Marketplace. This is where we find existing "blank" images.
+
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_03.png" alt="drawing" width="200"/>
 
+<BR><BR><BR>
 
 * Select from the Marketplace an Ubuntu Server image. Notice that an *image* is what we are building. 
     * We start out by selecting an "empty" image that includes nothing more than the Ubuntu operating system. 
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_04.png" alt="drawing" width="200"/>
 
+<BR><BR><BR>
 
 * From here we have the opportunity to `Create`; which means "build a Virtual Machine using this Ubuntu operating system". 
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_05.png" alt="drawing" width="600"/>
 
+<BR><BR><BR>
 
 * This brings us to a multi-step VM builder wizard. 
 * Enter a machine name and a Size from the dropdown. 
 * Notice that the monthly cost of a given VM size is shown.
 * The remaining entries in the first wizard form should be default values.
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_06.png" alt="drawing" width="800"/>
 
+<BR><BR><BR>
 
 * Use **Next** to arrive at the disk tab of the VM wizard. Add a 256GB disk in order to create some data capacity on this VM.
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_07.png" alt="drawing" width="800"/>
 
+<BR><BR><BR>
 
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_08.png" alt="drawing" width="600"/>
 
+<BR><BR><BR>
 
 * Once disk volume is selected you can (**Ok**) confirm you want to **Create a new disk**.
 
@@ -130,7 +148,11 @@ ssh -i fu.pem azureusuer@111.22.33.44
     * The command here is `lsblk -o NAME,HCTL,SIZE,MOUNTPOINT`
     * The 256GB disk has no mount point as yet
 
+<BR><BR><BR>
+
 <img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_18.png" alt="drawing" width="600"/>
+
+<BR><BR><BR>
 
 * Follow directions for mounting a disk on an Azure VM
     * [Here is some documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
@@ -149,7 +171,9 @@ sudo blkid
 * You might need to `sudo chmod` on the `/datadrive` to make it read/write-able.
 * Note the web page provides links to further documentation.
 
-<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_19.png" alt="drawing" width="600"/>
+<BR><BR><BR>
+   
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/Azure_image_19.png" alt="drawing" width="800"/>
 
 
 
