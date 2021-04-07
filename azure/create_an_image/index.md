@@ -1,16 +1,49 @@
 # Creating a VM image on the Azure cloud
 
-This procedural walks you through creating a working Virtual Machine with a Jupyter notebook server, testing it, 
-and storing it as an Azure machine image. This last step is a single click task; the bulk of the effort is 
-the preparation. This walk-through uses the [Azure portal](portal.azure.com), a browser-based interface to
-the services available on the Azure cloud. 
+## Introduction
+
+Virtual Machines (VMs) are computers. On the cloud we select them by type and operating system. The type
+matches the computer's purpose to processing power, available memory and other features. The bigger
+the computer the more it costs per hour. The small VM we will use here costs $0.12 per hour.
+
+
+A Jupyter notebook server is a research tool in very common use at this time. A researcher may install
+and run a Jupyter server to develop and run data analysis code, often written in Python. The Python
+programming environment is characterized by many libraries that serve various purposes. These can be 
+installed on VMs often at no cost. There are also datasets openly available, also at no cost. 
+
+
+"As if we are doing some research" the sequence of events in this walk-through are:
+
+
+- Start a VM on the Azure cloud
+- Install the Anaconda data science platform (as you might guess: This is Python)
+- Install some additional Python libraries
+- Download some data
+- Download a Jupyter notebook repository
+- Make sure everything works properly
+- Save the results as an Azure VM **image**
+- Shut down ("terminate") the VM
+- Start a new VM from the stored image
+- Again test that everything works properly
+
 
 
 ## Walk-through
 
-* Sign in to the [Azure portal](portal.azure.com) and find or create a *Resource Group* (RG) in a region nearest to you.
-* Here is a portal screencapture showing a Resource Group listing with just one Resource Group.
-* This RG will act as a container for the Virtual Machine and associated resources we put together in this walk-through.
+This procedural walks you through creating a working Virtual Machine with a Jupyter notebook server, testing it, 
+and storing it as an Azure machine image. That last step is a single click task; the bulk of the effort is 
+the preparation. This walk-through uses the [Azure portal](portal.azure.com), a browser-based interface to
+the services available on the Azure cloud. 
+
+
+* Using a browser sign in to the [Azure portal](portal.azure.com) and identify/select an Azure *Resource Group*
+    * A Resource Group (abbreviated RG) is a logical/virtual container for associated Azure resources
+    * As an example an RG might contain a Virtual Machine (VM), a monitoring service and a Storage Account
+    * RGs are associated with regions; and should be created in a region near to your geographic location
+    * If you do not have an RG available you can use the Azure portal to **Create** a new one
+* Below is a portal screencapture showing a Resource Group list: Just one Resource Group is present
+    * This RG will contain a Virtual Machine and associated resources: That's the goal.
 
 <BR><BR>
 
@@ -19,7 +52,7 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Select the RG and click `+Add v`: We proceed to add a Virtual Machine.
+* Select the RG and click `+Add v`: We will add a Virtual Machine.
 
 
 
