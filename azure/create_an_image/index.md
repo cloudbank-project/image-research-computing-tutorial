@@ -1,4 +1,4 @@
-# Creating a VM image on the Azure cloud
+# Creating a VM image: Azure cloud
 
 ## Introduction
 
@@ -39,7 +39,7 @@ compute optimization.
 
 
 There are three degrees of complexity in building a compute resource on the cloud. Actually there are
-more than this but let's start with three: Functions, Containers and Images. Functions are simplest
+more than this but let's start with three: **Functions**, **Containers** and **Images**. Functions are simplest
 but they have a limited degree of power and flexibility. Images are the most complicated; they correspond
 to Virtual Machines. In fact Images are like a freeze-dried (or if you like 'zip file') version of a VM.
 Containers occupy a middle ground between Functions and Images. We are visiting all three with the idea 
