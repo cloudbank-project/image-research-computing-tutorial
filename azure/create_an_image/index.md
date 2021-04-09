@@ -2,7 +2,8 @@
 
 ## Introduction
 
-Virtual Machines (VMs) are computers. On the cloud we select them by type and operating system. The type
+Virtual Machines (VMs) are computers. 
+On the cloud we select them by type and operating system. The type
 matches the computer's purpose to processing power, available memory and other features. The bigger
 the computer the more it costs per hour. The small VM we will use here costs $0.12 per hour.
 
@@ -17,16 +18,32 @@ installed on VMs often at no cost. There are also datasets openly available, als
 
 
 - Start a VM on the Azure cloud
-- Install the Anaconda data science platform (as you might guess: This is Python)
+- Install the Anaconda data science platform 
+    - As you might guess: This is Python
 - Install some additional Python libraries
 - Download some data
 - Download a Jupyter notebook repository
 - Make sure everything works properly
 - Save the results as an Azure VM **image**
 - Shut down ("terminate") the VM
-- Start a new VM from the stored image
+- Start a completely new VM from the stored image
 - Again test that everything works properly
 
+
+Note: There is a distinction between a virtualized computer or virtual machine (VM) and an actual physical 
+computer. While this is outside the scope of this material it can be relevant within the general topic of 
+compute optimization.
+
+
+## Background perspective
+
+
+There are three degrees of complexity in building a compute resource on the cloud. Actually there are
+more than this but let's start with three: Functions, Containers and Images. Functions are simplest
+but they have a limited degree of power and flexibility. Images are the most complicated; they correspond
+to Virtual Machines. In fact Images are like a freeze-dried (or if you like 'zip file') version of a VM.
+Containers occupy a middle ground between Functions and Images. We are visiting all three with the idea 
+of seeing a spectrum of options for doing data science on the cloud. 
 
 
 ## Walk-through
@@ -52,7 +69,8 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Select the RG and click `+Add v`: We will add a Virtual Machine.
+* Select the RG and click the `+Add v`
+    * This is so we can add a Virtual Machine to the RG
 
 
 
@@ -63,7 +81,8 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* The `+Add v` gives us a drop-down. Select `Marketplace`. This is where we can get Ubuntu Linux VM images at no cost.
+* The `+Add v` gives us a drop-down. Select `Marketplace`. 
+    * This is where we can get Ubuntu Linux VM images at no cost.
 
 <BR><BR>
 
@@ -71,9 +90,10 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Select from the Marketplace an Ubuntu Server image. Notice that an *image* is what we are building. 
-    * We start out by selecting an "empty" image that includes nothing more than the Ubuntu operating system.
-    * Once the Virtual Machine running Ubuntu is functional we will customize it.
+* Select from the Marketplace an Ubuntu Server image. 
+    * Notice that an *image* is what we set out to build... and here is one already built for us so that was easy 
+        * We select an "empty" image that includes nothing more than the Ubuntu operating system
+        * Once the Virtual Machine running Ubuntu Linux is running we customize it
 
 <BR><BR>
 
@@ -81,7 +101,8 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Click on `Create`; which means "Build a Virtual Machine using this Ubuntu operating system". 
+* Click `Create`
+    * This means "Initiate the process of starting a VM using this Ubuntu operating system"
 
 <BR><BR>
 
@@ -91,9 +112,9 @@ the services available on the Azure cloud.
 
 * This brings us to a multi-step VM builder wizard. 
     * We will work through the multiple tabs fairly quickly, mostly using default values
-    * On the first tab: Enter a machine name and a Size from the dropdown. 
-        * Notice that the monthly cost of a given VM size is shown.
-        * The remaining entries in the first wizard tab should be default values.
+    * On the first tab: Enter a machine name and choose the small default Size from the dropdown. 
+        * Notice that the monthly cost of each VM choice is shown
+        * The remaining entries in the first wizard tab: Defaults are fine
 
 <BR><BR>
 
@@ -123,7 +144,7 @@ the services available on the Azure cloud.
 <BR><BR>
 
 
-* Next are Networking, Management and Advanced tabs: Defaults are fine. 
+* Next are *Networking*, *Management* and *Advanced* tabs: Keep defaults 
 
 <BR><BR>
 
@@ -145,10 +166,12 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* At the **Review and Create** tab we can get a sense of what will be built and what it will cost to operate (here 12 cents per hour). 
+* At the **Review and Create** tab we get a sense of what will be built
+    *  It will cost 12 cents per hour to operate 
+
 
 <BR><BR>
-
+   
 
 <img src="../../images/azure/Azure_image_13.png" alt="drawing" width="600"/>
 
@@ -158,25 +181,26 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* A pop-up dialog gives you the opportunity to download the access key-pair file. 
-* We use this rather than using a password to log in to this VM. 
-* Place it in a secure location that will not accidentally end up copied to GitHub.
-* You will need to change its read-write-execute permissions to `r--------` or `0400` in octal.
+* The pop-up dialog shown above gives us authentication options
+    * Download an SSH key pair file to ensure you will be able to access the VM 
+    * We use this rather than using username + password
+    * Place the keypair file in a secure location on your local computer
+        * Ensure that it will not accidentally end up copied to GitHub
+    * We will refer to this file as `fu.pem`
+    * Change the read-write-execute permissions of `fu.pem` to `r--------` or `0400` in octal
+        * The Linux command for this is `chmod 400 fu.pem`
 
 
-*** For Windows users:*** You can use this `.pem` file as-is from a locally installed bash shell.
-We suggest that installing an Ubuntu bash shell is more in the spirit of the 
-target Ubuntu operating system; which in turn works well with Anaconda and Jupyter notebook servers.
-However if you prefer to use the popular Windows PuTTY free ssh client: Be prepared 
-to do a bit of learning as there is necessary change in file format applied to that `.pem` file. 
+***For Windows users:*** You can use `fu.pem` from a local installation of the **bash** shell.
+Installing an Ubuntu bash shell is in the spirit of the 
+target Ubuntu operating system; and this in turn works well with Anaconda and Jupyter notebook servers.
+However: If you prefer to use the popular Windows PuTTY free SSH client: Be prepared 
+to do a bit of learning as you may need to modify the `.pem` file into a `.ppk` file. 
   
 
-*** For all users:*** As noted above you must change the permissions of the `.pem` file to `r--------`.
-That is: Only the user can read the file. This is a restrictive step that increases the
-security of your access to the Virtual Machine you are building. 
-Changing the permissions in this manner is done with the command `chmod 400 fu.pem`.
-Once the file is downloaded and its permissions changed: It is used by `ssh` to authenticate 
-logging in to the VM.
+***For all users:*** As noted above you must change the permissions of the `.pem` file to `r--------`.
+This means that only the user can read the file, a restrictive step that increases the
+security of your access path to the Virtual Machine. 
 
 
 <BR><BR>
@@ -207,12 +231,17 @@ logging in to the VM.
 
 <BR><BR>
 
+* In the above VM description notice there is nothing present under **Azure Spot**
+    * **Azure Spot** is an option you can choose that significantly reduces the cost of the VM
+    * The catch is that there is a small chance you may be evicted from the VM
+    * Read about "cloud spot markets" to learn more
 
-* Note that this information includes an ip address for this VM. 
+
+* Note the above information includes an ip address for this VM. 
     * In the example above the ip address is `138.91.145.112`
-    * For simplicity let's suppose your ip address comes up as `111.22.33.44`
-    * Let's also suppose you have named your `.pem` keypair file to be `fu.pem`  
-    * Your ssh login command is then:
+    * For simplicity let's say the ip address is `111.22.33.44`
+    * Reminder: We also suppose you have named your `.pem` SSH keypair file to be `fu.pem`  
+    * Your ssh login command from your local Linux prompt is then:
 
 
 ```
@@ -220,15 +249,15 @@ ssh -i fu.pem azureuser@111.22.33.44
 ```
 
 
-* Confirm this to login. You should now have a tell-tale prompt:
-    *  `azureuser@machimename:~$ `
-    * The primary cause of this step not working is not setting the `0400` permission on the `.pem` file (see above).
+* Confirm the login with 'yes'. You should now have a tell-tale prompt:
+    * `azureuser@machimename:~$ `
+        * The primary cause of this step not working is the `0400` permission for the `.pem` file was not set (see above).
 
 
 * The next step is to mount the 256GB data disk we added during the VM creation process 
     * This was not done automatically
     * The command to get started is `lsblk -o NAME,HCTL,SIZE,MOUNTPOINT`
-    * Notice that the 256 GB disk is listed but has no mount point as yet
+    * Notice that the 256 GB disk is listed as `sdc` but it has no mount point as yet
 
 
 <BR><BR>
@@ -237,12 +266,16 @@ ssh -i fu.pem azureuser@111.22.33.44
 <img src="../../images/azure/Azure_image_18.png" alt="drawing" width="600"/>
 
 
+Noting this is green text on a black background: If you are interested in 
+retro-customizing the **bash** console: [Here is a link](https://robfatland.github.io/greenandblack/). 
+
+
 <BR><BR>
 
 
 * Follow directions for mounting a disk on an Azure VM
     * [How-to documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
-    * Based on this the following commands were used to mount the data disk
+    * Based on this the following commands were used to mount the data disk (notice 
 
 ```
 sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
@@ -260,14 +293,28 @@ sudo blkid
 
 <BR><BR>
    
-<img src="../../images/azure/Azure_image_20.png" alt="drawing" width="600"/>
+<img src="../../images/azure/Azure_image_20.png" alt="drawing" width="600"/> <BR><BR>
 <img src="../../images/azure/Azure_image_19.png" alt="drawing" width="1000"/>
-<img src="../../images/azure/Azure_image_21.png" alt="drawing" width="1000"/>
+   
 
 <BR><BR>
 
 * At this point we begin customizing the Virtual Machine
 * First we install the Anaconda Python package
+
+```
+wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+bash Anaconda3-2020.11-Linux-x86_64.sh
+```
+
+* This gets the Anaconda installation file using the `wget` command; then installs it using `bash`
+    * The correct Anaconda installation filename can be found by searching 'install Anaconda'
+        * Be sure to get the installation file for Linux, x86 and 64-bit
+        * You can also opt to install a lighter-weight version called Miniconda 
+
+<BR><BR>
+
+<img src="../../images/azure/Azure_image_21.png" alt="drawing" width="1000"/>
 
 <BR><BR>
 
@@ -275,7 +322,7 @@ sudo blkid
 
 <BR><BR>
    
-* As noted below you may need to log out of and then log back in to your VM.
+* You may need to log out of and then back in to your VM.
 
 <BR><BR>
 
@@ -285,10 +332,19 @@ sudo blkid
 
 * At this point the Jupyter notebook server should be available for use. 
     * We proceed in two steps here
-        * First setting up some interesting content
-            * Need to test this: In `~` run `git clone https://github.com/robfatland/chlorophyll`
-        * Second configuring the Jupyter notebook server to work remotely
-            * Use [this link](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/use_an_image) for this second step
+        * Get some test notebooks
+            * From your home directory on the VM: run `git clone https://github.com/robfatland/chlorophyll`
+        * Configure a Jupyter notebook server to run in `--no-browser` mode
+            * On your Azure VM bash command line run `(jupyter lab --no-browser --port=8889) &`
+                * This will provide a long token string, like this: `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
+                    * Copy this token string
+            * On your local computer/laptop bash command line run this command:
+                * `ssh -N -f -i fu.pem -L localhost:7005:localhost:8889 azureuser@111.22.33.44`
+                    * Make appropriate substitutions for your `.pem` filename and your VM ip address  
+            * On your local computer in a browser address window enter `localhost:7005`
+                * When prompted enter the token string you copied above
+            * On success: The Jupyter notebook server will appear in your browser
+                * You should be able to navigate to the `chlorophyll` repository and see and run notebooks 
    
    
 <BR><BR>
@@ -331,31 +387,36 @@ sudo blkid
 ## Concluding remarks
 
 
-There is a connection between a running Virtual Machine (which costs a certain amount per hour of operation) and the VM image
-created here. The VM image acts as a safe backup copy of the VM. 
+The emphasis of this procedural is on the relationship between the running Virtual Machine 
+(which took the bulk of the effort; and which costs a certain amount per hour of operation) 
+and the ***VM Image*** created in the final step. First: The *VM Image* acts as a safe backup 
+copy of the VM. 
 
 
-There are a couple of important things to emphasize about the Virtual Machine. First a Virtual Machine can be "forgotten about";
-i.e. it can left running without being in use. This costs perhaps $0.20 per hour; or if it is a powerful machine maybe $1.20 
-per hour, arguably not good for the project budget. However this VM can be stopped, for example through the portal interface. 
-When a VM is stopped it effectively costs nothing; and it can be re-started in a matter of a few minutes. The VM can also be 
-connected to a cloud service that stops it every day at say 7 PM. This is a failsafe cost management technique. Stopping an
-already-stopped machine has no effect.
+* It can be easy to "forget about" the VM. It can left running without being in use. This might cost 
+$0.20 per hour; or if it is a powerful machine maybe $1.20 per hour. This is arguably not good for the 
+project budget. However the VM can be stopped, for example through the portal interface. When a VM is 
+stopped it costs much less per day. And it can be re-started in a matter of a few minutes. The VM can 
+also be connected to a cloud service that stops it every day at say 7 PM. This is a failsafe cost 
+management technique. Stopping an already-stopped machine has no effect.
 
 
-Another important point to keep in mind is that we access VMs through the internet using a `.pem` keypair file. This file
-should be kept in a secure location away from GitHub respository directories. It is sometimes possible to accidentally
-delete files so it might be wise to keep a backup copy of a keypair file in another secure location. Azure has a security
-service for managing access keys called **Key Vault**; worth knowing about but beyond the scope of this tutorial.
+* We access VMs as shown here over the internet using the `fu.pem` keypair file. This file
+should be kept in a secure location away from GitHub respository directories. It is sometimes 
+possible to accidentally delete files so a backup copy of a keypair file stored in another 
+secure location might come in handy. Azure has a security service for managing access keys called 
+**Key Vault**; worth knowing about but beyond the scope of this tutorial.
 
 
-In this walk-through we created a 256GB data disk that we mounted as a file system on the VM. There is a cost associated 
-with drives like this when they are left running, typically about $0.10 per GB per month. Like VMs an attached storage 
-device can be frozen as a stored snapshot, again reducing cost. 
+* In this walk-through we created a 256GB data disk that was mounted as a file system on the VM. 
+There is a cost associated with drives like this when they are left running. This drive for example
+runs about $30 / month. There are lower-cost options as well. Attached storage 
+devices can be frozen as disk snapshots, again reducing cost. 
 
 
-Finally a running Virtual Machine has an ip address when configured as here for remote access. This ip address will change
-each time the VM is restarted, either from a stopped state or from a VM image. It is possible to get a "permanent" ip address
-associated with a VM to avoid having to keep looking up the latest ip address. On Azure these are called Static Public IPs
+* A running Virtual Machine has an ip address as we saw. This ip address will change
+each time the VM is restarted, either from a stopped state or from a VM Image. It is 
+possible to associate a "permanent" ip address with a VM to avoid having to keep adjusting 
+the ip address each time the VM is re-started. On Azure these are called Static Public IPs
 whereas on AWS they are called Elastic IPs. 
 
