@@ -2,24 +2,111 @@
 
 ## Introduction
 
-Virtual Machines (VMs) are computers. 
-On the cloud we select them by type and operating system. The type
-matches the computer's purpose to processing power, available memory and other features. The bigger
-the computer the more it costs per hour. The small VM we will use here costs $0.12 per hour.
+Virtual Machines (VMs) are computers. Technical detail: They are operating systems installed as hermetic
+environments on computers; so there is a level of abstraction above the basic computer + operating system; 
+and this is why we have the term *virtual* involved. A single physical computer may host more than one
+Virtual Machine. 
 
 
-A Jupyter notebook server is a research tool in very common use at this time. A researcher may install
-and run a Jupyter server to develop and run data analysis code, often written in Python. The Python
-programming environment is characterized by many libraries that serve various purposes. These can be 
-installed on VMs often at no cost. There are also datasets openly available, also at no cost. 
+On the cloud we select a VM by choosing both a ***type*** and an ***operating system***. The type
+matches the computer's purpose to processing power, memory, network speed and other features. A bigger
+VM costs more per hour on the cloud, be that cloud Azure or AWS or GCP or some other platform. 
+
+
+The small VM we use here costs $0.12 per hour or about $14 per day; so this leads us to a first
+rule: Stop the VM when it is not in use. This is like stopping a laptop: Everything persists but
+it is no longer consuming electricity (incurring hourly charges). **Start** and **Stop** for a VM
+are distinct from **Terminate**. When we terminate a VM it evaporates; it is gone. 
+
+
+#### VM Concept and Plan including Jupyter Notebook servers
+
+
+A Jupyter notebook server is a research tool in common use at this time. It is a popular component 
+of the research ecosystem. We will include one of these in this construction process. 
+
+
+A researcher installs and runs a Jupyter notebook server on a VM as a step in building
+a research workspace. Commonly the programming language in use in these notebooks is 
+Python. 
+
+
+Python also features a level of virtualization in what are called *virtual environments*. 
+The Python *base* environment is the Python interpreter and libraries that comprise the
+basic Python installation. This base environment is a distinct concept from the Jupyter
+notebook server. From this base or default environment a Python (virtual) environment 
+is often built to further customize the workspace. A virtual environment is an isolated 
+space in which additional libraries are installed.
+
+
+To connect this together as a narrative we can say that we...
+
+* ...choose a particular cloud (Azure) on which to build a research space
+* ...identify and start up a Virtual Machine (VM) with an associated hourly cost
+* ...log in to this VM using credentials we received in the start-up process
+* ...install Python and a Jupyter Notebook server
+* ...create a virtual Python environment and in that context install additional Python libraries
+* ...import some test data to the VM file system from object storage (see below)
+* ...import some test code to the VM file system from GitHub (see below)
+* ...execute Python code found in *cells* of the Jupyter notebooks
+
+
+#### Object storage versus block storage
+
+A "disk drive" or "storage drive" is a fairly large block of read/write memory associated directly with 
+a file system on a computer. On a cloud VM this is known as block storage and it includes two sub-types. 
+First there is the root file system that includes the VM operating system, in our case Ubuntu Linux. 
+Second there can be additional attached block storage devices often called data drives. These will tend 
+to feature larger storage capacity. 
+
+The cloud also features a second type of storage called object storage. On Azure this is called *blob* 
+storage. It emphasizes the idea that objects in object storage are not treated as files that can be 
+opened and read through (indexed) in search of some particular segment of information. This is in contrast
+to block storage. Object storage or blob storage does support reasonably high connectivity speed; so
+it can be helpful to think of it as an extension of the computing environment with the following features:
+
+- object storage is by design virtually infinite in capacity
+- object storage is cheaper per byte per month than block storage
+- object storage features fast connection speed but not as fast as block storage attached to a VM
+- object storage allows us to read an object (say a file) directly into computer memory
+- object storage allows us to copy an object (say a file) to block storage
+- object storage does not allow us to "open and access" the contents of an object (say a file)
+- object storage blobs can be files, collections of files, entire folder trees, entire block storage file systems, or entire VMs
+
+In terms of cloud computing design patterns: Object storage is a cost-effective way of storing data that 
+does not need to be accessed immediately; but does have some future intended use. 
+
+
+#### GitHub
+
+
+GitHub is a provider of Internet hosting for software development and version control using **`git`**. 
+(source: Wikipedia) **`git`** is in turn a Linux software version control utility. GitHub and similar hosting
+sites are in common use as a means of sharing software solutions particular to open and reproducible research.
+There are in consequence two important aspects of GitHub use relevant to use of public clouds like Azure. 
+
+
+1. It is common practice to use the **`git`** command to clone GitHub *repositories*, which are 
+thematic collections of files contained in a directory structure. However there are a number of
+details in learning to use **`git`** effectively: This means there is a proper and necessary 
+**`git`** learning curve.
+
+
+2. Improper use of GitHub can result in cloud access keys landing in an open repository. There are malevolent 
+code bots in operation on GitHub that will use such inadvertently open keys to mine bitcoin on cloud VMs. This
+costs actual money that is charged to the cloud User. Typical spend rates for this scenario are USD 15,000 per 
+hour; so it is important to avoid committing access keys to GitHub repositories.
+
+
+
+#### Plan
 
 
 "As if we are doing some research" the sequence of events in this walk-through are:
 
 
 - Start a VM on the Azure cloud
-- Install the Anaconda data science platform 
-    - As you might guess: This is Python
+- Install the Anaconda data science platform (Python with Jupyter notebook server support)
 - Install some additional Python libraries
 - Download some data
 - Download a Jupyter notebook repository
