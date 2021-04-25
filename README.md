@@ -1,10 +1,18 @@
-# CloudBank Solution: VM *Images* for Research Computing
+# CloudBank Solution: Virtual Machine *Images*
 
 
-This tutorial introduces you, the researcher, to using a virtual machine ***image*** 
+#### Visit the [CBSolution Website](https://cloudbank-project.github.io/image-research-computing-tutorial/)! 
+
+
+This tutorial introduces you, the researcher, to using virtual machine ***images*** 
 on the cloud as a basis for research computing. This page provides the outline of 
 what is going on for a person new to cloud computing. The tutorial content is broken
-down by provider (Azure, AWS etcetera) and then by *create* and *use* tutorials.
+down by provider (Azure, AWS etcetera) and by *create* and *use* tutorials.
+
+
+The overall concept is not difficult here: Just as a file folder and its contents can be bundled up 
+as a single *zip* or *tar* file, so it goes with an entire computer, in our case a *virtual machine*:
+We bundled it up as a machine *image*.
 
 
 ## Overview of Virtual Machine *images*
@@ -13,10 +21,12 @@ down by provider (Azure, AWS etcetera) and then by *create* and *use* tutorials.
 You may be familiar with a *zip* or *tar* file containing all the files within
 a directory.  A *machine image* is analogous; think of it as a zip file of the entire 
 computer's contents from operating system to home directory to code to data files. 
+
+
 The idea is that once 
 a cloud Virtual Machine (VM) is *configured* for use: It can be stored as a machine 
-image. This stored snapshot is cheap but obviously does not run. 
-To run it again it is loaded back into a Virtual Machine. For our purposes these
+image. This stored snapshot is cheap but it obviously does not *execute any code*. 
+To run it again it is loaded back into a new Virtual Machine. For our purposes these
 images are working research computing environments for scientists.
 
 
