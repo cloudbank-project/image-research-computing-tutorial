@@ -2,7 +2,10 @@
 
 ## Introduction
 
-Virtual Machines (VMs) are computers. Technical detail: They are operating systems installed as hermetic
+Virtual Machines (VMs) are computers. 
+
+
+Technical detail: They are operating systems installed as hermetic
 environments on computers; so there is a level of abstraction above the basic computer + operating system; 
 and this is why we have the term *virtual* involved. A single physical computer may host more than one
 Virtual Machine. 
@@ -10,12 +13,17 @@ Virtual Machine.
 
 On the cloud we select a VM by choosing both a ***type*** and an ***operating system***. The type
 matches the computer's purpose to processing power, memory, network speed and other features. A bigger
-VM costs more per hour on the cloud, be that cloud Azure or AWS or GCP or some other platform. 
+VM costs more per hour on the cloud, be that cloud Azure or AWS or GCP or some other platform.
+
+
+Technical detail: The operating system *actually* selects a pre-built *image* which includes
+said operating system. The image loads into the VM as a *blank slate*: Just the operating system, 
+an empty user directory, no additional content. We log in as this generic user and go from there.
 
 
 The small VM we use here costs $0.12 per hour or about $14 per day; so this leads us to a first
-rule: Stop the VM when it is not in use. This is like stopping a laptop: Everything persists but
-it is no longer consuming electricity (incurring hourly charges). **Start** and **Stop** for a VM
+rule: Stop the VM when it is not in use. This is like turning off a laptop: Everything persists;
+and it is no longer consuming electricity, incurring hourly charges. **Start** and **Stop** for a VM
 are distinct from **Terminate**. When we terminate a VM it evaporates; it is gone. 
 
 
@@ -60,21 +68,26 @@ Second there can be additional attached block storage devices often called data 
 to feature larger storage capacity. 
 
 The cloud also features a second type of storage called object storage. On Azure this is called *blob* 
-storage. It emphasizes the idea that objects in object storage are not treated as files that can be 
+storage. Objects in object storage may be files. However they are not treated as files that can be 
 opened and read through (indexed) in search of some particular segment of information. This is in contrast
-to block storage. Object storage or blob storage does support reasonably high connectivity speed; so
-it can be helpful to think of it as an extension of the computing environment with the following features:
+to block storage where they can. Object storage or blob storage does support reasonably high connectivity speed; 
+so object storage is an extension of the computing environment. ***Object Storage...***
 
-- object storage is by design virtually infinite in capacity
-- object storage is cheaper per byte per month than block storage
-- object storage features fast connection speed but not as fast as block storage attached to a VM
-- object storage allows us to read an object (say a file) directly into computer memory
-- object storage allows us to copy an object (say a file) to block storage
-- object storage does not allow us to "open and access" the contents of an object (say a file)
-- object storage blobs can be files, collections of files, entire folder trees, entire block storage file systems, or entire VMs
+- ...is by design virtually infinite in capacity
+- ...is cheaper per byte per month than block storage
+- ...features fast connection speed but not as fast as block storage attached to a VM
+- ...allows us to read an object (say a file) directly into computer memory
+- ...allows us to copy an object (say a file) to block storage
+- ...does not allow us to "open and access" the contents of an object (say a file)
+- ...blobs can be files, collections of files, entire folder trees, entire block storage file systems, or entire VMs
 
-In terms of cloud computing design patterns: Object storage is a cost-effective way of storing data that 
-does not need to be accessed immediately; but does have some future intended use. 
+
+In terms of cloud computing design patterns: Object storage is a cost-effective way of storing data.
+*Specifically* data that need not be accessed immediately; but has some future intended use.
+
+
+Technical note: There are cheaper forms of object storage as well that presume very low data access rates.
+These are used for archival data storage and are sometimes called 'cold storage*.
 
 
 #### GitHub
