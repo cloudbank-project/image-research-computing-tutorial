@@ -228,11 +228,19 @@ the services available on the Azure cloud.
 <BR><BR>
 
 * Click **Next : Disks >** to arrive at the **Disks** tab of the VM wizard. 
-* Add a 256GB disk to create some data capacity on this VM.
+* Add a 32GB disk to create some data capacity on this VM
 
 <BR><BR>
 
 <img src="../../images/azure/Azure_image_07.png" alt="drawing" width="800"/>
+
+<BR><BR>
+   
+* Note: A 256GB drive is shown. 
+    * This will run 8 x the cost of a 32GB disk
+    * Rule of thumb: Choose disk size based on anticipated data volume
+    * You can increase / decrease disk volume at a later time as well
+    * This is a managed disk: Costs more, less hassle, backups, encryption etcetera
 
 <BR><BR>
 
@@ -259,6 +267,12 @@ the services available on the Azure cloud.
 
 
 <img src="../../images/azure/Azure_image_11.png" alt="drawing" width="800"/>
+
+<BR><BR>
+   
+* Set the VM to **Stop** at 7PM. Turn it on using the Portal or CLI when needed.
+   
+<img src="../../images/azure/A_image_insert_01_AutuShutdown.png" alt="drawing" width="800"/>
 
 <BR><BR>
 
