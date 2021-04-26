@@ -493,12 +493,15 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
    
 
 
-* At this point the Jupyter notebook server should be available for use. 
-* run `git clone https://github.com/robfatland/ocean`
-    * This gets a copy of an example repository
+* At this point the Jupyter notebook server should be available for use
+* run `conda install xarray` to make that package available
+* run `pip install netcdf4` to make that package available
+* run `cd` and `git clone https://github.com/robfatland/ocean`
+    * This creates a copy of an example notebook folder (repository) in your home directory
 * run `(jupyter lab --no-browser --port=8889) &`
     * This starts the Jupyter notebook server as a background job
-    * Copy the token string 'ae...etc...' from: `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
+    * It gives you a token string like this `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
+        * Copy this string for use in the next step 
 
 
 
@@ -551,6 +554,8 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 
 <img src="../../images/azure/Azure_image_27.png" alt="drawing" width="600"/>
 
+
+* Try starting the notebook **Ocean 01 A etc** and running the first few cells.
 
 ## Concluding remarks
 
