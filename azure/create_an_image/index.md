@@ -470,9 +470,8 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 ```
 
 * This gets the Anaconda installation file using the `wget` command; then installs it using `bash`
-    * The correct Anaconda installation filename can be found by searching 'install Anaconda'
-        * Be sure to get the installation file for Linux, x86 and 64-bit
-        * You can also opt to install a lighter-weight version called Miniconda 
+    * You can also opt to install a lighter-weight version called Miniconda 
+* Accept the license agreement and the defaults, initializer etc; install takes a couple of minutes
 
 <BR><BR>
 
@@ -495,13 +494,11 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 
 
 * At this point the Jupyter notebook server should be available for use. 
-    * We proceed in two steps here
-        * Get some test notebooks
-            * From your home directory on the VM: run `git clone https://github.com/robfatland/ocean`
-        * Configure a Jupyter notebook server to run in `--no-browser` mode
-            * On your Azure VM bash command line run `(jupyter lab --no-browser --port=8889) &`
-                * This will provide a long token string, like this: `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
-                    * Copy this token string
+    * run `git clone https://github.com/robfatland/ocean`
+        * This gets a copy of an example repository
+    * run `(jupyter lab --no-browser --port=8889) &`
+        * Copy the token string 'ae...etc' from: `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
+
 
 
 ## Last two steps in VM configuration: Test the Jupyter notebook server
@@ -522,7 +519,7 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 
 <BR><BR>
 
-## Create machine image in the Azure portal
+## Create a machine image in the Azure portal
 
 * Select the VM in the Azure Portal and click **Capture**
 
