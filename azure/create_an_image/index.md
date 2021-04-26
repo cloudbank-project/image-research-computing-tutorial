@@ -391,7 +391,7 @@ azureuser@rob5vm3:~$
     * The primary cause of this step not working is the `0400` permission for the `.pem` file was not set (see above).
 
 
-### Optional Step: Mount data drive
+## Optional: Mount data drive
 
 In the VM configuration we added a data drive. During class we suggest skipping the next step of mounting this 
 drive for use. If you are familiar with the process it should be straightforward. If not we recommend doing this
@@ -450,10 +450,11 @@ sudo blkid
 <BR><BR>
 
 
-### Customization of the environment
+## Customizing the environment
 
-In what follows it is important to bear in mind that the commands are given on the Azure VM bash command line. 
+In what follows, commands are run on the Azure VM bash command line. 
 This continues from above where we have logged into the Azure VM from a local computer like a laptop.
+Once the Jupyter notebook server is running, however, we drop back to the local computer for the last two steps.
 
 
 * At this point we begin customizing the Virtual Machine
@@ -501,13 +502,18 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
             * On your Azure VM bash command line run `(jupyter lab --no-browser --port=8889) &`
                 * This will provide a long token string, like this: `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
                     * Copy this token string
-            * On your local computer/laptop bash command line run this command:
-                * `ssh -N -f -i fu.pem -L localhost:7005:localhost:8889 azureuser@111.22.33.44`
-                    * Make appropriate substitutions for your `.pem` filename and your VM ip address  
-            * On your local computer in a browser address window enter `localhost:7005`
-                * When prompted enter the token string you copied above
-            * On success: The Jupyter notebook server will appear in your browser
-                * You should be able to navigate to the `chlorophyll` repository and see and run notebooks 
+
+
+## Last two steps
+
+
+* On your local computer/laptop bash command line run this command:
+    * `ssh -N -f -i fu.pem -L localhost:7005:localhost:8889 azureuser@111.22.33.44`
+        * Make appropriate substitutions for your `.pem` filename and your VM ip address  
+* On your local computer in a browser address window enter `localhost:7005`
+    * When prompted: Enter the token string you copied above
+    * On success: The Jupyter notebook server will appear in your browser
+* You should be able to navigate to the `ocean` repository and run notebooks 
    
    
 <BR><BR>
