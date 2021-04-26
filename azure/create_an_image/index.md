@@ -504,7 +504,7 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
                     * Copy this token string
 
 
-## Last two steps
+## Last two steps in VM configuration: Test the Jupyter notebook server
 
 
 * On your local computer/laptop bash command line run this command:
@@ -522,8 +522,9 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 
 <BR><BR>
 
-* Finally the last step, as noted, is quite simple: Create an image of this customized VM image
-    * Select the VM in the portal and click **Capture**
+## Create machine image in the Azure portal
+
+* Select the VM in the Azure Portal and click **Capture**
 
 <BR><BR>
 
@@ -556,36 +557,25 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 ## Concluding remarks
 
 
-The emphasis of this procedural is on the relationship between the running Virtual Machine 
-(which took the bulk of the effort; and which costs a certain amount per hour of operation) 
-and the ***VM Image*** created in the final step. First: The *VM Image* acts as a safe backup 
-copy of the VM. 
+The Virtual Machine configuration took up the bulk of this effort. The VM *image* was a rather
+trivial final step. This image is a "safe backup" of the VM. 
 
 
-* It can be easy to "forget about" the VM. It can left running without being in use. This might cost 
-$0.20 per hour; or if it is a powerful machine maybe $1.20 per hour. This is arguably not good for the 
-project budget. However the VM can be stopped, for example through the portal interface. When a VM is 
-stopped it costs much less per day. And it can be re-started in a matter of a few minutes. The VM can 
-also be connected to a cloud service that stops it every day at say 7 PM. This is a failsafe cost 
-management technique. Stopping an already-stopped machine has no effect.
+* Leaving a VM running when not in use is very common practice, also expensive. 
 
 
 * We access VMs as shown here over the internet using the `fu.pem` keypair file. This file
-should be kept in a secure location away from GitHub respository directories. It is sometimes 
-possible to accidentally delete files so a backup copy of a keypair file stored in another 
+should be kept in a secure location away from GitHub respository directories. 
+
+* A backup copy of a keypair file stored in another 
 secure location might come in handy. Azure has a security service for managing access keys called 
 **Key Vault**; worth knowing about but beyond the scope of this tutorial.
 
 
-* In this walk-through we created a 256GB data disk that was mounted as a file system on the VM. 
-There is a cost associated with drives like this when they are left running. This drive for example
-runs about $30 / month. There are lower-cost options as well. Attached storage 
-devices can be frozen as disk snapshots, again reducing cost. 
+* In this walk-through we created a data disk. These attached drives cost $0.10 / GB / month, approximately.
 
 
-* A running Virtual Machine has an ip address as we saw. This ip address will change
-each time the VM is restarted, either from a stopped state or from a VM Image. It is 
-possible to associate a "permanent" ip address with a VM to avoid having to keep adjusting 
-the ip address each time the VM is re-started. On Azure these are called Static Public IPs
-whereas on AWS they are called Elastic IPs. 
+* A running Virtual Machine has an ip address. These may be fixed or permanent; or they may change 
+each time the VM is re-started. The former is more convenient; see Azure Static Public IPs for more on this.
+
 
