@@ -182,7 +182,8 @@ the services available on the Azure cloud.
 <BR><BR>
 
 * The `+Add v` gives us a drop-down. Select `Marketplace`. 
-    * This is where we can get Ubuntu Linux VM images at no cost.
+    * This is where we can get Ubuntu Linux VM images at no cost
+    * Don't need to enter anything in the search bar: The Ubuntu Server choice is just there.
 
 <BR><BR>
 
@@ -203,6 +204,7 @@ the services available on the Azure cloud.
 
 * Click `Create`
     * This means "Initiate the process of starting a VM using this Ubuntu operating system"
+    * "LTS" means Long Term Support, i.e. the OS will be supported by Ubuntu for a "long time".
 
 <BR><BR>
 
@@ -213,8 +215,11 @@ the services available on the Azure cloud.
 * This brings us to a multi-step VM builder wizard. 
     * We will work through the multiple tabs fairly quickly, mostly using default values
     * On the first tab: Enter a machine name and choose the small default Size from the dropdown. 
-        * Notice that the monthly cost of each VM choice is shown
+        * This reads `Standard_D2s_v2 - 2 vcpus, 8 GiB memory ($70.08/month)`
+        * The monthly cost for a VM choice is a good sanity check; 'if I leave it running 24/7'
         * The remaining entries in the first wizard tab: Defaults are fine
+        * Notice the default username is `azureuser` which is fine
+        * Notice we allow an inbound port 22 which is associated with the secure shell, **`ssh`**
 
 <BR><BR>
 
@@ -222,7 +227,7 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Click **Next** to arrive at the **Disks** tab of the VM wizard. 
+* Click **Next : Disks >** to arrive at the **Disks** tab of the VM wizard. 
 * Add a 256GB disk to create some data capacity on this VM.
 
 <BR><BR>
