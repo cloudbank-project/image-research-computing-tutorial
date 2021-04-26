@@ -286,7 +286,7 @@ the services available on the Azure cloud.
 <BR><BR>
 
 * At the **Review and Create** tab we get a sense of what will be built
-    *  It will cost 12 cents per hour to operate 
+    *  It will cost 10 to 12 cents per hour to operate (more for larger disk volumes) 
 
 
 <BR><BR>
@@ -295,6 +295,12 @@ the services available on the Azure cloud.
 <img src="../../images/azure/Azure_image_13.png" alt="drawing" width="600"/>
 
 <BR><BR>
+
+The link "download a template for automation" allows you to generate VMs in this format automatically rather than by hand.
+
+
+<BR><BR>
+
    
 <img src="../../images/azure/Azure_image_14.png" alt="drawing" width="400"/>
 
@@ -302,30 +308,27 @@ the services available on the Azure cloud.
 
 * The pop-up dialog shown above gives us authentication options
     * Download an SSH key pair file to ensure you will be able to access the VM 
-    * We use this rather than using username + password
+    * We use this rather than using { username + password }
     * Place the keypair file in a secure location on your local computer
         * Ensure that it will not accidentally end up copied to GitHub
-    * We will refer to this file as `fu.pem`
+    * We will refer to this file as **`fu.pem`**
     * Change the read-write-execute permissions of `fu.pem` to `r--------` or `0400` in octal
-        * The Linux command for this is `chmod 400 fu.pem`
+        * The Linux command to do this is:
 
+```
+chmod 400 fu.pem
+```
 
-***For Windows users:*** You can use `fu.pem` from a local installation of the **bash** shell.
-Installing an Ubuntu bash shell is in the spirit of the 
-target Ubuntu operating system; and this in turn works well with Anaconda and Jupyter notebook servers.
-However: If you prefer to use the popular Windows PuTTY free SSH client: Be prepared 
-to do a bit of learning as you may need to modify the `.pem` file into a `.ppk` file. 
-  
-
-***For all users:*** As noted above you must change the permissions of the `.pem` file to `r--------`.
-This means that only the user can read the file, a restrictive step that increases the
-security of your access path to the Virtual Machine. 
-
+- You run `ssh` using the `fu.pem` file to connect from your laptop to the Azure VM you just created.
+- You can do this in **Visual Studio Code** using an Ubuntu terminal (bash shell). 
+- Windows users also can use PuTTY, a free SSH client
+    - but this comes with a bit of a learning curve
 
 <BR><BR>
 
 
-* Here is the "Deployment complete" message you should see once the VM has been launched:
+* Here is the "Deployment complete" message you should see once the VM has been launched
+* Click on **Go to resource**
 
 
 <BR><BR>
@@ -358,22 +361,44 @@ security of your access path to the Virtual Machine.
 
 * Note the above information includes an ip address for this VM. 
     * In the example above the ip address is `138.91.145.112`
-    * For simplicity let's say the ip address is `111.22.33.44`
-    * Reminder: We also suppose you have named your `.pem` SSH keypair file to be `fu.pem`  
-    * Your ssh login command from your local Linux prompt is then:
+    * In what follows let us suppose:
+        * The ip address is `111.22.33.44`
+        * The `.pem` SSH keypair file is `fu.pem`
+        * The username is the default `azureuser`
 
+
+* Move the keypair `fu.pem` file to your local directory, `chmod` and login to the Azure VM
+    * My command sequence for this: On Windows; in VSCode; on the Ubuntu TERMINAL; is...
 
 ```
-ssh -i fu.pem azureuser@111.22.33.44
+(base) rob5> cd
+(base) rob5> mv /mnt/c/Users/rob5/Downloads/fu.pem .
+(base) rob5> chmod 400 fu.pem
+(base) rob5> ls -al fu.pem
+
+-r-------- 1 kilroy kilroy 2494 Apr 26 08:13 rob5vm3_key.pem
+
+(base) rob5> ssh -i fu.pem azureuser@111.22.33.44
+
+(respond 'yes' to 'is this ok?')
+
+azureuser@rob5vm3:~$ 
 ```
 
 
-* Confirm the login with 'yes'. You should now have a tell-tale prompt:
-    * `azureuser@machimename:~$ `
-        * The primary cause of this step not working is the `0400` permission for the `.pem` file was not set (see above).
+
+* You should now have a tell-tale prompt: `azureuser@machimename:~$ `
+    * The primary cause of this step not working is the `0400` permission for the `.pem` file was not set (see above).
 
 
-* The next step is to mount the 256GB data disk we added during the VM creation process 
+### Optional Step: Mount data drive
+
+In the VM configuration we added a data drive. During class we suggest skipping the next step of mounting this 
+drive for use. If you are familiar with the process it should be straightforward. If not we recommend doing this
+outside of class time as a stretch activity. 
+
+
+* Next step is to mount the data disk we added during the VM creation process 
     * This was not done automatically
     * The command to get started is `lsblk -o NAME,HCTL,SIZE,MOUNTPOINT`
     * Notice that the 256 GB disk is listed as `sdc` but it has no mount point as yet
@@ -385,8 +410,12 @@ ssh -i fu.pem azureuser@111.22.33.44
 <img src="../../images/azure/Azure_image_18.png" alt="drawing" width="600"/>
 
 
-Noting this is green text on a black background: If you are interested in 
-retro-customizing the **bash** console: [Here is a link](https://robfatland.github.io/greenandblack/). 
+> Please notice that the 256GB drive (or 32GB drive) in the above is associated with the NAME `sdc`. 
+> This may instead by `sdb` so please note which one for use in the following mount commands.
+
+
+***Completely Optional Aside***: Don't do this if you have limited time available! 
+Here is a *green text on a black background customization [link](https://robfatland.github.io/greenandblack/)*. 
 
 
 <BR><BR>
@@ -394,7 +423,9 @@ retro-customizing the **bash** console: [Here is a link](https://robfatland.gith
 
 * Follow directions for mounting a disk on an Azure VM
     * [How-to documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
-    * Based on this the following commands were used to mount the data disk (notice 
+    * Based on this the following commands were used to mount the data disk
+    * Notice this is for **`NAME=sdc`**. You must modify these commands if **`NAME=sdb`** per above.
+
 
 ```
 sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
@@ -418,8 +449,19 @@ sudo blkid
 
 <BR><BR>
 
+
+### Customization of the environment
+
+In what follows it is important to bear in mind that the commands are given on the Azure VM bash command line. 
+This continues from above where we have logged into the Azure VM from a local computer like a laptop.
+
+
 * At this point we begin customizing the Virtual Machine
-* First we install the Anaconda Python package
+* First we install the Anaconda Python package: Choose the current Linux package from [this page](https://www.anaconda.com/products/individual).
+
+
+The following example uses the correct link as of April 7 2021:
+
 
 ```
 wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
@@ -448,11 +490,13 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 <img src="../../images/azure/Azure_image_23.png" alt="drawing" width="600"/>
 
 <BR><BR>
+   
+
 
 * At this point the Jupyter notebook server should be available for use. 
     * We proceed in two steps here
         * Get some test notebooks
-            * From your home directory on the VM: run `git clone https://github.com/robfatland/chlorophyll`
+            * From your home directory on the VM: run `git clone https://github.com/robfatland/ocean`
         * Configure a Jupyter notebook server to run in `--no-browser` mode
             * On your Azure VM bash command line run `(jupyter lab --no-browser --port=8889) &`
                 * This will provide a long token string, like this: `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
