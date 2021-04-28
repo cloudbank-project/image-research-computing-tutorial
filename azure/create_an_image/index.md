@@ -450,16 +450,37 @@ sudo blkid
 <BR><BR>
 
 
-## Customizing the environment
+# Re-starting a VM
+
+If your earlier session was interrupted and your Virtual Machine was set to auto-halt
+every day at 7PM it may currently be Stopped. It can be restarted easily:
+in the Azure portal: Find the Resource Group and therein the Virtual Machine.
+Select the Virtual Machine and click the **Start** button at the top of the center panel.
+Note the new ip address for the VM.
+
+
+# Customizing the environment
+
+We have a working VM; so let us now import code and data, install some Python libraries,
+and run a Jupyter notebook server in our hypothetical quest to become oceanographers.
+
 
 In what follows, commands are run on the Azure VM bash command line. 
-This continues from above where we have logged into the Azure VM from a local computer like a laptop.
-Once the Jupyter notebook server is running, however, we drop back to the local computer for the last two steps.
+Above: We logged into the Azure VM from a local computer like a laptop using a VSCode terminal.
+Once the Jupyter notebook server is running in `--no-display` mode: We return to our local computer 
+to set up an ***ssh tunnel*** and use this to connect our local browser to the Azure VM Jupyter 
+notebook server. 
 
 
-* At this point we begin customizing the Virtual Machine
-* First we install the Anaconda Python package: Choose the current Linux package from [this page](https://www.anaconda.com/products/individual).
+* Customizing the Virtual Machine is five steps
+    * Install the Anaconda Python platform: Choose the current Linux package from [this page](https://www.anaconda.com/products/individual).
+    * Install the `xarray` library
+    * Install the `netcdf4` library
+    * `git clone` a GitHub repository { Jupyter notebooks, small dataset }
+    * Start the Jupyter notebook server in `--no-browser` mode
 
+
+### Install Anaconda
 
 The following example uses the correct link as of April 7 2021:
 
@@ -493,28 +514,73 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
    
 
 
-* At this point the Jupyter notebook server should be available for use
-* run `conda install xarray` to make that package available
-* run `pip install netcdf4` to make that package available
-* run `cd` and `git clone https://github.com/robfatland/ocean`
-    * This creates a copy of an example notebook folder (repository) in your home directory
-* run `(jupyter lab --no-browser --port=8889) &`
-    * This starts the Jupyter notebook server as a background job
-    * It gives you a token string like this `...token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
-        * Copy this string for use in the next step 
+At this point the Jupyter notebook server should be available for use
+
+
+### Install two Python libraries
+
+```
+conda install xarray 
+pip install netcdf4
+```
+
+
+### Clone a GitHub repository
+
+```
+cd ~
+git clone https://github.com/robfatland/ocean
+ls ocean
+```
+
+This creates a folder (repository) called `ocean` in your home directory.
+
+
+If you ran this `git clone` before today (Wednesday 28-APR-2021) you may 
+wish to refresh your copy of the repository: 
+
+```
+cd ~
+pwd
+rm -rf ocean
+git clone https://github.com/robfatland/ocean
+ls ocean
+```
+
+Note the use of the `-rf` switches in the `rm` command causes a recursive deletion. If used in the wrong place it can
+delete entire file systems; so use this with caution.
+
+
+### Start the Jupyter notebook server
+
+```
+(jupyter notebook --no-browser --port=8889) &
+```
+
+The ampersand `&` at the end of this command starts the Jupyter notebook server as a background job.
+Notice that the Jupyter notebook server will "listen" on port 8889.
+You can log out of the Azure VM but first copy the token string for the Jupyter notebook server.
+It looks like this: `token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
+
+
+## Test the Jupyter notebook server from your local browser
+
+
+* On your local computer/laptop bash command line run
 
 
 
-## Last two steps in VM configuration: Test the Jupyter notebook server
+```
+ssh -N -f -i fu.pem -L localhost:7005:localhost:8889 azureuser@111.22.33.44
+```
 
+In this command: Make the appropriate substitutions for your `.pem` filename and your VM ip address.
+This creates a secure (**`ssh`**) tunnel from port 7005 of your local computer to port 8889 of the Azure VM.
 
-* On your local computer/laptop bash command line run this command:
-    * `ssh -N -f -i fu.pem -L localhost:7005:localhost:8889 azureuser@111.22.33.44`
-        * Make appropriate substitutions for your `.pem` filename and your VM ip address  
-* On your local computer in a browser address window enter `localhost:7005`
-    * When prompted: Enter the token string you copied above
-    * On success: The Jupyter notebook server will appear in your browser
-* You should be able to navigate to the `ocean` repository and run notebooks 
+In the browser address bar enter `localhost:7005`
+When prompted: Enter the token string you copied above
+On success: The Jupyter notebook server will appear in your browser
+Navigate to the `ocean` folder/repository and run the first notebook listed.  
    
    
 <BR><BR>
