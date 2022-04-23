@@ -1,10 +1,10 @@
-# CloudBank Solution: Virtual Machine Images for Research Computing
+# Virtual Machine Images for Research Computing
+## A CloudBank Solution
 
-
-This tutorial introduces you, the researcher, to using a virtual machine ***image*** 
-on the cloud as a basis for research computing. This page provides the outline of 
+This tutorial introduces you the researcher and/or student, to using a virtual machine ***image*** 
+on the cloud as a basis for research computing. This page provides an outline of 
 what is going on for a person new to cloud computing. The tutorial content is broken
-down by provider (Azure, AWS etcetera) and then by *create* and *use* tutorials.
+down by provider and then by *create* and *use* tutorials.
 
 * [AWS create image](https://cloudbank-project.github.io/image-research-computing-tutorial/aws/create_an_image)
 * [AWS use image](https://cloudbank-project.github.io/image-research-computing-tutorial/aws/use_an_image)
