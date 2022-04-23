@@ -1,49 +1,50 @@
-# CloudBank Solution: Virtual Machine *Images*
+# Virtual Machine *Images*
+## A CloudBank Solution
 
 
-#### Visit the [CBSolution Website](https://cloudbank-project.github.io/image-research-computing-tutorial/)! 
+#### Jump to the [Azure walkthrough](https://cloudbank-project.github.io/image-research-computing-tutorial/)
 
 
-This tutorial introduces you, the researcher, to using virtual machine ***images*** 
-on the cloud as a basis for research computing. This page provides the outline of 
-what is going on for a person new to cloud computing. The tutorial content is broken
-down by provider (Azure, AWS etcetera) and by *create* and *use* tutorials.
+This tutorial introduces you, the researcher and/or student, to using virtual machine ***images*** 
+on the cloud as a basis for research computing. If you are familiar with containers: For perspective
+a **machine image** is analogous but includes the *entire* operating system, conceptually more grandiose.
 
 
-The overall concept is not difficult here: Just as a file folder and its contents can be bundled up 
-as a single *zip* or *tar* file, so it goes with an entire computer, in our case a *virtual machine*:
-We bundled it up as a machine *image*.
+This page provides an outline, intended for an audience new to cloud computing.
+There are also tutorials
+for both Azure and AWS clouds.
 
 
 ## Overview of Virtual Machine *images*
 
-
-You may be familiar with a *zip* or *tar* file containing all the files within
-a directory.  A *machine image* is analogous; think of it as a zip file of the entire 
-computer's contents from operating system to home directory to code to data files. 
-
-
-The idea is that once 
-a cloud Virtual Machine (VM) is *configured* for use: It can be stored as a machine 
-image. This stored snapshot is cheap but it obviously does not *execute any code*. 
-To run it again it is loaded back into a new Virtual Machine. For our purposes these
-images are working research computing environments for scientists.
+The overall concept is this: Just as a file folder and its contents can be bundled up 
+as a single *zip* or *tar* file, so it goes with an entire *virtual machine* (**VM**):
+The zip file now becomes a machine *image*. This includes the entire 
+computer's contents from operating system to home directories to code to data files. 
 
 
+This is convenient for a number of reasons, the first being: Once 
+a cloud Virtual Machine (VM) is *configured* for use, it can be stored as a machine 
+image, a sort of 'suspended animation'. This stored snapshot does not *run* in any sense. 
+It does not *execute code*. As needed, however, it may be loaded back into a new 
+blank slate Virtual Machine and used normally. In this context these
+machine images are working research computing environments.
 
-***How much does it cost to run a Virtual Machine for a day?***
 
 
-Typically perhaps $10 to $30 per day for a moderately powerful VM.
+***How much does it cost to run a Virtual Machine (VM) for a day?***
+
+
+$10 to $30 per day for a moderately powerful VMs.
 
 
 ***How much does it cost to store a Virtual Machine for a day?***
 
 
-Typically $1 per day. As a result the first "value" of machine images is cost savings.
+Typically $1 per day or less. Machine images are an order of magnitude cheaper than VMs.
 
 
-***What are the other values in using machine images?***
+***What are other features of machine images?***
 
 
 (1) A machine image can be built with both tools and data pre-installed. As such 
