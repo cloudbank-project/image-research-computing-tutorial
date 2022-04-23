@@ -8,8 +8,8 @@
 
 
 This tutorial introduces you, the researcher and/or student, to using virtual machine ***images*** 
-on the cloud as a basis for research computing. If you are familiar with containers: For perspective
-a **machine image** is analogous but includes the *entire* operating system, conceptually more grandiose.
+on the cloud as a basis for research computing. If you are familiar with **containers**: 
+A **machine image** is analogous but includes the *entire* operating system, so a bit more grandiose.
 
 
 This page provides an outline, intended for an audience new to cloud computing.
