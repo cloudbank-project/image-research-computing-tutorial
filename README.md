@@ -2,11 +2,9 @@
 ## A CloudBank Solution
 
 
-#### [Walkthrough home](https://cloudbank-project.github.io/image-research-computing-tutorial/),
-[Azure-specific](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)
+**[Walkthrough home](https://cloudbank-project.github.io/image-research-computing-tutorial/), 
+[Azure-specific](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)**
 
-
-#### [AWS walkthrough]()
 
 
 This tutorial introduces you, the researcher and/or student, to using virtual machine ***images*** 
