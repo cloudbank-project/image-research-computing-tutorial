@@ -2,7 +2,9 @@
 ## A CloudBank Solution
 
 
-#### [Azure walkthrough](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)
+#### [Walkthrough](https://cloudbank-project.github.io/image-research-computing-tutorial/), 
+[Azure-specific](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/), 
+[AWS-specific](https://cloudbank-project.github.io/image-research-computing-tutorial/aws/create_an_image/)
 
 
 #### [AWS walkthrough]()
