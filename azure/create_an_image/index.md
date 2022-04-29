@@ -2,12 +2,18 @@
 
 ## Introduction
 
-Virtual Machines (VMs) are self-contained computers; we also see the term ***instances***. On the cloud 
+Virtual Machines (VMs) are self-contained computers; also called ***instances***. On the cloud 
 an ***instance type*** means a VM with a set of specifications: How much CPU power, memory, storage, and 
-networking speed. We pay for a VM per time unit it is up and running: Based on its specs.
+networking speed. Based on these specs we pay at some rate for a VM 'per hour' until we **Stop** it.
 
 
-A VM is distinct from a ***container***: The latter leverages the underlying operating system. 
+A VM is distinct from a ***container***: A container makes use of a computer's underlying operating system; 
+so it starts much faster. It is more of a (substantial) program running on a computer. 
+
+
+A VM is of course also distinct from a serverless function, which is a managed service. The VM is 
+provided to us provisioned with an operating system where we are the root user; 
+so this is far from the notion of 'managed'. 
 
 
 A single physical computer may host more than one Virtual Machine.  
@@ -19,8 +25,8 @@ VM costs more per hour on the cloud, be it Azure or AWS or GCP or some other pla
 
 
 Technical detail: The operating system *actually* selects a pre-built *image* which includes
-that operating system. So the term *image* used here is the same term *image* where we are
-headed later on. The image we select loads into the VM as a *blank slate*: Just the operating system, 
+that operating system. So the term *image* used here is the same term *image* we are
+working towards later on. The image we select loads into the VM as a *blank slate*: Just the operating system, 
 an empty user directory, no additional content. We log in to this generic VM as a generic user 
 and continue from there. (Let's try and log in from the VSCode terminal.)
 
