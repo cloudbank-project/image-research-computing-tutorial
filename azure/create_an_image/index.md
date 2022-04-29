@@ -2,28 +2,33 @@
 
 ## Introduction
 
-Virtual Machines (VMs) are computers. 
+Virtual Machines (VMs) are self-contained computers; we also see the term ***instances***. On the cloud 
+an ***instance type*** means a VM with a set of specifications: How much CPU power, memory, storage, and 
+networking speed. We pay for a VM per time unit it is up and running: Based on its specs.
 
 
-Technical detail: They are operating systems installed as hermetic
-environments on computers; so there is a level of abstraction above the basic computer + operating system; 
-and this is why we have the term *virtual* involved. A single physical computer may host more than one
-Virtual Machine. 
+A VM is distinct from a ***container***: The latter leverages the underlying operating system. 
 
 
-On the cloud we select a VM by choosing both a ***type*** and an ***operating system***. The type
+A single physical computer may host more than one Virtual Machine.  
+
+
+On the cloud we select a VM by choosing both an ***instance type*** and an ***operating system***. The type
 matches the computer's purpose to processing power, memory, network speed and other features. A bigger
-VM costs more per hour on the cloud, be that cloud Azure or AWS or GCP or some other platform.
+VM costs more per hour on the cloud, be it Azure or AWS or GCP or some other platform.
 
 
 Technical detail: The operating system *actually* selects a pre-built *image* which includes
-said operating system. The image loads into the VM as a *blank slate*: Just the operating system, 
-an empty user directory, no additional content. We log in as this generic user and go from there.
+that operating system. So the term *image* used here is the same term *image* where we are
+headed later on. The image we select loads into the VM as a *blank slate*: Just the operating system, 
+an empty user directory, no additional content. We log in to this generic VM as a generic user 
+and continue from there. (Let's try and log in from the VSCode terminal.)
 
 
-The small VM we use here costs $0.12 per hour or about $14 per day; so this leads us to a first
-rule: Stop the VM when it is not in use. This is like turning off a laptop: Everything persists;
-and it is no longer consuming electricity, incurring hourly charges. **Start** and **Stop** for a VM
+The VM we use costs $0.12 per hour or $14 per day; so this leads us to a first
+rule of cloud VMs: Stop the VM when it is not in use. This is like turning off a laptop: On
+a stopped VM everything persists;
+but it is no longer incurring hourly charges. **Start** and **Stop** for a VM
 are distinct from **Terminate**. When we terminate a VM it evaporates; it is gone. 
 
 
