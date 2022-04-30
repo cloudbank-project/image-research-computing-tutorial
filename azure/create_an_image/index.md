@@ -283,21 +283,27 @@ azureuser@myVMname:~$ sudo -H pip3 install virtualenv
 azureuser@myVMname:~$ virtualenv my_project_env
 ```
 
-At this point we activate the virtual environment **`my_project_env`**. Note the prompt
-change that emphasizes this:
+At this point we activate the virtual environment **`my_project_env`**. (Note the prompt
+change emphasizing this.) We also install four Python data science libraries.
 
 ```
 azureuser@myVMname:~$ source my_project_env/bin/activate
 (my_project_env) azureuser@myVMname:~$ pip install jupyter
+(my_project_env) azureuser@myVMname:~$ pip install matplotlib
+(my_project_env) azureuser@myVMname:~$ pip install numpy
+(my_project_env) azureuser@myVMname:~$ pip install xarray
+(my_project_env) azureuser@myVMname:~$ pip install pandas
 ```
 
 Now the Jupyter notebook server will run once we have activated this environment. If, for example, 
 we log out and log back in to the VM: We will no longer be in this environment. We must reactivate 
 it. 
    
-> For this hands-on activity: Always use `source my_project_env/activate` to activate the
-working environment. This is where `jupyter` is installed. Once this environment is activated
-the command prompt will be `(my_project_env) azureuser@myVMname:~$`.
+
+> For this hands-on activity: Always begin a session by activating the jupyter environment on
+the cloud VM. In this case, do so by running `source my_project_env/activate`. `jupyter` is installed
+only in this environment; so it must be activated to run the notebook server. Once activated
+the command prompt will change to `(my_project_env) azureuser@myVMname:~$`.
    
 
 Test the installation by typing `jupyter` again. The VM should now recognize and run this command.
