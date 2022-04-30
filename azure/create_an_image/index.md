@@ -304,14 +304,37 @@ ssh -i ./rob5vm_key.pem azureuser@21.173.147.19`
 
 * We have determined that Python 3 is installed on the VM already, so far so good.
 * Is the `jupyter` notebook server installed? Enter `jupyter` to find out (it is not)
-    * We must have a Jupyter notebook server so we can do data science!
-    * Search 'how to install jupyter on ubuntu' or simply click on
-        * [this link](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04)
-    * Enter this sequence of nine-or-so commands to install jupyter
-    * Test by typing `jupyter`: The VM should now recognize and run this command
 
+We would like to have a Jupyter notebook server ('data science!') running on our VM. An approach to
+getting there is to search on 'how to install jupyter on ubuntu'. This turns up a number of instructive
+websites including
+[this one](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04).
+It provides a sequence of commands which get the job done -- we hope -- on our Azure VM. 
+
+Enter this sequence of nine-or-so commands to install jupyter. Some require confirmation; so it is
+best to run each command to completion before entering the next. Emphasis: These are commands you are
+entering at your VM bash command prompt, not on your local computer. 
+
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install python3-pip python3-dev
+sudo -H pip3 install --upgrade pip
+sudo -H pip3 install virtualenv
+virtualenv my_project_env
+source my_project_env/bin/activate
+pip install jupyter
+```
+
+`ssh -L 8888:localhost:8888 your_server_username@your_server_ip`
+   
+Test the installation by typing `jupyter` again. The VM should now recognize and run this command.
+
+
+## Clone an oceanography repository
+   
 We have now reached a point where it would be nice to have some code and data to work with. 
-A simple way to get this is to clone some content from the GitHub software management website:
+We can clone some open source content from the GitHub software control website.
    
 ```
 cd ~
@@ -321,15 +344,18 @@ git clone https://github.com/robfatland/ocean
 This should complete in under a minute. You can use `ls` to show there is a new directory called `ocean`. 
 It contains data and an IPython notebook called `BioOptics.ipynb`.
    
-Normally we run Jupyter notebook servers in a browser window. This will be no exception; but it takes
-a little preparation. Issue these two commands: 
+## Run the Jupyter Notebook server
+   
+
+Jupyter Notebook servers operate in a browser window. 
+This will be no exception; but notice our VM is not connected in any manner to a local browser.
+The trick here is to use a secure connection from your host machine to the Azure VM using the `ssh`
+secure shell. 
+   
+On the VM command line issue this command:
    
 ```
-
-
-
-
-
+(jupyter notebook --no-browser --port=8889) &
 ```
 
 
@@ -368,34 +394,6 @@ Here is a *green text on a black background customization [link](https://robfatl
 <BR><BR>
 
 
-* Follow directions for mounting a disk on an Azure VM
-    * [How-to documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
-    * Based on this the following commands were used to mount the data disk
-    * Notice this is for **`NAME=sdc`**. You must modify these commands if **`NAME=sdb`** per above.
-
-
-```
-sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
-sudo mkfs.xfs /dev/sc1
-sudo partprobe /dev/sdc1
-sudo mkdir /datadrive
-sudo mount /dev/sdc1 /datadrive
-sudo blkid
-```
-
-* You can verify the mount by re-running `lsblk`: A mount point should be present now.
-* Change directories to the data disk and ensure you can edit, save and modify a test file.
-    * You may need to `sudo chmod` the `/datadrive` to make it read/write-able.
-* Note the documentation on all of this provides links to additional documentation.
-
-<BR><BR>
-   
-<img src="../../images/azure/Azure_image_20.png" alt="drawing" width="600"/> <BR><BR>
-<img src="../../images/azure/Azure_image_19.png" alt="drawing" width="1000"/>
-   
-
-<BR><BR>
-
 
 # Re-starting a VM
 
@@ -427,41 +425,30 @@ notebook server.
     * Start the Jupyter notebook server in `--no-browser` mode
 
 
-### Install Anaconda
+## Installing Anaconda
 
-The following example uses the correct link as of April 7 2021:
+Suppose we are interested in using a data science distribution of Python. Commonly used is
+[***Anaconda***](https://anaconda.com). It installs with a large collection of data science 
+libraries. 
+   
+Note: We are not doing this as part of the hands-on walk-through; Anaconda is just mentioned here
+in passing. 
+   
+One method of installing Anaconda is to use the `wget` Linux command to copy the installation shell script
+(file extension `.sh`) from the web to a local environment; and then use the `bash` command to run the 
+script. It is worth checking the [Anaconda repository](https://repo.anaconda.com/archive/)
+for a recent version; and the [Anaconda main website](https://anaconda.com) for other installation options. 
+There is also a lightweight version of Anaconda called Miniconda that does not include so many features.
+   
 
+One Anaconda installation command sequence (Linux, circa 2022):
+   
 
 ```
-wget https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
 bash Anaconda3-2020.11-Linux-x86_64.sh
 ```
 
-* This gets the Anaconda installation file using the `wget` command; then installs it using `bash`
-    * You can also opt to install a lighter-weight version called Miniconda 
-* Accept the license agreement and the defaults, initializer etc; install takes a couple of minutes
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_21.png" alt="drawing" width="1000"/>
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_22.png" alt="drawing" width="600"/>
-
-<BR><BR>
-   
-* Definitely log out and then log back in to your VM for "changes to take effect".
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_23.png" alt="drawing" width="600"/>
-
-<BR><BR>
-   
-
-
-At this point the Jupyter notebook server should be available for use
 
 
 ### Install two Python libraries
