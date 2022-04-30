@@ -25,40 +25,58 @@ VM costs more per hour on the cloud, be it Azure or AWS or GCP or some other pla
 
 
 Technical detail: The operating system *actually* selects a pre-built *image* which includes
-that operating system. So the term *image* used here is the same term *image* we are
-working towards later on. The image we select loads into the VM as a *blank slate*: Just the operating system, 
-an empty user directory, no additional content. We log in to this generic VM as a generic user 
-and continue from there. (Let's try and log in from the VSCode terminal.)
+that operating system. So the term *image* used here is the same idea of the *image* we are
+working towards creating later on. The image we begin with (select) is loaded into the VM as a 
+*blank slate*: Just the operating system, an empty user directory, no additional content. 
+We log in to this generic VM as a generic user and continue to customize it from there.
 
 
-The VM we use costs $0.12 per hour or $14 per day; so this leads us to a first
-rule of cloud VMs: Stop the VM when it is not in use. This is like turning off a laptop: On
-a stopped VM everything persists;
-but it is no longer incurring hourly charges. **Start** and **Stop** for a VM
-are distinct from **Terminate**. When we terminate a VM it evaporates; it is gone. 
+The VM we use costs $0.10 per hour or $12 per day. A good rule of thumb is: Establish a 
+VM to shut off every evening when you create it. This (passively) ensures we won't leave
+it running all night. "Stop the VM when it is not in use." This can be done actively as
+well, for example through the Azure portal. 
+
+Note: **Starting** and **Stopping** a VM
+are distinct from **Terminating** it. Terminate a VM and it evaporates; it is gone forever. 
+
+## Research computing environment
+
+### Jupyter Notebook servers
 
 
-#### VM Concept and Plan including Jupyter Notebook servers
+Since we are working with a VM, lets customize it as a research
+computing platform by installing a Jupyter notebook server. This is a research tool in common use
+(circa 2022) that is popular for a variety of reasons. For one, Jupyter notebooks enable us to develop 
+and run code in small blocks called cells, in contrast to the traditional 'write large monolithic programs' 
+that can be challenging to debug. Another valuable feature of Jupyter notebooks is support for documentation 
+interspersed with code. This breaks down the barrier between code and write-up, between 
+analysis and publication. 
 
 
-A Jupyter notebook server is a research tool in common use at this time. It is a popular component 
-of the research ecosystem. We will include one of these in this construction process. 
+Jupyter notebook code execution is managed by a language-specific program 
+called a kernel (for example 'Python kernel', 'R kernel', 'Julia kernel'.  
+The kernel operates "behind the scenes" to maintain the notebook environment and
+run blocks of code as requested. In our case we will use Python, 
+where the two other primary Jupyter-supported languages are Julia and R 
+(hence 'JuPyt(e)R'). In the spirit of expansibility many other kernels have
+been developed as well: There are
+more than 100 Jupyter kernels available at this time. 
 
 
-A researcher installs and runs a Jupyter notebook server on a VM as a step in building
-a research workspace. Commonly the programming language in use in these notebooks is 
-Python. 
+### Python environments
 
 
-Python also features a level of virtualization in what are called *virtual environments*. 
+Python features a level of virtualization (specialization) via *virtual environments*. 
 The Python *base* environment is the Python interpreter and libraries that comprise the
-basic Python installation. This base environment is a distinct concept from the Jupyter
-notebook server. From this base or default environment a Python (virtual) environment 
-is often built to further customize the workspace. A virtual environment is an isolated 
-space in which additional libraries are installed.
+basic Python installation in the operating system. This base environment is a distinct 
+concept from the Jupyter notebook server. From this base or default environment a Python 
+virtual environment is often built to further customize the workspace. A virtual environment 
+is an isolated space in which additional libraries are installed. In Visual Studio Code
+(VSCode) a virtual environment called **`.venv`** was created in relation to building
+Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console prompt. 
 
 
-To connect this together as a narrative we can say that we...
+#### this process as narrative
 
 * ...choose a particular cloud (Azure) on which to build a research space
 * ...identify and start up a Virtual Machine (VM) with an associated hourly cost
@@ -72,6 +90,7 @@ To connect this together as a narrative we can say that we...
 
 #### Object storage versus block storage
 
+
 A "disk drive" or "storage drive" is a fairly large block of read/write memory associated directly with 
 a file system on a computer. On a cloud VM this is known as block storage and it includes two sub-types. 
 First there is the root file system that includes the VM operating system, in our case Ubuntu Linux. 
@@ -83,6 +102,7 @@ storage. Objects in object storage may be files. However they are not treated as
 opened and read through (indexed) in search of some particular segment of information. This is in contrast
 to block storage where they can. Object storage or blob storage does support reasonably high connectivity speed; 
 so object storage is an extension of the computing environment. ***Object Storage...***
+
 
 - ...is by design virtually infinite in capacity
 - ...is cheaper per byte per month than block storage
@@ -125,44 +145,31 @@ hour; so it is important to avoid committing access keys to GitHub repositories.
 
 #### Plan
 
-
-"As if we are doing some research" the sequence of events in this walk-through are:
-
-
-- Start a VM on the Azure cloud
-- Install the Anaconda data science platform (Python with Jupyter notebook server support)
-- Install some additional Python libraries
-- Download some data
-- Download a Jupyter notebook repository
-- Make sure everything works properly
-- Save the results as an Azure VM **image**
-- Shut down ("terminate") the VM
-- Start a completely new VM from the stored image
-- Again test that everything works properly
+* We are looking at three modes of compute on the cloud: **Serverless Functions**, **Containers** and **VMs/Images**. 
+* VMs are used pretty much like traditional servers; and images are freeze-dried 'zip file' versions of VMs.
 
 
-Note: There is a distinction between a virtualized computer or virtual machine (VM) and an actual physical 
-computer. While this is outside the scope of this material it can be relevant within the general topic of 
-compute optimization.
+"As if we need a research computing environment" the sequence of events in this walk-through are:
 
 
-## Background perspective
+- Start your VM on the Azure cloud in your Resource Group (and grab a key file)
+- Log in to that VM using VSCode
+- On the VM: Install the `jupyter` notebook server library
+- On the VM: Create a research environment by cloning a GitHub repository
+- On the VM: Start a jupyter notebook session *without any visible interface*
+- On your computer: Create an SSH tunnel from your computer to your VM
+- Use your browser to connect to the jupyter server on the VM (and see *Stretch task)
+- Save your VM as an Azure *image*
+- Terminate your VM
+- Start a completely new VM from your stored image
+- Verify that everything works properly
+
+- *Stretch task: Place some data in object storage on Azure and access that from your VM
 
 
-There are three degrees of complexity in building a compute resource on the cloud. Actually there are
-more than this but let's start with three: **Functions**, **Containers** and **Images**. Functions are simplest
-but they have a limited degree of power and flexibility. Images are the most complicated; they correspond
-to Virtual Machines. In fact Images are like a freeze-dried (or if you like 'zip file') version of a VM.
-Containers occupy a middle ground between Functions and Images. We are visiting all three with the idea 
-of seeing a spectrum of options for doing data science on the cloud. 
 
 
-## Walk-through
-
-This procedural walks through creating a Virtual Machine, adding a Jupyter notebook server, testing this, 
-and storing it as an Azure machine image. That last step is a single click task; the bulk of the effort is 
-preparation.
-
+## Procedure
 
 * On a browser sign in to the [Azure portal](portal.azure.com) and verify your Subscription
     * Be sure to work in the Central US Azure region
