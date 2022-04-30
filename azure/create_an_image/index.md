@@ -159,19 +159,18 @@ of seeing a spectrum of options for doing data science on the cloud.
 
 ## Walk-through
 
-This procedural walks you through creating a working Virtual Machine with a Jupyter notebook server, testing it, 
+This procedural walks through creating a Virtual Machine, adding a Jupyter notebook server, testing this, 
 and storing it as an Azure machine image. That last step is a single click task; the bulk of the effort is 
-the preparation. This walk-through uses the [Azure portal](portal.azure.com), a browser-based interface to
-the services available on the Azure cloud. 
+preparation.
 
 
-* Using a browser sign in to the [Azure portal](portal.azure.com) and identify/select an Azure *Resource Group*
-    * A Resource Group (abbreviated RG) is a logical/virtual container for associated Azure resources
-    * As an example an RG might contain a Virtual Machine (VM), a monitoring service and a Storage Account
-    * RGs are associated with regions; and should be created in a region near to your geographic location
-    * If you do not have an RG available you can use the Azure portal to **Create** a new one
+* On a browser sign in to the [Azure portal](portal.azure.com) and verify your Subscription
+    * Be sure to work in the Central US Azure region
+    * Select or create an appropriate *Resource Group*
+        * A Resource Group (abbreviated RG) is a logical/virtual container for associated Azure resources
+        * A Resource Group might contain a Virtual Machine (VM), a monitoring service and a Storage Account
 * Below is a portal screencapture showing a Resource Group list: Just one Resource Group is present
-    * This RG will contain a Virtual Machine and associated resources: That's the goal.
+    * This Resource Group will contain our Virtual Machine and associated resources: That's the goal.
 
 <BR><BR>
 
@@ -180,114 +179,46 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* Select the RG and click the `+Add v`
-    * This is so we can add a Virtual Machine to the RG
-
+* From the Resource Group overview click `+Create` (The image below shows `+Add`: Same thing.)
+   * Select 'Virtual machine' (directly: click the icon; or use the search bar)
+   
+Note: We can use the Azure **Marketplace** to browse for VM images by operating 
+system and based on other features. As a stretch activity you can spend some time
+looking around at what is available.
 
 
 <BR><BR>
 
 
-<img src="../../images/azure/Azure_image_02.png" alt="drawing" width="600"/>
+<BR><BR>
+
+* Use the VM wizard to customize the VM; use defaults but note the following:
+   * Name the VM something like `YourNetIDvm`
+   * Region = (US) Central US
+   * Image = Ubuntu Server 20.04 LTS - Gen 2 (or more recent)
+       * "LTS" means Long Term Support, i.e. the OS will be supported by Ubuntu for a "long time"
+   * Size = Standard_D2as_v5 - 2 vcpus, 8 GB memory
+   * Ensure Public inbound ports = Allow selected ports
+   * Ensure Select inbound ports = SSH (22)
 
 <BR><BR>
 
-* The `+Add v` gives us a drop-down. Select `Marketplace`. 
-    * This is where we can get Ubuntu Linux VM images at no cost
-    * Don't need to enter anything in the search bar: The Ubuntu Server choice is just there.
 
 <BR><BR>
 
-<img src="../../images/azure/Azure_image_03.png" alt="drawing" width="200"/>
-
-<BR><BR>
-
-* Select from the Marketplace an Ubuntu Server image. 
-    * Notice that an *image* is what we set out to build... and here is one already built for us so that was easy 
-        * We select an "empty" image that includes nothing more than the Ubuntu operating system
-        * Once the Virtual Machine running Ubuntu Linux is running we customize it
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_04.png" alt="drawing" width="200"/>
-
-<BR><BR>
-
-* Click `Create`
-    * This means "Initiate the process of starting a VM using this Ubuntu operating system"
-    * "LTS" means Long Term Support, i.e. the OS will be supported by Ubuntu for a "long time".
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_05.png" alt="drawing" width="600"/>
-
-<BR><BR>
-
-* This brings us to a multi-step VM builder wizard. 
-    * We will work through the multiple tabs fairly quickly, mostly using default values
-    * On the first tab: Enter a machine name and choose the small default Size from the dropdown. 
-        * This reads `Standard_D2s_v2 - 2 vcpus, 8 GiB memory ($70.08/month)`
-        * The monthly cost for a VM choice is a good sanity check; 'if I leave it running 24/7'
-        * The remaining entries in the first wizard tab: Defaults are fine
-        * Notice the default username is `azureuser` which is fine
-        * Notice we allow an inbound port 22 which is associated with the secure shell, **`ssh`**
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_06.png" alt="drawing" width="800"/>
-
-<BR><BR>
-
-* Click **Next : Disks >** to arrive at the **Disks** tab of the VM wizard. 
-* Add a 32GB disk to create some data capacity on this VM
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_07.png" alt="drawing" width="800"/>
 
 <BR><BR>
    
-* Note: A 256GB drive is shown. 
-    * This will run 8 x the cost of a 32GB disk
-    * Rule of thumb: Choose disk size based on anticipated data volume
-    * You can increase / decrease disk volume at a later time as well
-    * This is a managed disk: Costs more, less hassle, backups, encryption etcetera
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_08.png" alt="drawing" width="600"/>
-
-<BR><BR>
-
-* Once disk volume is selected you can (**Ok**) confirm you want to **Create a new disk**.
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_09.png" alt="drawing" width="600"/>
-
-<BR><BR>
-
-
-* Next are *Networking*, *Management* and *Advanced* tabs: Keep defaults 
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_10.png" alt="drawing" width="800"/>
-
-<BR><BR>
-
-
-<img src="../../images/azure/Azure_image_11.png" alt="drawing" width="800"/>
-
-<BR><BR>
+* Skip forward to the Management tab
+   * Enable auto-shutdown
+       * Keep the shutdown time as 7PM
+       * Change the Time zone to Pacific Time
    
-* Set the VM to **Stop** at 7PM. Turn it on using the Portal or CLI when needed.
-   
-<img src="../../images/azure/A_image_insert_01_AutuShutdown.png" alt="drawing" width="800"/>
 
 <BR><BR>
 
-* **Tags** tab: Include some tags so that an account administrator knows what these resources are for.
+* Skip forward to the **Tags** tab
+    * Include some tags to inform your future self what this VM is for
 
 <BR><BR>
 
@@ -296,25 +227,31 @@ the services available on the Azure cloud.
 
 <BR><BR>
 
-* At the **Review and Create** tab we get a sense of what will be built
-    *  It will cost 10 to 12 cents per hour to operate (more for larger disk volumes) 
+* At the **Review and Create** tab: Review the description
+    * This VM will cost about $0.10 per hour
+    * Click the Create button
+        * This will prompt you to download a key file
+        * Download this file to a safe location on your computer
 
-
-<BR><BR>
+* Once the create action is complete: Click 'Go to resource'
+    * At the top of the central / main window notice there is a sequence of utility buttons
+        * These are Connect, Start, Restart, Stop, Capture and so on
+    * From the (default) Overview: Notice that the VM has a tabbed sequence of information pages
+        * These are Properties, Monitoring, Capabilities, Recommendations and Tutorials
+        * Look through these tabs to get a sense of what is there
+    * On the left menu bar under Settings click on Disks
+        * Note that the VM has an operating system disk with a 30 GiB capacity
+        * Some of this will be used by the operating system
+    * On the left menu bar under Settings click on Connect
+        * Note that this provides you with a four-step recipe for logging in to this VM
+    * On the left menu bar under Automation click on Export template
+        * The resources here enable you to build this same VM automatically from code (rather than manually)
    
 
-<img src="../../images/azure/Azure_image_13.png" alt="drawing" width="600"/>
-
-<BR><BR>
-
-The link "download a template for automation" allows you to generate VMs in this format automatically rather than by hand.
-
 
 <BR><BR>
 
    
-<img src="../../images/azure/Azure_image_14.png" alt="drawing" width="400"/>
-
 <BR><BR>
 
 * The pop-up dialog shown above gives us authentication options
