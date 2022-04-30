@@ -1,7 +1,8 @@
 # Creating a VM image: Azure cloud
 
-## Introduction
+## Background information
 
+### Introduction
 
 Virtual Machines (VMs) are self-contained computers; also called ***instances***. On the cloud 
 an ***instance type*** means a VM with a set of specifications: How much CPU power, memory, storage, and 
@@ -40,7 +41,6 @@ well, for example through the Azure portal.
 Note: **Starting** and **Stopping** a VM
 are distinct from **Terminating** it. Terminate a VM and it evaporates; it is gone forever. 
 
-## Research computing environment
 
 ### Jupyter Notebook servers
 
@@ -77,7 +77,7 @@ is an isolated space in which additional libraries are installed. In Visual Stud
 Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console prompt. 
 
 
-### Object and Block Storage
+### Cloud concept: Object versus Block Storage
 
 
 * Block storage equates to disk drives: A root drive and optional additional drives, attached to a VM
@@ -90,55 +90,52 @@ Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console
     * Data archival also possible
 
 
-#### GitHub
+### Source control: `git` and GitHub
 
 
 GitHub is a provider of Internet hosting for software development and version control using **`git`**. 
 **`git`** is in turn a Linux software version control utility. GitHub and similar hosting
-sites are in common use as a means of sharing software solutions particular to open and reproducible research.
-There are in consequence two important aspects of GitHub use relevant to use of public clouds like Azure. 
+sites facilitate open sharing of software, part of the larger picture of reproducible research.
 
 
-1. It is common practice to use the **`git`** command to clone GitHub *repositories*, which are 
-thematic collections of files contained in a directory structure. However there are a number of
-details in learning to use **`git`** effectively: This means there is a proper and necessary 
-**`git`** learning curve.
+* The **`git clone`** command can be used clone GitHub *repositories*,  
+thematic collections of files in a directory tree. **`git`** comes with a learning curve.
 
-
-2. Improper use of GitHub can result in cloud access keys landing in an open repository. There are malevolent 
-code bots in operation on GitHub that will use such inadvertently open keys to mine bitcoin on cloud VMs. This
-costs actual money that is charged to the cloud User. Typical spend rates for this scenario are USD 15,000 per 
-hour; so it is important to avoid committing access keys to GitHub repositories.
+* Improper use of GitHub can grant cloud access to Bad Actors. This in turn can lead to lost time and money.
 
 
 
-#### Plan
+### The Plan
 
-* We are looking at three modes of compute on the cloud: **Serverless Functions**, **Containers** and **VMs/Images**. 
-* VMs are used pretty much like traditional servers; and images are freeze-dried 'zip file' versions of VMs.
-
-
-"As if we need a research computing environment" the sequence of events in this walk-through are:
+* Three modes of compute on the cloud: **Serverless Functions**, **Containers** and **VMs/Images** 
+* VMs are used like traditional servers. Images are freeze-dried 'zip file' versions of VMs.
 
 
-- Start your VM on the Azure cloud in your Resource Group (and grab a key file)
-- Log in to that VM using VSCode
-- On the VM: Install the `jupyter` notebook server library
-- On the VM: Create a research environment by cloning a GitHub repository
-- On the VM: Start a jupyter notebook session *without any visible interface*
-- On your computer: Create an SSH tunnel from your computer to your VM
-- Use your browser to connect to the jupyter server on the VM (and see *Stretch task)
-- Save your VM as an Azure *image*
-- Terminate your VM
-- Start a completely new VM from your stored image
-- Verify that everything works properly
+"As if we need a research computing environment" the sequence of events in this hands-on:
+
+
+- Start a VM on the Azure cloud in your Resource Group (obtain its ip address and a key file)
+- Log in to this VM from VSCode
+- On the VM
+    - Install the Jupyter Notebook server in a dedicated environment
+    - Install some related data science libraries such as `pandas`
+    - Create a research environment by cloning a GitHub repository
+    - Start a jupyter notebook session with no visible interface
+- On your computer
+    - Create an SSH tunnel from your computer to the VM
+    - Enter a local Jupyter connection address
+        - By virtue of the SSH tunnel it will connect to the Jupyter Notebook server
+    - Verify everything works
+- From the Azure portal: From your VM create an Azure *image*
+- From this image: Start a new VM and verify it is identical to the one you have customized
+
 
 - *Stretch task: Place some data in object storage on Azure and access that from your VM
 
 
+## Hands-on procedural
 
-
-## Procedure
+### Build a VM using the Azure portal
 
 * On a browser sign in to the [Azure portal](portal.azure.com) and verify your Subscription
     * Be sure to work in the Central US Azure region
@@ -162,7 +159,7 @@ forward slash greater than
 * From the Resource Group overview click `+Create` (The image below shows `+Add`: Same thing.)
    * Select 'Virtual machine' (directly: click the icon; or use the search bar)
    
-Note: We can use the Azure **Marketplace** to browse for VM images by operating 
+> We can use the Azure **Marketplace** to browse VM images by operating 
 system and based on other features. As a stretch activity you can spend some time
 looking around at what is available.
 
@@ -172,29 +169,28 @@ looking around at what is available.
    * Name the VM something like `YourNetIDvm`
    * Region = (US) Central US
    * Image = Ubuntu Server 20.04 LTS - Gen 2 (or more recent)
-       * "LTS" means Long Term Support, i.e. the OS will be supported by Ubuntu for a "long time"
    * Size = Standard_D2as_v5 - 2 vcpus, 8 GB memory
    * Ensure Public inbound ports = Allow selected ports
    * Ensure Select inbound ports = SSH (22)
 
 
    
-* Skip forward to the Management tab
+* Management tab
    * Enable auto-shutdown
        * Keep the shutdown time as 7PM
        * Change the Time zone to Pacific Time
 
 
-* Skip forward to the **Tags** tab
+* **Tags** tab
     * Include some tags to inform your future self what this VM is for
 
 
-* At the **Review and Create** tab: Review the description
+* **Review and Create** tab: Review the description
     * This VM will cost about $0.10 per hour
     * Click the Create button
-        * This will prompt you to download a key file
-        * Download this file to a safe location on your computer
+        * This will prompt you to download a key file: Do so to a safe location on your computer
 
+   
 * Once the create action is complete: Click 'Go to resource'
     * At the top of the central / main window notice there is a sequence of utility buttons
         * These are Connect, Start, Restart, Stop, Capture and so on
@@ -210,10 +206,12 @@ looking around at what is available.
         * Note that this provides you with a four-step recipe for logging in to this VM
         * It is time to log in to the VM
 
-
    
-* Open Visual Studio and activate the Terminal window (ctrl + ` or on a Mac...?)
-* In the terminal verify that `ssh` works by typing it in and hitting return. Should produce a usage message.
+### Log in to the VM from VSCode
+   
+   
+* Open Visual Studio Code and activate the Terminal window (ctrl + ` or on a cmd + `)
+* In the terminal verify the `ssh` command exists: It produces a usage message
 * Go to the home directory using `cd ~`
 * Move the `.pem` file downloaded during the VM Create to this directory
     * For example `mv /mnt/c/Users/myusername/Downloads/rob5vm_key.pem .`
@@ -242,38 +240,38 @@ azureuser@myVMname:~$ ls -al
     * You should now see a welcome message and a `bash` prompt
         * We used `ssh` to connect but once logged in we are running the `bash` shell
         * To verify this type in `ps -p $$`
-    * Do up update / upgrade of your operating system by entering these commands in sequence
-        * `sudo apt update`
-        * `sudo apt upgrade`
-    * Examine the operating system disk 
-        * `df`
-        * The output tells us we are on a 30GiB root drive, 7% is in use; so 28GiB available
+    * Examine the operating system disk with `df`
+        * This shows a 30GiB root drive, 7% in use; so 28GiB available
 
-* Now that we are logged in to a VM let's determine whether or not it has Python installed
-    * Enter `python3`
-        * This should tell you which version of Python you are running... (for me this is Python 3.8.10)
-        * ...and it should change the prompt to the Python interpreter `>>> `
-        * Stretch activity: If your factoring Azure Function is still running...
-            * ...try entering the three lines of Python in the Python interpreter and factor a number!
-            * (If your Azure function is no more you can use this one...)
-                * `https://rob5azfn02.azurewebsites.net/api/HttpTrigger1`
-        * Use ctrl-d to exit the Python interpreter
-    * If for some reason you needed to install Python the installation command is something like this:
-        * `sudo apt install python3-pip python3-dev`
+   
+### Make sure Python is installed on the VM
+   
+   
+* Once logged in: See if `python3` is installed
+    * It should indicate Python 3.8.10 and provide you with the Python interpreter prompt `>>>`
+    * Stretch activity: If your Azure Function to factor integers is still running...
+        * ...or if you'd like to use `https://rob5azfn02.azurewebsites.net/api/HttpTrigger1`
+        * ...try entering the three lines of Python from last week to factor an integer 
+        * This would be an Azure Virtual Machine making use of an Azure Function: Composition of cloud services
+    * Use ctrl-d to exit the Python interpreter
+   
 
-* We have determined that Python 3 is installed on the VM already, so far so good.
-* Is the `jupyter` notebook server installed? Enter `jupyter` to find out (it is not)
+### Install the Jupyter Notebook server on the VM
+   
 
-We would like to have a Jupyter notebook server ('data science!') running on our VM. An approach to
-getting there is to search on 'how to install jupyter on ubuntu'. This turns up a number of instructive
-websites including
+* Is the Jupyter Notebook server installed? Enter `jupyter` to find out that it is not
+    * This sets us off on the path of customizing the VM
+    * One approach to how to do this: search on 'how to install jupyter on ubuntu'
+        * This turns up a number of instructive websites including
 [this one](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04).
-It provides a sequence of commands which get the job done -- we hope -- on our Azure VM. They are copied below. 
+        * The commands are copied in sequence below
 
-Enter this command sequence to install jupyter. Some steps require confirmation so it is
+
+Enter the following commands in sequence. Some steps require confirmation so it is
 best to run each command to completion before entering the next. Emphasis: These are commands you are
 entering on your VM bash command prompt `azureuser@myVMname:~$ `, ***not*** on your local computer. 
 
+   
 ```
 azureuser@myVMname:~$ sudo apt update
 azureuser@myVMname:~$ sudo apt upgrade
@@ -283,9 +281,11 @@ azureuser@myVMname:~$ sudo -H pip3 install virtualenv
 azureuser@myVMname:~$ virtualenv my_project_env
 ```
 
-At this point we activate the virtual environment **`my_project_env`**. (Note the prompt
+   
+At this point we will activate the virtual environment **`my_project_env`**. (Note the prompt
 change emphasizing this.) We also install several Python data science libraries.
 
+   
 ```
 azureuser@myVMname:~$ source my_project_env/bin/activate
 (my_project_env) azureuser@myVMname:~$ pip install jupyter
@@ -296,23 +296,22 @@ azureuser@myVMname:~$ source my_project_env/bin/activate
 (my_project_env) azureuser@myVMname:~$ pip install netcdf4
 ```
 
-Now the Jupyter notebook server will run once we have activated this environment. If, for example, 
-we log out and log back in to the VM: We will no longer be in this environment. We must reactivate 
-it. 
+Now the Jupyter Notebook server runs provided we activate this environment. The environment name
+`my_project_env` is prepended to the prompt. If we log out and log back in to the VM: We will 
+no longer be in this environment. 
    
 
 > For this hands-on activity: Always begin a session by activating the jupyter environment on
-the cloud VM. In this case, do so by running `source my_project_env/activate`. `jupyter` is installed
-only in this environment; so it must be activated to run the notebook server. Once activated
-the command prompt will change to `(my_project_env) azureuser@myVMname:~$`.
+the cloud VM: `source my_project_env/activate`. This is necessary because `jupyter` is installed
+only in this environment; not in the login or base environment. 
    
 
 Test the installation by typing `jupyter` again. The VM should now recognize and run this command.
 
 
-## Clone an oceanography repository
+### Clone an oceanography repository
    
-We have now reached a point where it would be nice to have some code and data to work with. 
+We have reached a point where it would be nice to have some code and data to work with. 
 We can clone some open source content from the GitHub software control website.
    
 ```
@@ -324,7 +323,7 @@ This should complete in under a minute. You can use `ls` to show there is a new 
 It contains data and an IPython notebook called `BioOptics.ipynb`.
 
 
-## Run the Jupyter Notebook server
+### Start the Jupyter Notebook server
    
 
 The Jupyter Notebook server interface exists in a browser window. 
@@ -332,15 +331,19 @@ However, at this time our VM is not connected in any manner to a local browser.
 The only connection we have is a bash shell (text window) enabled via an `ssh` connection. 
 The trick here is to use this secure `ssh` connection from your host machine to the Azure VM.
  
+   
 On the VM command line issue this command. The prompt is included as a reminder that 
 you must have the `my_project_env` environment activated as described above.
+  
    
 ```
 (my_project_env) azureuser@myVMname:~$ (jupyter notebook --no-browser --port=8889) &
 ```
    
+   
 The trailing ampersand runs the command as a background job. 
 This will produce output something like: 
+   
    
 ```
 [1] 1581
@@ -358,51 +361,64 @@ This will produce output something like:
      or http://127.0.0.1:8889/?token=ab39283485838005ef2e564689f62e7150acdef483cfe751
 ```
 
+   
 The Jupyter notebook server will "listen" on port 8889 for interactive information.
 Until that shows up: It waits patiently.
    
+
+### Create an `SSH` tunnel from your computer to the VM
    
-On your computer use the `ssh` command to create a tunnel to the VM, specifically to port 8889.
+   
+On your computer use the `ssh` command to create a tunnel to the VM.
+Specifically this connects port 8890 on your computer to port 8889 on the Azure VM.
+Remember to use the correct ip address for your VM.
+   
 
 ```
-ssh -N -f -i .\rob5vm_key.pem -L localhost:8888:localhost:8889 azureuser@31.92.184.12
+ssh -N -f -i .\rob5vm_key.pem -L localhost:8890:localhost:8889 azureuser@31.92.184.12
 ```
    
-This will direct local traffic to port 8888 to the Azure VM port 8889. As we have connected *that* 
-port to the Jupyter Notebook server, the last step is to enter the Jupyter URL (with one modification)
-into your browser address bar: 
+   
+This will direct local traffic to port 8890 to the Azure VM's port 8889. That port connects to
+the Jupyter Notebook server. 
+   
+   
+The final step is to enter a modified version of the VM Jupyter 
+URL ***into your browser address bar***. This is the URL that printed when you started the Jupyter
+Notebook server above. It includes a long token string for authentication. It also includes
+port number 8889; but this must be modified to 8890, your local SSH tunnel port.
    
 ```
-http://localhost:8888/?token=ab39283485838005ef2e564689f62e7150acdef483cfe751
+http://localhost:8890/?token=ab39283485838005ef2e564689f62e7150acdef483cfe751
 ```
 
-Notice in the URL above uses port 8888, not port 8889. 
-   
-   
-## Last step: Create a machine image in the Azure portal
+Verify that the Jupyter Notebook server runs and provides you with access to the `ocean` repository contents. 
 
+   
+## Create a machine image in the Azure portal
+
+   
 * Select the VM in the Azure Portal and click **Capture**
-
-
 * The "make image" wizard comes up.
 * On the side dialog select No, capture only a managed image
-
-   
 * The VM stops and the image creation process starts up. 
 * Shortly thereafter (minutes) we have an image of the VM available. 
     * This VM image can be restarted on small low-cost machines or large high-cost machines
     * It can be shared with colleagues or made publicly available
-    * The image is static. If you make changes to the VM you must re-Capture the image to keep it up to date if you so desire
+    * Later changes to your VM are not automatically captured to the image
 
 
-Stretch activity: Start a new VM by selecting the image you created above. Log in and verify that it is 
+Stretch activity: Start a new VM by selecting the image you created above. 
+Log in and verify that it is 
 identical to the customized source VM. 
 
+   
 # Additional topics
    
    
 ## Re-starting a VM
 
+   
 If your earlier session was interrupted and/or your Virtual Machine was set to auto-halt
 every day at 7PM: It may currently be Stopped. Restart it
 in the Azure portal by selecting the VM and clicking the **Start** button.
@@ -415,6 +431,7 @@ always have the same ip address whenever it is started up again.
 
 ## Anaconda
 
+   
 Suppose we are interested in using a data science distribution of Python. Commonly used is
 [***Anaconda***](https://anaconda.com). It installs with a large collection of data science 
 libraries. 
