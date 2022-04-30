@@ -284,7 +284,7 @@ azureuser@myVMname:~$ virtualenv my_project_env
 ```
 
 At this point we activate the virtual environment **`my_project_env`**. (Note the prompt
-change emphasizing this.) We also install four Python data science libraries.
+change emphasizing this.) We also install several Python data science libraries.
 
 ```
 azureuser@myVMname:~$ source my_project_env/bin/activate
@@ -293,6 +293,7 @@ azureuser@myVMname:~$ source my_project_env/bin/activate
 (my_project_env) azureuser@myVMname:~$ pip install numpy
 (my_project_env) azureuser@myVMname:~$ pip install xarray
 (my_project_env) azureuser@myVMname:~$ pip install pandas
+(my_project_env) azureuser@myVMname:~$ pip install netcdf4
 ```
 
 Now the Jupyter notebook server will run once we have activated this environment. If, for example, 
@@ -360,28 +361,68 @@ This will produce output something like:
 The Jupyter notebook server will "listen" on port 8889 for interactive information.
 Until that shows up: It waits patiently.
    
+   
+On your computer use the `ssh` command to create a tunnel to the VM, specifically to port 8889.
 
+```
+ssh -N -f -i .\rob5vm_key.pem -L localhost:8888:localhost:8889 azureuser@31.92.184.12
+```
+   
+This will direct local traffic to port 8888 to the Azure VM port 8889. As we have connected *that* 
+port to the Jupyter Notebook server, the last step is to enter the Jupyter URL (with one modification)
+into your browser address bar: 
+   
+```
+http://localhost:8888/?token=ab39283485838005ef2e564689f62e7150acdef483cfe751
+```
+
+Notice in the URL above uses port 8888, not port 8889. 
+   
+   
+## Last step: Create a machine image in the Azure portal
+
+* Select the VM in the Azure Portal and click **Capture**
+
+
+* The "make image" wizard comes up.
+* On the side dialog select No, capture only a managed image
+
+   
+* The VM stops and the image creation process starts up. 
+* Shortly thereafter (minutes) we have an image of the VM available. 
+    * This VM image can be restarted on small low-cost machines or large high-cost machines
+    * It can be shared with colleagues or made publicly available
+    * The image is static. If you make changes to the VM you must re-Capture the image to keep it up to date if you so desire
+
+
+Stretch activity: Start a new VM by selecting the image you created above. Log in and verify that it is 
+identical to the customized source VM. 
 
 # Additional topics
    
    
 ## Re-starting a VM
 
-If your earlier session was interrupted and your Virtual Machine was set to auto-halt
-every day at 7PM it may currently be Stopped. It can be restarted easily:
-in the Azure portal: Find the Resource Group and therein the Virtual Machine.
-Select the Virtual Machine and click the **Start** button at the top of the center panel.
-Note the new ip address for the VM.
+If your earlier session was interrupted and/or your Virtual Machine was set to auto-halt
+every day at 7PM: It may currently be Stopped. Restart it
+in the Azure portal by selecting the VM and clicking the **Start** button.
+Most likely this will assign your VM a new ip address; so note this down.
    
 
-## Installing Anaconda
+You can assign a static ip address to your VM (this is an Azure service) so it will
+always have the same ip address whenever it is started up again. 
+   
+
+## Anaconda
 
 Suppose we are interested in using a data science distribution of Python. Commonly used is
 [***Anaconda***](https://anaconda.com). It installs with a large collection of data science 
 libraries. 
    
+   
 Note: We are not doing this as part of the hands-on walk-through; Anaconda is just mentioned here
 in passing. 
+   
    
 One method of installing Anaconda is to use the `wget` Linux command to copy the installation shell script
 (file extension `.sh`) from the web to a local environment; and then use the `bash` command to run the 
@@ -394,107 +435,7 @@ One Anaconda installation command sequence (Linux, circa 2022):
    
 
 ```
-https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
 bash Anaconda3-2020.11-Linux-x86_64.sh
 ```
-
-
-
-## Install two Python libraries
-
-```
-conda install xarray 
-pip install netcdf4
-```
-
-
- 
-You can log out of the Azure VM but first copy the token string for the Jupyter notebook server.
-It looks like this: `token=ae948dc6923848982349fbc48a2938d4958f23409eea427`
-
-
-## Test the Jupyter notebook server from your local browser
-
-
-* On your local computer/laptop bash command line run
-
-
-
-```
-ssh -N -f -i fu.pem -L localhost:7005:localhost:8889 azureuser@111.22.33.44
-```
-
-In this command: Make the appropriate substitutions for your `.pem` filename and your VM ip address.
-This creates a secure (**`ssh`**) tunnel from port 7005 of your local computer to port 8889 of the Azure VM.
-
-In the browser address bar enter `localhost:7005`
-When prompted: Enter the token string you copied above
-On success: The Jupyter notebook server will appear in your browser
-Navigate to the `ocean` folder/repository and run the first notebook listed.  
-   
-   
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_24.png" alt="drawing" width="800"/>
-
-<BR><BR>
-
-## Create a machine image in the Azure portal
-
-* Select the VM in the Azure Portal and click **Capture**
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_25.png" alt="drawing" width="600"/>
-
-<BR><BR>
-
-* The "make image" wizard comes up.
-* On the side dialog select No, capture only a managed image
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_26.png" alt="drawing" width="600"/>
-
-
-<BR><BR>
-   
-* The VM stops and the image creation process starts up. 
-* Shortly thereafter (minutes) we have an image of the VM available. 
-    * This VM image can be restarted on small low-cost machines or large high-cost machines
-    * It can be shared with colleagues or made publicly available
-    * The image is static. If you make changes to the VM you must re-Capture the image to keep it up to date if you so desire
-
-
-<BR><BR>
-
-<img src="../../images/azure/Azure_image_27.png" alt="drawing" width="600"/>
-
-
-* Try starting the notebook **Ocean 01 A etc** and running the first few cells.
-
-## Concluding remarks
-
-
-The Virtual Machine configuration took up the bulk of this effort. The VM *image* was a rather
-trivial final step. This image is a "safe backup" of the VM. 
-
-
-* Leaving a VM running when not in use is very common practice, also expensive. 
-
-
-* We access VMs as shown here over the internet using the `fu.pem` keypair file. This file
-should be kept in a secure location away from GitHub respository directories. 
-
-* A backup copy of a keypair file stored in another 
-secure location might come in handy. Azure has a security service for managing access keys called 
-**Key Vault**; worth knowing about but beyond the scope of this tutorial.
-
-
-* In this walk-through we created a data disk. These attached drives cost $0.10 / GB / month, approximately.
-
-
-* A running Virtual Machine has an ip address. These may be fixed or permanent; or they may change 
-each time the VM is re-started. The former is more convenient; see Azure Static Public IPs for more on this.
-
 
