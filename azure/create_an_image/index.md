@@ -174,7 +174,13 @@ preparation.
 
 <BR><BR>
 
-<img src="../../images/azure/Azure_image_01.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+Disabled image HTML key:
+
+less than
+
+img src="../../images/azure/Azure_image_01.png" alt="drawing" width="600" style="display: block; margin: auto;"
+   
+forward slash greater than
 
 
 <BR><BR>
@@ -223,8 +229,6 @@ looking around at what is available.
 <BR><BR>
 
 
-<img src="../../images/azure/Azure_image_12.png" alt="drawing" width="800"/>
-
 <BR><BR>
 
 * At the **Review and Create** tab: Review the description
@@ -242,95 +246,83 @@ looking around at what is available.
     * On the left menu bar under Settings click on Disks
         * Note that the VM has an operating system disk with a 30 GiB capacity
         * Some of this will be used by the operating system
-    * On the left menu bar under Settings click on Connect
-        * Note that this provides you with a four-step recipe for logging in to this VM
     * On the left menu bar under Automation click on Export template
         * The resources here enable you to build this same VM automatically from code (rather than manually)
+    * On the left menu bar under Settings click on Connect
+        * Note that this provides you with a four-step recipe for logging in to this VM
+        * It is time to log in to the VM
+
+
    
-
-
-<BR><BR>
-
+* Open Visual Studio and activate the Terminal window (ctrl + ` or on a Mac...?)
+* In the terminal verify that `ssh` works by typing it in and hitting return. Should produce a usage message.
+* Go to the home directory using `cd ~`
+* Move the `.pem` file downloaded during the VM Create to this directory
+    * For example `mv /mnt/c/Users/myusername/Downloads/rob5vm_key.pem .`
+* Change the permissions of this file to be "user read only" using the somewhat cryptic `chmod` command
+    * `chmod 400 rob5vm_key.pem`
+* Type in or paste in the `ssh` connection command
+    * You can copy this command to your clipboard from the Azure portal **Connect** page identified above
+    * Make sure to use the correct path to the `.pem` file
+    * Make sure to keep the username `azureuser`
+    * Make sure to copy the provided ip address. Below I use `27.173.147.19`
    
-<BR><BR>
-
-* The pop-up dialog shown above gives us authentication options
-    * Download an SSH key pair file to ensure you will be able to access the VM 
-    * We use this rather than using { username + password }
-    * Place the keypair file in a secure location on your local computer
-        * Ensure that it will not accidentally end up copied to GitHub
-    * We will refer to this file as **`fu.pem`**
-    * Change the read-write-execute permissions of `fu.pem` to `r--------` or `0400` in octal
-        * The Linux command to do this is:
-
 ```
-chmod 400 fu.pem
+ssh -i ./rob5vm_key.pem azureuser@21.173.147.19`
 ```
 
-- You run `ssh` using the `fu.pem` file to connect from your laptop to the Azure VM you just created.
-- You can do this in **Visual Studio Code** using an Ubuntu terminal (bash shell). 
-- Windows users also can use PuTTY, a free SSH client
-    - but this comes with a bit of a learning curve
+* During the connection we get a message "The authenticity of host ... can't be established. Are you sure?"
+    * Enter 'yes'
+    * You should now see a welcome message and a `bash` prompt
+        * We used `ssh` to connect but once logged in we are running the `bash` shell
+        * To verify this type in `ps -p $$`
+    * Do up update / upgrade of your operating system by entering these commands in sequence
+        * `sudo apt update`
+        * `sudo apt upgrade`
+    * Examine the operating system disk 
+        * `df`
+        * The output tells us we are on a 30GiB root drive, 7% is in use; so 28GiB available
 
-<BR><BR>
+* Now that we are logged in to a VM let's determine whether or not it has Python installed
+    * Enter `python3`
+        * This should tell you which version of Python you are running... (for me this is Python 3.8.10)
+        * ...and it should change the prompt to the Python interpreter `>>> `
+        * Stretch activity: If your factoring Azure Function is still running...
+            * ...try entering the three lines of Python in the Python interpreter and factor a number!
+            * (If your Azure function is no more you can use this one...)
+                * `https://rob5azfn02.azurewebsites.net/api/HttpTrigger1`
+        * Use ctrl-d to exit the Python interpreter
+    * If for some reason you needed to install Python the installation command is something like this:
+        * `sudo apt install python3-pip python3-dev`
 
+* We have determined that Python 3 is installed on the VM already, so far so good.
+* Is the `jupyter` notebook server installed? Enter `jupyter` to find out (it is not)
+    * We must have a Jupyter notebook server so we can do data science!
+    * Search 'how to install jupyter on ubuntu' or simply click on
+        * [this link](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04)
+    * Enter this sequence of nine-or-so commands to install jupyter
+    * Test by typing `jupyter`: The VM should now recognize and run this command
 
-* Here is the "Deployment complete" message you should see once the VM has been launched
-* Click on **Go to resource**
-
-
-<BR><BR>
-
-
-<img src="../../images/azure/Azure_image_15.png" alt="drawing" width="800"/>
-
-
-<BR><BR>
-
-
-* We then see a lot of the details of operation of this newly-created VM:
-
-
-<BR><BR>
-
-
-<img src="../../images/azure/Azure_image_16.png" alt="drawing" width="800"/>
-
-<img src="../../images/azure/Azure_image_17.png" alt="drawing" width="800"/>
-
-
-<BR><BR>
-
-* In the above VM description notice there is nothing present under **Azure Spot**
-    * **Azure Spot** is an option you can choose that significantly reduces the cost of the VM
-    * The catch is that there is a small chance you may be evicted from the VM
-    * Read about "cloud spot markets" to learn more
-
-
-* Note the above information includes an ip address for this VM. 
-    * In the example above the ip address is `138.91.145.112`
-    * In what follows let us suppose:
-        * The ip address is `111.22.33.44`
-        * The `.pem` SSH keypair file is `fu.pem`
-        * The username is the default `azureuser`
-
-
-* Move the keypair `fu.pem` file to your local directory, `chmod` and login to the Azure VM
-    * My command sequence for this: On Windows; in VSCode; on the Ubuntu TERMINAL; is...
-
+We have now reached a point where it would be nice to have some code and data to work with. 
+A simple way to get this is to clone some content from the GitHub software management website:
+   
 ```
-(base) rob5> cd
-(base) rob5> mv /mnt/c/Users/rob5/Downloads/fu.pem .
-(base) rob5> chmod 400 fu.pem
-(base) rob5> ls -al fu.pem
+cd ~
+git clone https://github.com/robfatland/ocean
+```
+   
+This should complete in under a minute. You can use `ls` to show there is a new directory called `ocean`. 
+It contains data and an IPython notebook called `BioOptics.ipynb`.
+   
+Normally we run Jupyter notebook servers in a browser window. This will be no exception; but it takes
+a little preparation. Issue these two commands: 
+   
+```
 
--r-------- 1 kilroy kilroy 2494 Apr 26 08:13 rob5vm3_key.pem
 
-(base) rob5> ssh -i fu.pem azureuser@111.22.33.44
 
-(respond 'yes' to 'is this ok?')
 
-azureuser@rob5vm3:~$ 
+
 ```
 
 
