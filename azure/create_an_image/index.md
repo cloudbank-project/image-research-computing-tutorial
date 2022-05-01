@@ -150,15 +150,8 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
     * This Resource Group will contain our Virtual Machine and associated resources: That's the goal.
 
 <BR><BR>
-
-Disabled image HTML key:
-
-less than
-
-img src="../../images/azure/Azure_image_01.png" alt="drawing" width="600" style="display: block; margin: auto;"
-   
-forward slash greater than
-
+<img src="../../images/azure/vm01.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR>
 
 * From the Resource Group overview click `+Create` (The image below shows `+Add`: Same thing.)
    * Select 'Virtual machine' (directly: click the icon; or use the search bar)
