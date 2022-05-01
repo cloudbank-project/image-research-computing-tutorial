@@ -1,5 +1,9 @@
 # Creating a VM image: Azure cloud
 
+
+[Jump to hands-on activity](#hands-on-procedural)
+
+
 ## Background information
 
 ### Introduction
