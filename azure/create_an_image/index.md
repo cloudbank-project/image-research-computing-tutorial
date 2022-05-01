@@ -150,16 +150,19 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
     * This Resource Group will contain our Virtual Machine and associated resources: That's the goal.
 
 <BR><BR>
-<img src="../../images/azure/vm01.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm01.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR>
 
 * From the Resource Group overview click `+Create` (The image below shows `+Add`: Same thing.)
    * Select 'Virtual machine' (directly: click the icon; or use the search bar)
-   
+ 
 > We can use the Azure **Marketplace** to browse VM images by operating 
 system and based on other features. As a stretch activity you can spend some time
 looking around at what is available.
 
+<BR><BR>
+<img src="../../images/azure/vm02.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
 
 
 * Use the VM wizard to customize the VM; use defaults but note the following:
@@ -170,6 +173,18 @@ looking around at what is available.
    * Ensure Public inbound ports = Allow selected ports
    * Ensure Select inbound ports = SSH (22)
 
+   
+<BR><BR>
+<img src="../../images/azure/vm03.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
+<BR><BR>
+<img src="../../images/azure/vm04.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
+<BR><BR>
+<img src="../../images/azure/vm05.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
+
+
 * Next: Disks > (defaults) > Next: Networking > (defaults)  > Next: Management
    
 * Management tab
@@ -177,6 +192,9 @@ looking around at what is available.
        * Keep the shutdown time as 7PM
        * Change the Time zone to Pacific Time
 
+<BR><BR>
+<img src="../../images/azure/vm06.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
 
 * Next: Advanced > (defaults) > Next: Tags   
    
