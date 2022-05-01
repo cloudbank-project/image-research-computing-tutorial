@@ -43,7 +43,7 @@ it running all night. "Stop the VM when it is not in use." This can be done acti
 well, for example through the Azure portal. 
 
 Note: **Starting** and **Stopping** a VM
-are distinct from **Terminating** it. Terminate a VM and it evaporates; it is gone forever. 
+are distinct from **Terminating** it. Terminate / Delete a VM and it evaporates; it is gone forever. 
 
 
 ### Jupyter Notebook servers
@@ -177,7 +177,7 @@ looking around at what is available.
    * Ensure Public inbound ports = Allow selected ports
    * Ensure Select inbound ports = SSH (22)
 
-
+* Next: Disks > (defaults) > Next: Networking > (defaults)  > Next: Management
    
 * Management tab
    * Enable auto-shutdown
@@ -185,36 +185,46 @@ looking around at what is available.
        * Change the Time zone to Pacific Time
 
 
+* Next: Advanced > (defaults) > Next: Tags   
+   
 * **Tags** tab
     * Include some tags to inform your future self what this VM is for
 
 
-* **Review and Create** tab: Review the description
+* **Next: Review and Create** tab: Review the description
     * This VM will cost about $0.10 per hour
-    * Click the Create button
+    * Click **Create**
         * This will prompt you to download a key file: Do so to a safe location on your computer
 
    
 * Once the create action is complete: Click 'Go to resource'
-    * At the top of the central / main window notice there is a sequence of utility buttons
-        * These are Connect, Start, Restart, Stop, Capture and so on
-    * From the (default) Overview: Notice that the VM has a tabbed sequence of information pages
-        * These are Properties, Monitoring, Capabilities, Recommendations and Tutorials
-        * Look through these tabs to get a sense of what is there
-    * On the left menu bar under Settings click on Disks
-        * Note that the VM has an operating system disk with a 30 GiB capacity
-        * Some of this will be used by the operating system
-    * On the left menu bar under Automation click on Export template
-        * The resources here enable you to build this same VM automatically from code (rather than manually)
-    * On the left menu bar under Settings click on Connect
-        * Note that this provides you with a four-step recipe for logging in to this VM
-        * It is time to log in to the VM
+    * Note down the ip address of the VM   
+   
+   
+   
+* At the top of the central / main window notice there is a sequence of utility buttons
+    * These are Connect, Start, Restart, Stop, Capture, Delete and Refresh
+
+   
+* From the (default) Overview: Notice that the VM has a tabbed sequence of information pages
+    * These are Properties, Monitoring, Capabilities, Recommendations and Tutorials
+    * This system of tabbed sub-pages makes a lot of information available
+
+   
+* On the left menu bar under Settings click on Disks
+    * Note that the VM has an operating system disk with a 30 GiB capacity
+    * Some of this will be used by the operating system
+* Left menu bar: Scroll down to Automation, temporarily click **Export template**
+    * ...content enables us to build this VM from code (rather than click-and-type)
+* Left menu bar: Scroll up to Settings, click **Connect**
+    * Four-step recipe for logging in to this VM; this is just for reference, for future use
+* Now it is time to log in to this VM: Instructions below
 
    
 ### Log in to the VM from VSCode
    
    
-* Open Visual Studio Code and activate the Terminal window (ctrl + ` or on a cmd + `)
+* Open Visual Studio Code and activate **`ssh`** in the Terminal window (ctrl/cmd + `)
 * In the terminal verify the `ssh` command exists: It produces a usage message
 * Go to the home directory using `cd ~`
 * Move the `.pem` file downloaded during the VM Create to this directory
