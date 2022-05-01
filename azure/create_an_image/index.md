@@ -201,25 +201,43 @@ looking around at what is available.
 * **Tags** tab
     * Include some tags to inform your future self what this VM is for
 
+<BR><BR>
+<img src="../../images/azure/vm07.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
 
 * **Next: Review and Create** tab: Review the description
     * This VM will cost about $0.10 per hour
     * Click **Create**
         * This will prompt you to download a key file: Do so to a safe location on your computer
 
+<BR><BR>
+<img src="../../images/azure/vm08.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
+
    
 * Once the create action is complete: Click 'Go to resource'
     * Note down the ip address of the VM   
    
+<BR><BR>
+<img src="../../images/azure/vm09.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
    
    
 * At the top of the central / main window notice there is a sequence of utility buttons
     * These are Connect, Start, Restart, Stop, Capture, Delete and Refresh
 
+<BR><BR>
+<img src="../../images/azure/vm10.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
+
    
 * From the (default) Overview: Notice that the VM has a tabbed sequence of information pages
     * These are Properties, Monitoring, Capabilities, Recommendations and Tutorials
     * This system of tabbed sub-pages makes a lot of information available
+
+<BR><BR>
+<img src="../../images/azure/vm11.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR>
 
    
 * On the left menu bar under Settings click on Disks
