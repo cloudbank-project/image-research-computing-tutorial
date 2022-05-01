@@ -180,12 +180,18 @@ looking around at what is available.
 <BR><BR>
 <img src="../../images/azure/vm04.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR>
+
+
+
+* Next: Disks > (defaults) > Next: Networking > (defaults)  > Next: Management
+
 <BR><BR>
 <img src="../../images/azure/vm05.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR>
 
+   
+Above: The defaults of the Networking tab ensure we can connect to the VM using SSH.
 
-* Next: Disks > (defaults) > Next: Networking > (defaults)  > Next: Management
    
 * Management tab
    * Enable auto-shutdown
@@ -292,11 +298,20 @@ azureuser@myVMname:~$ ls -al
    
 * Once logged in: See if `python3` is installed
     * It should indicate Python 3.8.10 and provide you with the Python interpreter prompt `>>>`
-    * Stretch activity: If your Azure Function to factor integers is still running...
-        * ...or if you'd like to use `https://rob5azfn02.azurewebsites.net/api/HttpTrigger1`
-        * ...try entering the three lines of Python from last week to factor an integer 
-        * This would be an Azure Virtual Machine making use of an Azure Function: Composition of cloud services
+    * Stretch activity: From your VM run an Azure Function
+        * ...if yours from the previous week is running you can use that
+        * ...if not you may use `https://rob5azfn02.azurewebsites.net/api/HttpTrigger1`
+        * See code snippet below
+        * An Azure Virtual Machine calls an Azure Function: Composition of cloud services
     * Use ctrl-d to exit the Python interpreter
+
+Python to run a Serverless Function:
+   
+```
+>>> import requests
+>>> urlbase = 'https://function_name.azurewebsites.net/api/HttpTriggerName?'
+>>> print(requests.get(urlbase + 'n=1234'))
+```
    
 
 ### Install the Jupyter Notebook server on the VM
@@ -325,27 +340,28 @@ azureuser@myVMname:~$ virtualenv my_project_env
 ```
 
    
-At this point we will activate the virtual environment **`my_project_env`**. (Note the prompt
-change emphasizing this.) We also install several Python data science libraries.
+Activate the virtual environment **`my_project_env`**; which changes the prompt.
+Run this command after logging back in to this VM: Ensure the prompt begins
+with `(my_project_env)`.
 
    
 ```
 azureuser@myVMname:~$ source my_project_env/bin/activate
+```
+
+Install the Jupyter notebook server and some Python data science libraries.
+   
+```
 (my_project_env) azureuser@myVMname:~$ pip install jupyter
 (my_project_env) azureuser@myVMname:~$ pip install matplotlib
 (my_project_env) azureuser@myVMname:~$ pip install numpy
 (my_project_env) azureuser@myVMname:~$ pip install xarray
-(my_project_env) azureuser@myVMname:~$ pip install pandas
 (my_project_env) azureuser@myVMname:~$ pip install netcdf4
 ```
-
-Now the Jupyter Notebook server runs provided we activate this environment. The environment name
-`my_project_env` is prepended to the prompt. If we log out and log back in to the VM: We will 
-no longer be in this environment. 
    
 
-> For this hands-on activity: Always begin a session by activating the jupyter environment on
-the cloud VM: `source my_project_env/activate`. This is necessary because `jupyter` is installed
+> To reiterate: Always begin a session on this VM by activating the environment *my_project_env) 
+by running `source my_project_env/activate`. This is necessary because `jupyter` is installed
 only in this environment; not in the login or base environment. 
    
 
