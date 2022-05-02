@@ -175,10 +175,10 @@ looking around at what is available.
 
    
 <BR><BR>
-<img src="../../images/azure/vm03.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm03.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
 <BR>
 <BR><BR>
-<img src="../../images/azure/vm04.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm04.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
 <BR>
 
 
@@ -186,7 +186,7 @@ looking around at what is available.
 * Next: Disks > (defaults) > Next: Networking > (defaults)  > Next: Management
 
 <BR><BR>
-<img src="../../images/azure/vm05.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm05.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
 <BR>
 
    
@@ -199,7 +199,7 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
        * Change the Time zone to Pacific Time
 
 <BR><BR>
-<img src="../../images/azure/vm06.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm06.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
 <BR>
 
 * Next: Advanced > (defaults) > Next: Tags   
@@ -217,7 +217,7 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
         * This will prompt you to download a key file: Do so to a safe location on your computer
 
 <BR><BR>
-<img src="../../images/azure/vm08.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm08.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
 <BR>
 
    
@@ -233,7 +233,7 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
     * These are Connect, Start, Restart, Stop, Capture, Delete and Refresh
 
 <BR><BR>
-<img src="../../images/azure/vm10.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm10.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 <BR>
 
    
@@ -242,7 +242,7 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
     * This system of tabbed sub-pages makes a lot of information available
 
 <BR><BR>
-<img src="../../images/azure/vm11.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<img src="../../images/azure/vm11.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 <BR>
 
    
