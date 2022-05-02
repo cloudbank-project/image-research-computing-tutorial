@@ -1,4 +1,4 @@
-# Creating a VM image: Azure cloud
+# Creating a VM and a machine image: Azure cloud
 
 
 [Jump to hands-on activity](#hands-on-procedural)
@@ -462,18 +462,33 @@ separate tab. Use the **Run** button at the top center of the BioOptics tab to e
 
    
 * Select the VM in the Azure Portal and click **Capture**
-* The "make image" wizard comes up.
-* On the side dialog select No, capture only a managed image
-* The VM stops and the image creation process starts up. 
-* Shortly thereafter (minutes) we have an image of the VM available. 
-    * This VM image can be restarted on small low-cost machines or large high-cost machines
-    * It can be shared with colleagues or made publicly available
-    * Later changes to your VM are not automatically captured to the image
+* 'Create an image' wizard
+    * Share image to Azure compute gallery: Select **No, capture only a managed image**
+    * Next: Tags >
+        * Add a Delete After tag: As before tags are intended to inform a future person
+    * Next: Review + Create > Create
+        * Typically takes a couple of minutes > 'Deployment in progress' > Go to resource
+        * The resulting VM image can be restarted on small low-cost machines or large high-cost machines
+        * It can be shared with colleagues or made publicly available
 
 
-Stretch activity: Start a new VM by selecting the image you created above. 
-Log in and verify that it is 
-identical to the customized source VM. 
+Stretch activity: Start a new VM from this image. Start as before with "Create a virtual machine".
+This time for Image select "See all images" and then in the left menu select "My Images". This 
+should show the image created above as a choice. Go through the setup wizard as before, click
+Create, and download the new key file. Log in to the new VM with `ssh -i keyfile.pem azureuser@123.234.123.234`. 
+   
+Once you have logged in to the new VM, ensure jupyter is installed after activating the environment as before.
+   
+```
+source my_project_env/bin/activate
+jupyter
+ls
+```
+   
+This "closes the loop": We have created a data science VM on the Azure cloud, customized it, 
+saved it as an image, reconstituted a second VM from that image, and demonstrated that the new VM
+has all the previous VM's customization built in.
+
 
    
 # Additional topics
