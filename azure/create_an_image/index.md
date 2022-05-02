@@ -360,7 +360,7 @@ Install the Jupyter notebook server and some Python data science libraries.
 ```
    
 
-> To reiterate: Always begin a session on this VM by activating the environment *my_project_env) 
+> To reiterate: Always begin a session on this VM by activating the environment *my_project_env* 
 by running `source my_project_env/activate`. This is necessary because `jupyter` is installed
 only in this environment; not in the login or base environment. 
    
@@ -434,7 +434,7 @@ Remember to use the correct ip address for your VM.
    
 
 ```
-ssh -N -f -i .\rob5vm_key.pem -L localhost:8890:localhost:8889 azureuser@31.92.184.12
+ssh -N -f -i ./rob5vm_key.pem -L localhost:8890:localhost:8889 azureuser@31.92.184.12
 ```
    
    
@@ -452,6 +452,10 @@ http://localhost:8890/?token=ab39283485838005ef2e564689f62e7150acdef483cfe751
 ```
 
 Verify that the Jupyter Notebook server runs and provides you with access to the `ocean` repository contents. 
+You can use the browser interface to move into the `ocean` folder and start the `BioOptics` notebook in a 
+separate tab. Use the **Run** button at the top center of the BioOptics tab to execute a series of cells.
+
+> The BioOptics Python cells run without error because the necessary libraries were installed above.
 
    
 ## Create a machine image in the Azure portal
