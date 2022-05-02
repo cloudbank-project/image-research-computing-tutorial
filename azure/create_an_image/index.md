@@ -310,7 +310,7 @@ Python to run a Serverless Function:
 ```
 >>> import requests
 >>> urlbase = 'https://function_name.azurewebsites.net/api/HttpTriggerName?'
->>> print(requests.get(urlbase + 'n=1234'))
+>>> print(requests.get(urlbase + 'n=1234').text)
 ```
    
 
