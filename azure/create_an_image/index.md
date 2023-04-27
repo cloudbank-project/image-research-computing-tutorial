@@ -1,4 +1,4 @@
-# MSE544 Creating a VM and a machine image on the Azure cloud
+# MSE544 Creating a VM + image on the Azure cloud
 
 [TOC](#table-of-contents)
 
