@@ -3,7 +3,7 @@
 
 
 - [**Walkthrough home**](https://cloudbank-project.github.io/image-research-computing-tutorial/)
-- [**Azure-specific walkthrough for MSE544**](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)**
+- [**Azure-specific walkthrough for MSE544](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)**
 
 
 
