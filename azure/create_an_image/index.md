@@ -3,7 +3,7 @@
 [TOC](#table-of-contents)
 
 
-[Jump to hands-on activity](#hands-on-procedural)
+[Jump to hands-on activity](#start-a-vm-on-azure)
 
 
 ## Table of contents
