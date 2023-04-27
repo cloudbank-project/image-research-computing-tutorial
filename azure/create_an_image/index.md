@@ -1,12 +1,27 @@
-# Creating a VM and a machine image: Azure cloud
+# MSE544 Creating a VM and a machine image on the Azure cloud
+
+[TOC](#table-of-contents)
 
 
 [Jump to hands-on activity](#hands-on-procedural)
 
 
-## Background information
+## Table of contents
 
-### Introduction
+- [Overview](#overview)
+    - [Jupyter](#jupyter-notebook-servers)
+    - [Python environments](#python-environments)
+    - [Object and block storage on the cloud](#object-and-block-storage-on-the-cloud)
+    - [git and GitHub](#git-and-github)
+    - [The Plan](#the-plan)
+- [1. Start a VM on Azure](#start-a-vm-on-azure)
+
+
+## Overview
+
+
+[TOC](#table-of-contents)
+
 
 Virtual Machines (VMs) are self-contained computers; also called ***instances***. On the cloud 
 an ***instance type*** means a VM with a set of specifications: How much CPU power, memory, storage, and 
@@ -49,6 +64,9 @@ are distinct from **Terminating** it. Terminate / Delete a VM and it evaporates;
 ### Jupyter Notebook servers
 
 
+[TOC](#table-of-contents)
+
+
 Since we are working with a VM, lets customize it as a research
 computing platform by installing a Jupyter notebook server. This is a research tool in common use
 (circa 2022) that is popular for a variety of reasons. For one, Jupyter notebooks enable us to develop 
@@ -71,6 +89,9 @@ more than 100 Jupyter kernels available at this time.
 ### Python environments
 
 
+[TOC](#table-of-contents)
+
+
 Python features a level of virtualization (specialization) via *virtual environments*. 
 The Python *base* environment is the Python interpreter and libraries that comprise the
 basic Python installation in the operating system. This base environment is a distinct 
@@ -81,7 +102,10 @@ is an isolated space in which additional libraries are installed. In Visual Stud
 Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console prompt. 
 
 
-### Cloud concept: Object versus Block Storage
+### Object and block storage on the cloud
+
+
+[TOC](#table-of-contents)
 
 
 * Block storage equates to disk drives: A root drive and optional additional drives, attached to a VM
@@ -94,7 +118,10 @@ Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console
     * Data archival also possible
 
 
-### Source control: `git` and GitHub
+### git and GitHub
+
+
+[TOC](#table-of-contents)
 
 
 GitHub is a provider of Internet hosting for software development and version control using **`git`**. 
@@ -110,6 +137,10 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
 
 
 ### The Plan
+
+
+[TOC](#table-of-contents)
+
 
 * Three modes of compute on the cloud: **Serverless Functions**, **Containers** and **VMs/Images** 
 * VMs are used like traditional servers. Images are freeze-dried 'zip file' versions of VMs.
@@ -137,9 +168,12 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
 - *Stretch task: Place some data in object storage on Azure and access that from your VM
 
 
-## Hands-on procedural
 
-### Build a VM using the Azure portal
+## 1 Start a VM on Azure
+
+
+[TOC](#table-of-contents)
+
 
 * On a browser sign in to the [Azure portal](portal.azure.com) and verify your Subscription
     * Be sure to work in the Central US Azure region
@@ -256,8 +290,11 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
 * Now it is time to log in to this VM: Instructions below
 
    
-### Log in to the VM from VSCode
+## 2 Log in to the VM
    
+
+[TOC](#table-of-contents)
+
    
 * Open Visual Studio Code and activate **`ssh`** in the Terminal window (ctrl/cmd + `)
 * In the terminal verify the `ssh` command exists: It produces a usage message
@@ -305,13 +342,39 @@ azureuser@myVMname:~$ ls -al
         * An Azure Virtual Machine calls an Azure Function: Composition of cloud services
     * Use ctrl-d to exit the Python interpreter
 
+
 Python to run a Serverless Function:
+
    
+
 ```
 >>> import requests
 >>> urlbase = 'https://function_name.azurewebsites.net/api/HttpTriggerName?'
 >>> print(requests.get(urlbase + 'n=1234').text)
 ```
+
+   
+## 3 Create a machine image in the Azure portal
+
+   
+[TOC](#table-of-contents)
+
+
+   
+* Select the VM in the Azure Portal and click **Capture**
+* 'Create an image' wizard
+    * Share image to Azure compute gallery: Select **No, capture only a managed image**
+    * Next: Tags >
+        * Add a Delete After tag: As before tags are intended to inform a future person
+    * Next: Review + Create > Create
+        * Typically takes a couple of minutes > 'Deployment in progress' > Go to resource
+        * The resulting VM image can be restarted on small low-cost machines or large high-cost machines
+        * It can be shared with colleagues or made publicly available
+
+
+   
+   
+# left off here
    
 
 ### Install the Jupyter Notebook server on the VM
@@ -458,19 +521,6 @@ separate tab. Use the **Run** button at the top center of the BioOptics tab to e
 > The BioOptics Python cells run without error because the necessary libraries were installed above.
 
    
-## Create a machine image in the Azure portal
-
-   
-* Select the VM in the Azure Portal and click **Capture**
-* 'Create an image' wizard
-    * Share image to Azure compute gallery: Select **No, capture only a managed image**
-    * Next: Tags >
-        * Add a Delete After tag: As before tags are intended to inform a future person
-    * Next: Review + Create > Create
-        * Typically takes a couple of minutes > 'Deployment in progress' > Go to resource
-        * The resulting VM image can be restarted on small low-cost machines or large high-cost machines
-        * It can be shared with colleagues or made publicly available
-
 
 Stretch activity: Start a new VM from this image. Start as before with "Create a virtual machine".
 This time for Image select "See all images" and then in the left menu select "My Images". This 
