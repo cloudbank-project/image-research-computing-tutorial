@@ -2,61 +2,56 @@
 ## A CloudBank Solution
 
 
-**[Walkthrough home](https://cloudbank-project.github.io/image-research-computing-tutorial/), 
-[Azure-specific walkthrough](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)**
+- [**Walkthrough home**](https://cloudbank-project.github.io/image-research-computing-tutorial/)
+- [**Azure-specific walkthrough for MSE544**](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)**
 
 
 
-This tutorial introduces you, the researcher and/or student, to using virtual machine ***images*** 
-on the cloud as a basis for research computing. If you are familiar with **containers**: 
-A **machine image** is analogous but includes the *entire* operating system, so a bit more grandiose.
+This walkthrough introduces *virtual machines* and corresponding *machine images*. 
+On the cloud these are a powerful approach to on-demand research computing. 
+A **machine image** is analogous to a **container image** but with a complete 
+operating system bundled up.
 
 
-This page provides an outline, intended for an audience new to cloud computing.
-There are also tutorials
-for both Azure and AWS clouds.
+## Overview of virtual machine *images*
 
 
-## Overview of Virtual Machine *images*
-
-The overall concept is this: Just as a file folder and its contents can be bundled up 
-as a single *zip* or *tar* file, so it goes with an entire *virtual machine* (**VM**):
-The zip file now becomes a machine *image*. This includes the entire 
+Just as a file folder and its contents can be bundled up 
+as a single *zip* or *tar* file, so for an entire *virtual machine* (**VM**):
+The zip file corresponds to a machine *image*. This includes the entire 
 computer's contents from operating system to home directories to code to data files. 
 
 
-This is convenient for a number of reasons, the first being: Once 
-a cloud Virtual Machine (VM) is *configured* for use, it can be stored as a machine 
-image, a sort of 'suspended animation'. This stored snapshot does not *run* in any sense. 
-It does not *execute code*. As needed, however, it may be loaded back into a new 
-blank slate Virtual Machine and used normally. In this context these
-machine images are working research computing environments.
+Once a cloud Virtual Machine (henceforth 'VM') is *configured* for use, 
+it can be stored as a machine image, i.e. as a collection of bytes. This 
+stored snapshot does not execute code; but at some time in the future
+it can be loaded back into a new VM.
 
 
 
 ***How much does it cost to run a Virtual Machine (VM) for a day?***
 
 
-$10 to $30 per day for a moderately powerful VMs.
+\$10 to \$30 per day for a moderately powerful range of VMs.
 
 
 ***How much does it cost to store a Virtual Machine for a day?***
 
 
-Typically $1 per day or less. Machine images are an order of magnitude cheaper than VMs.
+Typically less than \$1 per day, an order of magnitude less than a running VM.
 
 
 ***What are other features of machine images?***
 
 
-(1) A machine image can be built with both tools and data pre-installed. As such 
+- A machine image can be built with both tools and data pre-installed. As such 
 it can be started in a matter of minutes as a fully capable virtual machine. 
 Virtual machines can be very cheap (a few cents per hour) or quite expensive
 (20 dollars per hour for a powerful VM) so it is important to realize that
 a machine image can be started on any VM across the power/cost spectrum. 
 
 
-(2) Once a machine image is started it can be started again; and again. One can
+- Once a machine image is started it can be started again; and again. One can
 make multiple copies of the running VM with no limit. 
 
 
@@ -72,6 +67,7 @@ specific use case is a VM running a Jupyter notebook server.
 
 To create an image
 
+
 - Obtain authentication credentials to log in to the cloud console
 - Log in to the console and start a VM, being sure to obtain login credentials (different than above)
 - Log directly in to the VM 
@@ -80,7 +76,9 @@ To create an image
 - Use an ssh tunnel from your computer (say a laptop) to connect to the Jupyter notebook server to test it
 - From the console convert the virtual machine to a saved image
 
+
 To use an image as a Jupyter notebook server
+
 
 - Obtain credentials to log in to the cloud console
 - Identify the proper *image* and use it to start up a Virtual Machine *instance*
