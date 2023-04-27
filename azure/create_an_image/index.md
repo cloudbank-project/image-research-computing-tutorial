@@ -171,7 +171,7 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
 
 
 
-## 1 Start a VM on Azure
+## Start a VM on Azure
 
 
 [TOC](#table-of-contents)
