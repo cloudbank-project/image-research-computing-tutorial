@@ -14,7 +14,9 @@
     - [Object and block storage on the cloud](#object-and-block-storage-on-the-cloud)
     - [git and GitHub](#git-and-github)
     - [The Plan](#the-plan)
-- [1. Start a VM on Azure](#start-a-vm-on-azure)
+- [Start a VM on Azure](#start-a-vm-on-azure)
+- [Log in to the VM](#log-in-to-the-vm)
+- [Create a machine image in the Azure portal](#create-a-machine-image-in-the-azure-portal)
 
 
 ## Overview
@@ -290,7 +292,7 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
 * Now it is time to log in to this VM: Instructions below
 
    
-## 2 Log in to the VM
+## Log in to the VM
    
 
 [TOC](#table-of-contents)
@@ -354,7 +356,7 @@ Python to run a Serverless Function:
 ```
 
    
-## 3 Create a machine image in the Azure portal
+## Create a machine image in the Azure portal
 
    
 [TOC](#table-of-contents)
