@@ -197,7 +197,6 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
 
 * Use the **`Create a virtual machine` wizard to customize a VM
     * There are 8 tabs to go through from **Basics** to **Disks** ... to **Review + create**
-        * 
     * In what follows: If no direction is given just keep the default values
         * Basics tab
             * Verify Subscription and Resource group are correct
@@ -234,6 +233,9 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
                 * Store the key in a safe location (not a GitHub repo for example)
     * Your VM should be available in a minute
     * Click **`Go to resource`**
+    * The VM Overview has a series of icons/actions from left to right at the top of the page
+        * This includes **`Restart`** if your VM is stopped
+        * Click on the left-most: **`Connect`**
 
 
    
