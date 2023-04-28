@@ -208,16 +208,33 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
             * Run with Azure Spot discount: Leave box un-checked
             * Size: Click **`see all sizes`** and select **`Standard_D2as_v4 - 2 vcpus, 8 GiB memory`**
             * Authentication: SSH public key
-            * Proceed to the next tab by clicking **`Disks`**
-    * 
-    
-    
-   * Name the VM something like `YourNetIDvm`
-   * Region = (US) Central US
-   * Image = Ubuntu Server 20.04 LTS - Gen 2 (or more recent)
-   * Size = Standard_D2as_v5 - 2 vcpus, 8 GB memory
-   * Ensure Public inbound ports = Allow selected ports
-   * Ensure Select inbound ports = SSH (22)
+            * Proceed to the next tab by clicking **`Next: Disks >`**
+        * Disks tab
+            * Click the link for **`Create and attach a new disk`**
+            * Click **`Change size`**, select 4 GiB (much cheaper than 1024 GiB); click **`Ok`**
+            * Click **`Next: Networking >`**
+        * Networking tab: Nothing to do here; click **`Next: Management >`**
+            * Notice in passing that SSH is assigned port 22
+        * Management tab: 
+            * Click Enable auto-shutdown
+            * Set a stop time, for example 5PM; select this time zone Pacific Time
+            * This will stop the VM; not terminate it
+            * We can also stop and re-start the VM from the Azure portal
+            * Click **`Next: Monitoring >`**
+        * Monitoring tab: Nothing to do here; click **`Next: Advanced >`**
+        * Advanced tab: Nothing to do here; click **`Next: Tags >`**
+        * Tags tab
+            * For Name enter Project; for Value enter MSE544-<netid>
+                * Notice this tag will attach to the VM and 12 additional associated resources
+            * Click **`Next: Review + create >`**
+        * Review + create
+            * Look through the details to confirm they are correct
+            * Click **`Create`**
+            * Click **`Download private key and create resource`**
+                * Store the key in a safe location (not a GitHub repo for example)
+    * Your VM should be available in a minute
+    * Click **`Go to resource`**
+
 
    
 <BR><BR>
