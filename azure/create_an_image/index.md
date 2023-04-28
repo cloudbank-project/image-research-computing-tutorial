@@ -178,30 +178,40 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
 
 
 * On a browser sign in to the [Azure portal](portal.azure.com) and verify your Subscription
-    * Be sure to work in the Central US Azure region
-    * Select or create an appropriate *Resource Group*
-        * A Resource Group (abbreviated RG) is a logical/virtual container for associated Azure resources
-        * A Resource Group might contain a Virtual Machine (VM), a monitoring service and a Storage Account
-* Below is a portal screencapture showing a Resource Group list: Just one Resource Group is present
-    * This Resource Group will contain our Virtual Machine and associated resources: That's the goal.
+    * Work in the (US) West US region when chosing your VM type (see below)
+    * Check that you have an available *Resource Group*
+        * Abbreviated RG: A Resource Group is a logical/virtual container for associated Azure resources
+        * A Resource Group can contain for example a Virtual Machine (VM), a monitoring service and a Storage Account
 
 <BR><BR>
 <img src="../../images/azure/vm01.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR>
 
-* From the Resource Group overview click `+Create` (The image below shows `+Add`: Same thing.)
-   * Select 'Virtual machine' (directly: click the icon; or use the search bar)
+* From the Resource Group overview click `+Create`
+   * This takes us to the Marketplace; search on `virtual machine` and select Virtual Machine
+   * This takes us to the Virtual Machine Overview; click the Create button
  
-> We can use the Azure **Marketplace** to browse VM images by operating 
-system and based on other features. As a stretch activity you can spend some time
-looking around at what is available.
-
-<BR><BR>
-<img src="../../images/azure/vm02.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
-<BR>
+> You can treat the Azure **Marketplace** as a browsable source of many VM images. They
+> are categorized by operating system and other add-on features. 
 
 
-* Use the VM wizard to customize the VM; use defaults but note the following:
+* Use the **`Create a virtual machine` wizard to customize a VM
+    * There are 8 tabs to go through from **Basics** to **Disks** ... to **Review + create**
+        * 
+    * In what follows: If no direction is given just keep the default values
+        * Basics tab
+            * Verify Subscription and Resource group are correct
+            * name = <netid>-mse544-vm
+            * Region = (US) West US
+            * Image = Ubuntu Server 20.04 LTS - x64 Gen2
+            * VM architecture = x64
+            * Run with Azure Spot discount: Leave box un-checked
+            * Size: Click **`see all sizes`** and select **`Standard_D2as_v4 - 2 vcpus, 8 GiB memory`**
+            * Authentication: SSH public key
+            * Proceed to the next tab by clicking **`Disks`**
+    * 
+    
+    
    * Name the VM something like `YourNetIDvm`
    * Region = (US) Central US
    * Image = Ubuntu Server 20.04 LTS - Gen 2 (or more recent)
