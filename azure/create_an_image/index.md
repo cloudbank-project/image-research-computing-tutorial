@@ -3,7 +3,7 @@
 [TOC](#table-of-contents)
 
 
-[Jump to hands-on activity](#walkthrough)
+[Jump to hands-on activity](#walkthrough-for-vms-day-1)
 
 
 ## Table of contents
@@ -14,7 +14,7 @@
     - [Python environments](#python-environments)
     - [git and GitHub](#git-and-github)
     - [Jupyter](#jupyter-notebook-servers)
-- [Walkthrough for VMs day 1](#walkthrough)
+- [Walkthrough for VMs day 1](#walkthrough-for-vms-day-1)
     - [Start a VM on Azure](#1-start-a-vm-on-azure)
     - [Log in to the VM](#2-log-in-to-the-vm)
     - [Create a machine image from the VM](#3-create-a-machine-image-from-the-vm)
