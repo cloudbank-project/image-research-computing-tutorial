@@ -69,17 +69,26 @@ this operating system. Once the VM starts we are free to log on and customize it
 save a *new* image which is a snapshot of the modified VM. This new image is tied to our Azure
 account; so we can terminate the VM at this point (all signs of it are gone) and restart our
 saved image. This creates a new VM or if we like, even *multiple* such VMs. This is the central
-idea of VM images as backups of our computing environment. As with many Azure resources there is
+idea of VM images as backups of our computing environment; and as a basis for scaling. In fact
+a given image can be restored to a larger, more powerful VM; or a smaller, less powerful VM
+depending on its intended use. We can also use a VM image as a building block for
+an Azure ['Scale Set'](https://azure.microsoft.com/en-us/products/virtual-machine-scale-sets),
+a veritable herd of identical VMs useful for doing batch processing. 
+
+
+
+As with many Azure resources there is
 a logical 'box' for VM images called a **`Gallery`**.
 
 
-The VM we use costs $0.11 per hour or $12 per day. A good rule of thumb is: Establish an alarm
+The VM we use costs $0.11 per hour. A good rule of thumb is: Establish an alarm
 that shuts down (*stop* plus *deallocate*) the VM every evening. We do this in the setup process.
-Azure sends us an email that the machine is going to be stopped and provides an option to keep it
-running a little longer.
+Azure sends us an email that the machine is going to be stopped soon and 
+provides an option to keep it running a bit longer.
 
 
 #### VM Day 1 Monday May 1
+
 
 - Start a VM on the Azure cloud in your Resource Group
     - Optional: Add a small (4GB) data disk
@@ -93,10 +102,12 @@ running a little longer.
 - Capture the VM to an image in a gallery
 - Terminate the VM
 - Re-start the VM from the image
-- Log in to the new VM from Cloud Shell and verify the changes you made are still there
+- Log in to the new VM from Cloud Shell and verify the changes made are still there
 - Stop the VM from the Azure portal
 
 #### VM Day 2 Tuesday May 3
+
+
 - On the VM
     - Install a Jupyter service supporting IPython notebooks
     - Clone a repository containing some notebooks
@@ -129,14 +140,10 @@ running a little longer.
 [TOC](#table-of-contents)
 
 
-Python features a level of virtualization (specialization) via *virtual environments*. 
+To review: Python features a level of virtualization (specialization) via *virtual environments*. 
 The Python *base* environment is the Python interpreter and libraries that comprise the
-basic Python installation in the operating system. This base environment is a distinct 
-concept from the Jupyter notebook server. From this base or default environment a Python 
-virtual environment is often built to further customize the workspace. A virtual environment 
-is an isolated space in which additional libraries are installed. In Visual Studio Code
-(VSCode) a virtual environment called **`.venv`** was created in relation to building
-Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console prompt. 
+basic Python installation in the operating system. From this base or default environment a Python 
+virtual environment is often created as a dedicated space to further customize the workspace. 
 
 
 
@@ -146,15 +153,19 @@ Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console
 [TOC](#table-of-contents)
 
 
-GitHub is a provider of Internet hosting for software development and version control using **`git`**. 
+To review: GitHub is a provider of Internet hosting for software development and version control using **`git`**. 
 **`git`** is in turn a Linux software version control utility. GitHub and similar hosting
 sites facilitate open sharing of software, part of the larger picture of reproducible research.
 
 
-* The **`git clone`** command can be used clone GitHub *repositories*,  
-thematic collections of files in a directory tree. **`git`** comes with a learning curve.
+- The **`git clone`** command can be used clone GitHub *repositories*,  
+thematic collections of files in a directory tree. 
 
-* Improper use of GitHub can grant cloud access to Bad Actors. This in turn can lead to lost time and money.
+
+- **`git`** comes with a learning curve.
+
+
+- Improper use of GitHub can grant cloud access to Bad Actors. This in turn can lead to lost time and money.
 
 
 
@@ -165,13 +176,33 @@ thematic collections of files in a directory tree. **`git`** comes with a learni
 [TOC](#table-of-contents)
 
 
-Since we are working with a VM, lets customize it as a research
-computing platform by installing a Jupyter notebook server. This is a research tool in common use
-(circa 2022) that is popular for a variety of reasons. For one, Jupyter notebooks enable us to develop 
-and run code in small blocks called cells, in contrast to the traditional 'write large monolithic programs' 
-that can be challenging to debug. Another valuable feature of Jupyter notebooks is support for documentation 
-interspersed with code. This breaks down the barrier between code and write-up, between 
-analysis and publication. 
+Define these terms: 
+
+
+- [**IPython**](https://en.wikipedia.org/wiki/IPython) 
+is short for **Interactive Python**, a command shell for interactive computing. 
+It supports multiple languages including, of course, Python.
+
+- Jupyter notebook
+
+
+- Jupyter notebook server
+
+
+- Jupyter Lab
+
+
+- Jupyter Book
+
+
+- Jupyter Hub
+
+
+Day 2: Customize a research platform for interactive computing via a Jupyter notebook server. 
+- develop and run code in small blocks called cells
+    - contrast traditional 'large monolithic programs' that can be difficult to debug 
+- built in support for documentation interspersed with code via markdown and LaTeX
+    - This breaks the barrier between code and write-up, between analysis and publication. 
 
 
 Jupyter notebook code execution is managed by a language-specific program 
