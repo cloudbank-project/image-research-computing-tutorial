@@ -9,58 +9,153 @@
 ## Table of contents
 
 - [Overview](#overview)
-    - [Jupyter](#jupyter-notebook-servers)
-    - [Python environments](#python-environments)
+    - [The Plan](#the-plan)
     - [Object and block storage on the cloud](#object-and-block-storage-on-the-cloud)
     - [git and GitHub](#git-and-github)
-    - [The Plan](#the-plan)
-- [Start a VM on Azure](#start-a-vm-on-azure)
-- [Log in to the VM](#log-in-to-the-vm)
-- [Create a machine image in the Azure portal](#create-a-machine-image-in-the-azure-portal)
+    - [Python environments](#python-environments)
+    - [Jupyter](#jupyter-notebook-servers)
+- [Start a VM on Azure](#1-start-a-vm-on-azure)
+- [Log in to the VM](#2-log-in-to-the-vm)
+- [Create a machine image from the VM](#3-create-a-machine-image-from-the-vm)
+- [Terminate the VM and start a new VM from the image](#4-terminate-the-vm-and-start-a-new-vm-from-the-image)
 
 
 ## Overview
 
 
+### The Plan 
+
+
 [TOC](#table-of-contents)
 
 
-Virtual Machines (VMs) are self-contained computers; also called ***instances***. On the cloud 
-an ***instance type*** means a VM with a set of specifications: How much CPU power, memory, storage, and 
-networking speed. Based on these specs we pay at some rate for a VM 'per hour' until we **Stop** it.
+Read through this overview and proceed to the walkthrough activities for
+Virtual Machines (VMs) on Azure. VMs are self-contained computers; also called ***instances***. 
+A single physical computer may host more than one Virtual Machine.  
+On the cloud 
+an ***instance type*** means a VM with specifications: How much CPU power, memory, storage, and 
+networking speed. We will use a fairly light VM that costs about \$0.11 per hour.
+
+
+We pay at some rate for a VM 'per hour' until we **Stop** it. Unfortunately this immediately runs into
+some confusing language on Azure: A VM that is *Stopped and Deallocated* is equivalent to a computer that
+is turned off; and we do not pay for it on Azure (but it is still available to be turned back on). 
+A VM that is merely *stopped* on Azure
+(not *deallocated*) is still sitting there costing money. **`sudo shutdown -h now`** will stop, 
+but not deallocate, a VM. 
 
 
 A VM is distinct from a ***container***: A container makes use of a computer's underlying operating system; 
-so it starts much faster. It is more of a (substantial) program running on a computer. 
+and it starts up very quickly. It is a (possibly very substantial) program that runs on a host computer. A VM
+includes its own complete operating system; plus anything we choose to install on it; plus our code and our
+data. So a VM is a computer running on a computer. A VM can also have an IP address; and can exist on the web 
+as a server. It could host a *non-serverless* function. 
 
 
-A VM is of course also distinct from a serverless function, which is a managed service. The VM is 
-provided to us provisioned with an operating system where we are the root user; 
-so this is far from the notion of 'managed'. 
+On Azure we have root access on any VMs we create. We log in to the VM via a bash shell and then when necessary
+wield root access by means of the **`sudo`** (super-user-do) command. 
 
 
-A single physical computer may host more than one Virtual Machine.  
 
 
-On the cloud we select a VM by choosing both an ***instance type*** and an ***operating system***. The type
-matches the computer's purpose to processing power, memory, network speed and other features. A bigger
-VM costs more per hour on the cloud, be it Azure or AWS or GCP or some other platform.
+On the cloud we select a VM by choosing both an ***instance type*** and an ***operating system***. 
+The instance type
+matches the computer's purpose in processing power, memory, network speed and other features. 
 
 
-Technical detail: The operating system *actually* selects a pre-built *image* which includes
-that operating system. So the term *image* used here is the same idea of the *image* we are
-working towards creating later on. The image we begin with (select) is loaded into the VM as a 
-*blank slate*: Just the operating system, an empty user directory, no additional content. 
-We log in to this generic VM as a generic user and continue to customize it from there.
+Technical detail: The operating system choice in fact selects a *machine image* that includes
+this operating system. Once the VM starts we are free to log on and customize it. Then we will
+save a *new* image which is a snapshot of the modified VM. This new image is tied to our Azure
+account; so we can terminate the VM at this point (all signs of it are gone) and restart our
+saved image. This creates a new VM or if we like, even *multiple* such VMs. This is the central
+idea of VM images as backups of our computing environment. As with many Azure resources there is
+a logical 'box' for VM images called a **`Gallery`**.
 
 
-The VM we use costs $0.10 per hour or $12 per day. A good rule of thumb is: Establish a 
-VM to shut off every evening when you create it. This (passively) ensures we won't leave
-it running all night. "Stop the VM when it is not in use." This can be done actively as
-well, for example through the Azure portal. 
+The VM we use costs $0.11 per hour or $12 per day. A good rule of thumb is: Establish an alarm
+that shuts down (*stop* plus *deallocate*) the VM every evening. We do this in the setup process.
+Azure sends us an email that the machine is going to be stopped and provides an option to keep it
+running a little longer.
 
-Note: **Starting** and **Stopping** a VM
-are distinct from **Terminating** it. Terminate / Delete a VM and it evaporates; it is gone forever. 
+
+#### VM Day 1 Monday May 1
+
+- Start a VM on the Azure cloud in your Resource Group
+    - Optional: Add a small (4GB) data disk
+    - Obtain two artifacts: The VM ip address and a key file to authenticate
+- Start Cloud Shell on Azure: This is a bash shell that runs in the browser
+    - Recreate the key file from above: on the Cloud Shell
+    - Log in to the Azure VM from the Cloud Shell
+    - Optional: Mount the data disk
+    - Modify the VM by installing a library and creating a file
+        - Now the VM is 'customized'
+- Capture the VM to an image in a gallery
+- Terminate the VM
+- Re-start the VM from the image
+- Log in to the new VM from Cloud Shell and verify the changes you made are still there
+- Stop the VM from the Azure portal
+
+#### VM Day 2 Tuesday May 3
+- On the VM
+    - Install a Jupyter service supporting IPython notebooks
+    - Clone a repository containing some notebooks
+- On your computer
+    - Use your browser to log in to the Jupyter service you created above
+    - Verify everything works
+- *Stretch task: Place some data in object storage on Azure and access that from your VM
+- Terminate your VM (good practice when done)
+
+
+### Object and block storage on the cloud
+
+
+[TOC](#table-of-contents)
+
+
+* Block storage equates to disk drives: A root drive and optional additional drives, attached to a VM
+    * Fast access, capacity costs $0.10 per GB per month
+* Object storage (on Azure 'blob storage') is not attached to a VM
+    * Like block storage: supports a directory structure for objects (files)
+    * Cheaper by a factor of 4; has other features
+    * Does not permit file scanning in place
+        * Instead: Read a file of interest directly into memory or copy to block storage
+    * Data archival also possible
+
+
+### Python environments
+
+
+[TOC](#table-of-contents)
+
+
+Python features a level of virtualization (specialization) via *virtual environments*. 
+The Python *base* environment is the Python interpreter and libraries that comprise the
+basic Python installation in the operating system. This base environment is a distinct 
+concept from the Jupyter notebook server. From this base or default environment a Python 
+virtual environment is often built to further customize the workspace. A virtual environment 
+is an isolated space in which additional libraries are installed. In Visual Studio Code
+(VSCode) a virtual environment called **`.venv`** was created in relation to building
+Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console prompt. 
+
+
+
+### git and GitHub
+
+
+[TOC](#table-of-contents)
+
+
+GitHub is a provider of Internet hosting for software development and version control using **`git`**. 
+**`git`** is in turn a Linux software version control utility. GitHub and similar hosting
+sites facilitate open sharing of software, part of the larger picture of reproducible research.
+
+
+* The **`git clone`** command can be used clone GitHub *repositories*,  
+thematic collections of files in a directory tree. **`git`** comes with a learning curve.
+
+* Improper use of GitHub can grant cloud access to Bad Actors. This in turn can lead to lost time and money.
+
+
 
 
 ### Jupyter Notebook servers
@@ -88,90 +183,10 @@ been developed as well: There are
 more than 100 Jupyter kernels available at this time. 
 
 
-### Python environments
-
-
-[TOC](#table-of-contents)
-
-
-Python features a level of virtualization (specialization) via *virtual environments*. 
-The Python *base* environment is the Python interpreter and libraries that comprise the
-basic Python installation in the operating system. This base environment is a distinct 
-concept from the Jupyter notebook server. From this base or default environment a Python 
-virtual environment is often built to further customize the workspace. A virtual environment 
-is an isolated space in which additional libraries are installed. In Visual Studio Code
-(VSCode) a virtual environment called **`.venv`** was created in relation to building
-Azure Functions. This resulted in the string `(.venv)` pre-pended to the Console prompt. 
-
-
-### Object and block storage on the cloud
-
-
-[TOC](#table-of-contents)
-
-
-* Block storage equates to disk drives: A root drive and optional additional drives, attached to a VM
-    * Fast access, capacity costs $0.10 per GB per month
-* Object storage (on Azure 'blob storage') is not attached to a VM
-    * Like block storage: supports a directory structure for objects (files)
-    * Cheaper by a factor of 4; has other features
-    * Does not permit file scanning in place
-        * Instead: Read a file of interest directly into memory or copy to block storage
-    * Data archival also possible
-
-
-### git and GitHub
-
-
-[TOC](#table-of-contents)
-
-
-GitHub is a provider of Internet hosting for software development and version control using **`git`**. 
-**`git`** is in turn a Linux software version control utility. GitHub and similar hosting
-sites facilitate open sharing of software, part of the larger picture of reproducible research.
-
-
-* The **`git clone`** command can be used clone GitHub *repositories*,  
-thematic collections of files in a directory tree. **`git`** comes with a learning curve.
-
-* Improper use of GitHub can grant cloud access to Bad Actors. This in turn can lead to lost time and money.
 
 
 
-### The Plan
-
-
-[TOC](#table-of-contents)
-
-
-* Three modes of compute on the cloud: **Serverless Functions**, **Containers** and **VMs/Images** 
-* VMs are used like traditional servers. Images are freeze-dried 'zip file' versions of VMs.
-
-
-"As if we need a research computing environment" the sequence of events in this hands-on:
-
-
-- Start a VM on the Azure cloud in your Resource Group (obtain its ip address and a key file)
-- Log in to this VM from VSCode
-- On the VM
-    - Install the Jupyter Notebook server in a dedicated environment
-    - Install some related data science libraries such as `pandas`
-    - Create a research environment by cloning a GitHub repository
-    - Start a jupyter notebook session with no visible interface
-- On your computer
-    - Create an SSH tunnel from your computer to the VM
-    - Enter a local Jupyter connection address
-        - By virtue of the SSH tunnel it will connect to the Jupyter Notebook server
-    - Verify everything works
-- From the Azure portal: From your VM create an Azure *image*
-- From this image: Start a new VM and verify it is identical to the one you have customized
-
-
-- *Stretch task: Place some data in object storage on Azure and access that from your VM
-
-
-
-## Start a VM on Azure
+## 1 Start a VM on Azure
 
 
 [TOC](#table-of-contents)
@@ -321,7 +336,7 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
 * Now it is time to log in to this VM: Instructions below
 
    
-## Log in to the VM
+## 2 Log in to the VM
    
 
 [TOC](#table-of-contents)
@@ -385,7 +400,7 @@ Python to run a Serverless Function:
 ```
 
    
-## Create a machine image in the Azure portal
+## 3 Create a machine image from the VM
 
    
 [TOC](#table-of-contents)
@@ -403,6 +418,9 @@ Python to run a Serverless Function:
         * It can be shared with colleagues or made publicly available
 
 
+## 4 Terminate the VM and start a new VM from the image
+
+[TOC](#table-of-contents)
    
    
 # left off here
