@@ -14,10 +14,11 @@
     - [Python environments](#python-environments)
     - [git and GitHub](#git-and-github)
     - [Jupyter](#jupyter-notebook-servers)
-- [Start a VM on Azure](#1-start-a-vm-on-azure)
-- [Log in to the VM](#2-log-in-to-the-vm)
-- [Create a machine image from the VM](#3-create-a-machine-image-from-the-vm)
-- [Terminate the VM and start a new VM from the image](#4-terminate-the-vm-and-start-a-new-vm-from-the-image)
+- [Walkthrough for VMs day 1](#walkthrough)
+    - [Start a VM on Azure](#1-start-a-vm-on-azure)
+    - [Log in to the VM](#2-log-in-to-the-vm)
+    - [Create a machine image from the VM](#3-create-a-machine-image-from-the-vm)
+    - [Terminate the VM and start a new VM from the image](#4-terminate-the-vm-and-start-a-new-vm-from-the-image)
 
 
 ## Overview
@@ -185,8 +186,13 @@ more than 100 Jupyter kernels available at this time.
 
 
 
+## Walkthrough for VMs day 1
 
-## 1 Start a VM on Azure
+
+[TOC](#table-of-contents)
+
+
+### 1 Start a VM on Azure
 
 
 [TOC](#table-of-contents)
@@ -333,10 +339,9 @@ Above: The defaults of the Networking tab ensure we can connect to the VM using 
     * ...content enables us to build this VM from code (rather than click-and-type)
 * Left menu bar: Scroll up to Settings, click **Connect**
     * Four-step recipe for logging in to this VM; this is just for reference, for future use
-* Now it is time to log in to this VM: Instructions below
 
    
-## 2 Log in to the VM
+### 2 Log in to the VM
    
 
 [TOC](#table-of-contents)
@@ -376,7 +381,7 @@ azureuser@myVMname:~$ ls -al
         * This shows a 30GiB root drive, 7% in use; so 28GiB available
 
    
-### Make sure Python is installed on the VM
+#### Make sure Python is installed on the VM
    
    
 * Once logged in: See if `python3` is installed
@@ -400,7 +405,7 @@ Python to run a Serverless Function:
 ```
 
    
-## 3 Create a machine image from the VM
+### 3 Create a machine image from the VM
 
    
 [TOC](#table-of-contents)
@@ -418,15 +423,16 @@ Python to run a Serverless Function:
         * It can be shared with colleagues or made publicly available
 
 
-## 4 Terminate the VM and start a new VM from the image
+### 4 Terminate the VM and start a new VM from the image
 
+    
 [TOC](#table-of-contents)
    
    
-# left off here
+# Follows: Notes on Day 2
    
 
-### Install the Jupyter Notebook server on the VM
+## Installing a Jupyter Notebook server on an Azure VM
    
 
 * Is the Jupyter Notebook server installed? Enter `jupyter` to find out that it is not
@@ -567,6 +573,7 @@ Verify that the Jupyter Notebook server runs and provides you with access to the
 You can use the browser interface to move into the `ocean` folder and start the `BioOptics` notebook in a 
 separate tab. Use the **Run** button at the top center of the BioOptics tab to execute a series of cells.
 
+    
 > The BioOptics Python cells run without error because the necessary libraries were installed above.
 
    
@@ -590,16 +597,13 @@ has all the previous VM's customization built in.
 
 
    
-# Additional topics
-   
-   
 ## Re-starting a VM
 
    
 If your earlier session was interrupted and/or your Virtual Machine was set to auto-halt
-every day at 7PM: It may currently be Stopped. Restart it
+every day at some time: It may currently be Stopped and Deallocated. Restart it
 in the Azure portal by selecting the VM and clicking the **Start** button.
-Most likely this will assign your VM a new ip address; so note this down.
+This will assign your VM a new ip address; so note this down.
    
 
 You can assign a static ip address to your VM (this is an Azure service) so it will
