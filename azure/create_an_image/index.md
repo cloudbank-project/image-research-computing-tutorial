@@ -13,7 +13,7 @@
     - [Object and block storage on the cloud](#object-and-block-storage-on-the-cloud)
     - [Python environments](#python-environments)
     - [git and GitHub](#git-and-github)
-    - [Jupyter](#jupyter-notebook-servers)
+    - [Jupyter](#jupyter)
 - [Walkthrough for VMs day 1](#walkthrough-for-vms-day-1)
     - [Start a VM on Azure](#1-start-a-vm-on-azure)
     - [Log in to the VM](#2-log-in-to-the-vm)
@@ -124,14 +124,17 @@ provides an option to keep it running a bit longer.
 [TOC](#table-of-contents)
 
 
-* Block storage equates to disk drives: A root drive and optional additional drives, attached to a VM
-    * Fast access, capacity costs $0.10 per GB per month
-* Object storage (on Azure 'blob storage') is not attached to a VM
-    * Like block storage: supports a directory structure for objects (files)
-    * Cheaper by a factor of 4; has other features
-    * Does not permit file scanning in place
-        * Instead: Read a file of interest directly into memory or copy to block storage
-    * Data archival also possible
+* Block storage equates to disk drives: A root drive and optional additional drives: Attached to a VM
+    * Fast access, \$0.09 per GB per month
+* Contrast: Object storage
+    * On Azure this is called 'blob storage'
+    * It is not attached to a VM
+    * It is located within a **`Storage account`**
+    * Cost 25% of block storage
+    * Supports organizing files in a directory structure
+    * Does not permit scanning files
+        * Instead: Read a file of interest directly into memory or copy it to block storage
+    * Data archival available: Less frequent access, less cost
 
 
 ### Python environments
@@ -170,48 +173,50 @@ thematic collections of files in a directory tree.
 
 
 
-### Jupyter Notebook servers
+### Jupyter
 
 
 [TOC](#table-of-contents)
 
 
-Define these terms: 
+Jupyter is an interactive coding environment. Here are some of the key terms defined.
 
 
 - [**IPython**](https://en.wikipedia.org/wiki/IPython) 
 is short for **Interactive Python**, a command shell for interactive computing. 
 It supports multiple languages including, of course, Python.
 
-- Jupyter notebook
+
+- Jupyter notebook: A file with an IPython file extension **`.ipynb`** that is hosted
+by a Jupyter notebook server, viewed in a browser, consists of text blocks called *cells*
+that contain either code or formatted text
+    - This results in an environment that combines
+exploratory data analysis (code) with explanations and other documentation.
 
 
-- Jupyter notebook server
+- Jupyter notebook server: An interactive development environment that hosts Jupyter notebooks
+
+ 
+- Jupyter Lab: The current version of the Jupyter notebook server
+    - Also a web-based interactive development environment
 
 
-- Jupyter Lab
+- [Jupyter Book](https://jupyterbook.org/explain/components.html): A wrapper around a collection 
+of tools in the Python ecosystem that make it easier to publish computational documents
 
 
-- Jupyter Book
+- Jupyter Hub is a means of providing Jupyter notebook servers to a group of users
+    - For example a research team
+    - ...provides computational environments without burdening users with installation and maintenance
 
 
-- Jupyter Hub
-
-
-Day 2: Customize a research platform for interactive computing via a Jupyter notebook server. 
-- develop and run code in small blocks called cells
-    - contrast traditional 'large monolithic programs' that can be difficult to debug 
-- built in support for documentation interspersed with code via markdown and LaTeX
-    - This breaks the barrier between code and write-up, between analysis and publication. 
-
-
-Jupyter notebook code execution is managed by a language-specific program 
-called a kernel (for example 'Python kernel', 'R kernel', 'Julia kernel'.  
+> Jupyter notebook code execution is managed by a language-specific program 
+called a kernel (for example 'Python kernel', 'R kernel', 'Julia kernel').  
 The kernel operates "behind the scenes" to maintain the notebook environment and
-run blocks of code as requested. In our case we will use Python, 
-where the two other primary Jupyter-supported languages are Julia and R 
+run blocks of code as requested. We use Python, 
+and the two other primary Jupyter-supported languages are Julia and R 
 (hence 'JuPyt(e)R'). In the spirit of expansibility many other kernels have
-been developed as well: There are
+been developed: There are
 more than 100 Jupyter kernels available at this time. 
 
 
