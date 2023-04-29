@@ -271,16 +271,16 @@ more than 100 Jupyter kernels available at this time.
     * In what follows: If no direction is given just keep the default values
         * Basics tab
             * Verify Subscription and Resource group are correct
-            * name = <netid>-mse544-vm
+            * name = yournetid-mse544-vm
             * Region = (US) West US
-            * Image = Ubuntu Server 20.04 LTS - x64 Gen2
+            * Image = Ubuntu Server 20.04 LTS - x64 Gen2 (where 'LTS' means a reliable version of Ubuntu)
             * VM architecture = x64
             * Run with Azure Spot discount: Leave box un-checked
             * Size: Click **`see all sizes`** and select **`Standard_D2as_v4 - 2 vcpus, 8 GiB memory`**
             * Authentication: SSH public key
             * Proceed to the next tab by clicking **`Next: Disks >`**
         * Disks tab
-            * This is the one 'optional' part of creating an Azure VM (recommended)
+            * This is the one 'optional' part of creating an Azure VM (we recommend doing this if possible)
             * Click the link for **`Create and attach a new disk`**
             * Click **`Change size`**, select 4 GiB (much cheaper than 1024 GiB); click **`Ok`**
             * Click **`Next: Networking >`**
