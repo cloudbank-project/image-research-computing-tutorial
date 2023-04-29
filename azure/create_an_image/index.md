@@ -10,6 +10,7 @@
 
 - [Overview](#overview)
     - [The Plan](#the-plan)
+    - [Azure Cloud Shell](#azure-cloud-shell)
     - [Object and block storage on the cloud](#object-and-block-storage-on-the-cloud)
     - [Python environments](#python-environments)
     - [git and GitHub](#git-and-github)
@@ -57,8 +58,6 @@ On Azure we have root access on any VMs we create. We log in to the VM via a bas
 wield root access by means of the **`sudo`** (super-user-do) command. 
 
 
-
-
 On the cloud we select a VM by choosing both an ***instance type*** and an ***operating system***. 
 The instance type
 matches the computer's purpose in processing power, memory, network speed and other features. 
@@ -74,7 +73,6 @@ a given image can be restored to a larger, more powerful VM; or a smaller, less 
 depending on its intended use. We can also use a VM image as a building block for
 an Azure ['Scale Set'](https://azure.microsoft.com/en-us/products/virtual-machine-scale-sets),
 a veritable herd of identical VMs useful for doing batch processing. 
-
 
 
 As with many Azure resources there is
@@ -105,6 +103,7 @@ provides an option to keep it running a bit longer.
 - Log in to the new VM from Cloud Shell and verify the changes made are still there
 - Stop the VM from the Azure portal
 
+
 #### VM Day 2 Tuesday May 3
 
 
@@ -116,6 +115,26 @@ provides an option to keep it running a bit longer.
     - Verify everything works
 - *Stretch task: Place some data in object storage on Azure and access that from your VM
 - Terminate your VM (good practice when done)
+
+### [Azure Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)
+
+- We have found that VSCode supports Power Shell and the Ubuntu `bash` shell
+- To avoid VSCode for this VM work we instead use a shell built into the Azure portal
+- This is called the **`Cloud Shell`** and it has these features
+    - We toggle it on/off using the icon **`>_`** in the title bar just right of center
+    - It takes a moment to start
+    - It logs us in to a `bash` shell computing environment complete with a filesystem
+        - At this point you might be thinking 'Wow this sounds like a Container'
+        - You are absolutely correct, this is a Container
+    - Here we treat Cloud Shell like a useful computer with a persistent memory
+        - It can run in either `bash` or `Power Shell` mode
+        - Here are some familiarization steps for Cloud Shell (prompt = `% `)
+            - `% python --version` to see which Python runs
+            - `% python -m pip list` to see installed libraries: Notice `pandas` is not listed.
+            - `% python -m pip install pandas` and verify it is installed now
+            - Use the 'restart' button to restart Cloud Shell; and verify `pandas` is still installed
+            - Notice there is an upload button on the Cloud Shell title bar
+                - This will come in handy for uploading the key file for the VM, see below
 
 
 ### Object and block storage on the cloud
