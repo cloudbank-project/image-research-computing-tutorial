@@ -211,12 +211,7 @@ more than 100 Jupyter kernels available at this time.
 * From the Resource Group overview click `+Create`
    * This takes us to the Marketplace; search on `virtual machine` and select Virtual Machine
    * This takes us to the Virtual Machine Overview; click the Create button
- 
-> You can treat the Azure **Marketplace** as a browsable source of many VM images. They
-> are categorized by operating system and other add-on features. 
-
-
-* Use the **`Create a virtual machine` wizard to customize a VM
+* Use the **`Create a virtual machine`** tabbed wizard to customize a VM
     * There are 8 tabs to go through from **Basics** to **Disks** ... to **Review + create**
     * In what follows: If no direction is given just keep the default values
         * Basics tab
@@ -230,11 +225,13 @@ more than 100 Jupyter kernels available at this time.
             * Authentication: SSH public key
             * Proceed to the next tab by clicking **`Next: Disks >`**
         * Disks tab
+            * This is the one 'optional' part of creating an Azure VM (recommended)
             * Click the link for **`Create and attach a new disk`**
             * Click **`Change size`**, select 4 GiB (much cheaper than 1024 GiB); click **`Ok`**
             * Click **`Next: Networking >`**
         * Networking tab: Nothing to do here; click **`Next: Management >`**
-            * Notice in passing that SSH is assigned port 22
+            * Notice in passing that SSH is assigned port 22. 
+                * SSH ('secure shell') is a secure connection from one computer to another
         * Management tab: 
             * Click Enable auto-shutdown
             * Set a stop time, for example 5PM; select this time zone Pacific Time
@@ -429,7 +426,7 @@ Python to run a Serverless Function:
 [TOC](#table-of-contents)
    
    
-# Follows: Notes on Day 2
+# Notes on Day 2
    
 
 ## Installing a Jupyter Notebook server on an Azure VM
