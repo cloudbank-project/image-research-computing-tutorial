@@ -128,10 +128,10 @@ provides an option to keep it running a bit longer.
         - You are absolutely correct, this is a Container
     - Here we treat Cloud Shell like a useful computer with a persistent memory
         - It can run in either `bash` or `Power Shell` mode
-        - Here are some familiarization steps for Cloud Shell (prompt = `% `)
-            - `% python --version` to see which Python runs
-            - `% python -m pip list` to see installed libraries: Notice `pandas` is not listed.
-            - `% python -m pip install pandas` and verify it is installed now
+        - Here are some familiarization steps for Cloud Shell
+            - `python --version` to see which Python runs
+            - `python -m pip list` to see installed libraries: Notice `pandas` is not listed.
+            - `python -m pip install pandas` and verify it is installed now
             - Use the 'restart' button to restart Cloud Shell; and verify `pandas` is still installed
             - Notice there is an upload button on the Cloud Shell title bar
                 - This will come in handy for uploading the key file for the VM, see below
@@ -305,156 +305,55 @@ more than 100 Jupyter kernels available at this time.
             * Click **`Download private key and create resource`**
                 * Store the key in a safe location (not a GitHub repo for example)
     * Your VM should be available in a minute
-    * Click **`Go to resource`**
-    * The VM Overview has a series of icons/actions from left to right at the top of the page
-        * This includes **`Restart`** if your VM is stopped
-        * Click on the left-most: **`Connect`**
-
-
-   
-<BR><BR>
-<img src="../../images/azure/vm03.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
-<BR>
-<BR><BR>
-<img src="../../images/azure/vm04.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
-<BR>
-
-
-
-* Next: Disks > (defaults) > Next: Networking > (defaults)  > Next: Management
-
-<BR><BR>
-<img src="../../images/azure/vm05.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
-<BR>
-
-   
-Above: The defaults of the Networking tab ensure we can connect to the VM using SSH.
-
-   
-* Management tab
-   * Enable auto-shutdown
-       * Keep the shutdown time as 7PM
-       * Change the Time zone to Pacific Time
-
-<BR><BR>
-<img src="../../images/azure/vm06.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
-<BR>
-
-* Next: Advanced > (defaults) > Next: Tags   
-   
-* **Tags** tab
-    * Include some tags to inform your future self what this VM is for
-
-<BR><BR>
-<img src="../../images/azure/vm07.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
-<BR>
-
-* **Next: Review and Create** tab: Review the description
-    * This VM will cost about $0.10 per hour
-    * Click **Create**
-        * This will prompt you to download a key file: Do so to a safe location on your computer
-
-<BR><BR>
-<img src="../../images/azure/vm08.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
-<BR>
-
-   
-* Once the create action is complete: Click 'Go to resource'
-    * Note down the ip address of the VM   
-   
-<BR><BR>
-<img src="../../images/azure/vm09.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
-<BR>
-   
-   
-* At the top of the central / main window notice there is a sequence of utility buttons
-    * These are Connect, Start, Restart, Stop, Capture, Delete and Refresh
-
-<BR><BR>
-<img src="../../images/azure/vm10.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
-<BR>
-
-   
-* From the (default) Overview: Notice that the VM has a tabbed sequence of information pages
-    * These are Properties, Monitoring, Capabilities, Recommendations and Tutorials
-    * This system of tabbed sub-pages makes a lot of information available
-
-<BR><BR>
-<img src="../../images/azure/vm11.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
-<BR>
-
-   
-* On the left menu bar under Settings click on Disks
-    * Note that the VM has an operating system disk with a 30 GiB capacity
-    * Some of this will be used by the operating system
-* Left menu bar: Scroll down to Automation, temporarily click **Export template**
-    * ...content enables us to build this VM from code (rather than click-and-type)
-* Left menu bar: Scroll up to Settings, click **Connect**
-    * Four-step recipe for logging in to this VM; this is just for reference, for future use
-
+        * This is a good time to set up Cloud Shell to connect to your VM
+            * Click the **`>_`** button at center-right on the Azure title bar
+            * The Cloud Shell is described above in the Overview section
+            * After it starts note you are in a User home directory
+            * Make a subdirectory called `.ssh`: **`mkdir .ssh`**
+            * Upload the private key file (that you just downloaded) from your computer to this directory
+                * The Cloud Shell window has an upload button in the title bar
+            * Make sure this file has *User read only* permission
+                * `mv keyfile.pem .ssh` moves the file to the `.ssh` directory
+                * `cd .ssh`
+                * `chmod 400 keyfile.pem` modifies the file permissions
+            * Toggle off your Cloud Shell
    
 ### 2 Log in to the VM
    
 
 [TOC](#table-of-contents)
 
-   
-* Open Visual Studio Code and activate **`ssh`** in the Terminal window (ctrl/cmd + `)
-* In the terminal verify the `ssh` command exists: It produces a usage message
-* Go to the home directory using `cd ~`
-* Move the `.pem` file downloaded during the VM Create to this directory
-    * For example `mv /mnt/c/Users/myusername/Downloads/rob5vm_key.pem .`
-* Change the permissions of this file to be "user read only" using the somewhat cryptic `chmod` command
-    * `chmod 400 rob5vm_key.pem`
-* Type in or paste in the `ssh` connection command
-    * You can copy this command to your clipboard from the Azure portal **Connect** page identified above
-    * Make sure to use the correct path to the `.pem` file
-    * Make sure to keep the username `azureuser`
-    * Make sure to copy the provided ip address. Below I use `27.173.147.19`
-   
-```
-myLocalComputer$ ssh -i ./rob5vm_key.pem azureuser@21.173.147.19
-   .
-   .
-   .
-(confirm ok with 'yes')
-   .
-   .
-   .
-azureuser@myVMname:~$ ls -al
-```
+    
+* Once your VM is done building: Click **`Go to resource`**
+* The VM Overview has a series of icons/actions from left to right at the top of the page
+    * This includes **`Start`** if your VM is stopped
+    * Click on the left-most: **`Connect`**
+        * This **Connect** view has instructions for connecting to your VM
+            * Note the ip address for your VM, for example `12.23.34.45`.
+        * Return to the Cloud Shell and connect to your VM
+            * `cd ~`
+            * `ssh -i .ssh/keyfile.pem azureuser@12.23.34.45`
+            * Confirm Yes you are sure when prompted about 'authenticity of the host'
+            * Your prompt should now look like this: `azureuser@yournetid-mse544-vm`
 
-* During the connection we see "The authenticity of host ... can't be established. Are you sure?"
-    * Enter 'yes'
-    * You should now see a welcome message and a `bash` prompt
-        * We used `ssh` to connect but once logged in we are running the `bash` shell
-        * To verify this type in `ps -p $$`
-    * Examine the operating system disk with `df`
-        * This shows a 30GiB root drive, 7% in use; so 28GiB available
-
-   
-#### Make sure Python is installed on the VM
-   
-   
-* Once logged in: See if `python3` is installed
-    * It should indicate Python 3.8.10 and provide you with the Python interpreter prompt `>>>`
-    * Stretch activity: From your VM run an Azure Function
-        * ...if yours from the previous week is running you can use that
-        * ...if not you may use `https://rob5azfn02.azurewebsites.net/api/HttpTrigger1`
-        * See code snippet below
-        * An Azure Virtual Machine calls an Azure Function: Composition of cloud services
-    * Use ctrl-d to exit the Python interpreter
-
-
-Python to run a Serverless Function:
-
-   
-
-```
->>> import requests
->>> urlbase = 'https://function_name.azurewebsites.net/api/HttpTriggerName?'
->>> print(requests.get(urlbase + 'n=1234').text)
-```
+    
+* Enter `ps -p $$` to confirm you are using the bash shell
+* Find out if Python is installed by entering `python`
+    * In my case the OS suggests I try `python3` and this does run
+    * `python3 --version` shows Python 3.8.10
+    * `python3 -m pip list` shows that `requests` is installed
+    * This suggests an experiment provided one has an Azure Serverless Function up and running
+        * If you do not have such an Azure Function you can use this example: 
+            * `https://rob5-function-app.azurefunction?n=60`
+        * Start Python: `python3` and enter the following 3 lines of code
+        * `>>> import requests`
+        * `>>> url = 'https://mynetid-function-app.azurewebsites.net/api/azurefunction?n=1234'`
+        * `>>> print(requests.get(url).text)`
+        * Use `exit()` to halt the Python interpreter
+* Leave a fingerprint file to show you have modified the environment
+    * `cd ~`
+    * `touch fingerprint.txt`
+    * `ls`
 
    
 ### 3 Create a machine image from the VM
@@ -480,7 +379,11 @@ Python to run a Serverless Function:
     
 [TOC](#table-of-contents)
    
-   
+
+This needs writing up but the procedure is straightforward: Go to the Gallery and select +VM from the image.
+    
+    
+    
 # Notes on Day 2
    
 
@@ -688,4 +591,28 @@ One Anaconda installation command sequence (Linux, circa 2022):
 wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
 bash Anaconda3-2020.11-Linux-x86_64.sh
 ```
+
+    
+    
+# Images from prior version of walkthrough
+    
+<BR><BR>
+<img src="../../images/azure/vm03.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm04.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm05.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm06.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm07.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm08.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm09.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm10.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR><BR><BR>
+<img src="../../images/azure/vm11.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR>
 
