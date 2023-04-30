@@ -343,8 +343,8 @@ more than 100 Jupyter kernels available at this time.
     * `python3 --version` shows Python 3.8.10
     * `python3 -m pip list` shows that `requests` is installed
     * This suggests an experiment provided one has an Azure Serverless Function up and running
-        * If you do not have such an Azure Function you can use this example: 
-            * `https://rob5-function-app.azurefunction?n=60`
+        * If you do not have such an Azure Function you can use this URL for the test from your VM: 
+            * `https://rob5-function-app.azurewebsites.net/api/afunction?n=1234000`
         * Start Python: `python3` and enter the following 3 lines of code
         * `>>> import requests`
         * `>>> url = 'https://mynetid-function-app.azurewebsites.net/api/azurefunction?n=1234'`
@@ -354,8 +354,31 @@ more than 100 Jupyter kernels available at this time.
     * `cd ~`
     * `touch fingerprint.txt`
     * `ls`
+    
+    
+> If you added the (optional) data disk to your VM you can use the guide at
+> [this link](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal?tabs=ubuntu#find-the-disk)
+> to make the disk available. This will take a few minutes. If you like you can also simply
+> check that the disk is available using the following command.
+    
+```
+lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
+```
 
-   
+Here the 4GiB data disk is listed last as `sdc`.
+    
+```
+sda     0:0:0:0      30G
+├─sda1             29.9G /
+├─sda14               4M
+└─sda15             106M /boot/efi
+sdb     1:0:1:0      14G
+└─sdb1               14G /mnt
+sdc     3:0:0:0       4G
+```
+
+    
+
 ### 3 Create a machine image from the VM
 
    
@@ -385,6 +408,9 @@ This needs writing up but the procedure is straightforward: Go to the Gallery an
     
     
 # Notes on Day 2
+    
+    
+This section will be updated before Wednesday May 3 class.
    
 
 ## Installing a Jupyter Notebook server on an Azure VM
