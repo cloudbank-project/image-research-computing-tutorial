@@ -19,7 +19,7 @@
     - [Start a VM on Azure](#1-start-a-vm-on-azure)
     - [Log in to the VM](#2-log-in-to-the-vm)
     - [Create a machine image from the VM](#3-create-a-machine-image-from-the-vm)
-    - [Terminate the VM and start a new VM from the image](#4-terminate-the-vm-and-start-a-new-vm-from-the-image)
+    - [Terminate your original VM and start a new VM from the image](#4-Terminate-your-original-VM-and-start-a-new-vm-from-the-image)
 
 
 ## Overview
@@ -389,28 +389,39 @@ sdc     3:0:0:0       4G
 * Select the VM in the Azure Portal and click **Capture**
 * 'Create an image' wizard
     * Share image to Azure compute gallery: Select **No, capture only a managed image**
-    * Next: Tags >
-        * Add a Delete After tag: As before tags are intended to inform a future person
-    * Next: Review + Create > Create
+    * Review + Create > Create
         * Typically takes a couple of minutes > 'Deployment in progress' > Go to resource
         * The resulting VM image can be restarted on small low-cost machines or large high-cost machines
-        * It can be shared with colleagues or made publicly available
 
 
-### 4 Terminate the VM and start a new VM from the image
+### 4 Terminate your original VM and start a new VM from the image
 
     
 [TOC](#table-of-contents)
    
 
-This needs writing up but the procedure is straightforward: Go to the Gallery and select +VM from the image.
-    
+- From the Azure portal locate your original VM > Delete (trash icon)
+    - Select all check boxes, check 'I have read and understand...', click Delete
+- From your Home location select your Azure Compute Gallery
+    - Here the overview should list the VM image you created in part 3; so select this image by clicking on it
+    - There will be a series of options including **`Add version`**, **`Create VM`** and **`Create VMSS`**
+        - Do not click on **`Create VMSS`**: This creates *multiple* VMs from a single image. (We just want one.)
+        - ***Do*** click on **`Create VM`**
+        - This brings you back to the familiar VM Create wizard; so enter a new name for this VM
+        - You can skip to **`Review + create`**, click on **`Create`** and download a new key file
+        - Log in to this new VM as with the previous one
+            - Start the Cloud Shell
+            - Upload the key file from where you saved it to the Cloud Shell `~/.ssh` directory
+            - Use `chmod 400 key.pem` to give this file the necessary permissions
+            - Use `ssh -i ~/.ssh/key.pem azureuser@12.23.34.45` to log in to the new VM
+        - Once you have logged in: Check to see that your fingerprint file and any other changes are there on the new VM
+
     
     
 # Notes on Day 2
     
     
-This section will be updated before Wednesday May 3 class.
+This section 'under construction' will be updated before the Wednesday May 3 class.
    
 
 ## Installing a Jupyter Notebook server on an Azure VM
@@ -418,11 +429,22 @@ This section will be updated before Wednesday May 3 class.
 
 * Is the Jupyter Notebook server installed? Enter `jupyter` to find out that it is not
     * This sets us off on the path of customizing the VM
-    * One approach to how to do this: search on 'how to install jupyter on ubuntu'
+    * One approach is to install a Littlest Jupyter Hub
+    * Another approach is to search 'how to install jupyter on ubuntu'
         * This turns up a number of instructive websites including
 [this one](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04).
         * The commands are copied in sequence below
+    
+    
+An important difference in these two approaches: The first one is more about 'team' thinking as the 
+Jupyter Hub can provide Jupyter notebook servers to multiple team members. 
 
+
+### The Littlest Jupyter Hub approach
+    
+    
+### The Single Jupyter Notebook Server approach
+    
 
 Enter the following commands in sequence. Some steps require confirmation so it is
 best to run each command to completion before entering the next. Emphasis: These are commands you are
@@ -469,7 +491,7 @@ Test the installation by typing `jupyter` again. The VM should now recognize and
 
 ### Clone an oceanography repository
    
-We have reached a point where it would be nice to have some code and data to work with. 
+
 We can clone some open source content from the GitHub software control website.
    
 ```
@@ -478,7 +500,7 @@ We can clone some open source content from the GitHub software control website.
 ```
    
 This should complete in under a minute. You can use `ls` to show there is a new directory called `ocean`. 
-It contains data and an IPython notebook called `BioOptics.ipynb`.
+It contains data and some IPython notebooks. 
 
 
 ### Start the Jupyter Notebook server
@@ -620,7 +642,8 @@ bash Anaconda3-2020.11-Linux-x86_64.sh
 
     
     
-# Images from prior version of walkthrough
+## Images from prior version of the walkthrough
+
     
 <BR><BR>
 <img src="../../images/azure/vm03.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
