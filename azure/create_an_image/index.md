@@ -19,7 +19,7 @@
     - [Start a VM on Azure](#1-start-a-vm-on-azure)
     - [Log in to the VM](#2-log-in-to-the-vm)
     - [Create a machine image from the VM](#3-create-a-machine-image-from-the-vm)
-    - [Terminate your original VM and start a new VM from the image](#4-Terminate-your-original-VM-and-start-a-new-vm-from-the-image)
+    - [Terminate your original VM and start a new VM from the image](#4-terminate-your-original-vm-and-start-a-new-vm-from-the-image)
 
 
 ## Overview
