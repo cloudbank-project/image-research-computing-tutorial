@@ -11,6 +11,7 @@
 - [Overview](#overview)
     - [The Plan](#the-plan)
     - [Azure Cloud Shell](#azure-cloud-shell)
+    - [Virtual Machines on Azure](#vms-on-azure)
     - [Object and block storage on the cloud](#object-and-block-storage-on-the-cloud)
     - [Python environments](#python-environments)
     - [git and GitHub](#git-and-github)
@@ -135,6 +136,20 @@ provides an option to keep it running a bit longer.
             - Use the 'restart' button to restart Cloud Shell; and verify `pandas` is still installed
             - Notice there is an upload button on the Cloud Shell title bar
                 - This will come in handy for uploading the key file for the VM, see below
+
+
+
+### [VMs on Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery)
+
+
+[TOC](#table-of-contents)
+
+
+* An **Azure Compute Gallery** is the Azure 'box' for Virtual Machine Images (stored copy of a VM)
+* An **Image Definition** is a sub-box for VM Images
+* An **Image Version** is the actual VM Image: Stored on Azure in relation to an Image Definition
+* When we re-start a VM from an image we select a *version* from a *definition* within a *gallery*
+* This is similar to an Azure Function App being the 'box' for one or more Azure Functions
 
 
 ### Object and block storage on the cloud
