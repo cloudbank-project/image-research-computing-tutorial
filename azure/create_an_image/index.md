@@ -272,7 +272,7 @@ more than 100 Jupyter kernels available at this time.
 
 
 <BR><BR>
-<img src="../../images/azure/VM_001_PortalSettings.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<img src="https://github.com/cloudbank-project/image-research-computing-tutorial/blob/master/images/azure/VM_001_PortalSettings.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
 <BR><BR>
     
 Above: The Azure portal has a gear icon for changing the account configuration.
