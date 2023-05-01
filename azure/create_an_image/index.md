@@ -273,6 +273,7 @@ more than 100 Jupyter kernels available at this time.
 
 * On a browser sign in to the [Azure portal](portal.azure.com) and verify your Subscription
     * Work in the (US) West US region when chosing your VM type (see below)
+        * If West US is being difficult: Consider trying West US 2 etcetera alternatives
     * Check that you have an available *Resource Group*
         * Abbreviated RG: A Resource Group is a logical/virtual container for associated Azure resources
         * A Resource Group can contain for example a Virtual Machine (VM), a monitoring service and a Storage Account
