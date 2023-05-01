@@ -30,7 +30,7 @@
 
 
 [TOC](#table-of-contents)
-
+ 
 
 [Blog on the distinctions between VMs and Containers](https://phoenixnap.com/kb/containers-vs-vms)
 
