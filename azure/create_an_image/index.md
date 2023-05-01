@@ -262,7 +262,10 @@ more than 100 Jupyter kernels available at this time.
 <BR><BR>
 <img src="../../images/azure/vm01.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR>
+    
+> ***If you run into problems here: Check the [section below](#potential-issues). 
 
+    
 * From the Resource Group overview click `+Create`
    * This takes us to the Marketplace; search on `virtual machine` and select Virtual Machine
    * This takes us to the Virtual Machine Overview; click the Create button
@@ -273,6 +276,8 @@ more than 100 Jupyter kernels available at this time.
             * Verify Subscription and Resource group are correct
             * name = yournetid-mse544-vm
             * Region = (US) West US
+                * I believe West US is correct...
+                    * If you run into difficulty: Try US West 2
             * Image = Ubuntu Server 20.04 LTS - x64 Gen2 (where 'LTS' means a reliable version of Ubuntu)
             * VM architecture = x64
             * Run with Azure Spot discount: Leave box un-checked
@@ -317,6 +322,30 @@ more than 100 Jupyter kernels available at this time.
                 * `cd .ssh`
                 * `chmod 400 keyfile.pem` modifies the file permissions
             * Toggle off your Cloud Shell
+
+    
+#### Potential issues
+
+    
+- ***Storage Creation Failed***
+    - Expand “show advanced settings”
+    - Choose your own RG 
+    - choose Create your storage account
+    - choose Create your file share (if none in your resource group).
+- Can't see the **`.ssh`** folder from **`~`**
+    - Use `cd ~; ls -al` to list all folders
+    - This is where you place the VM access key file (`.pem` file extension)
+- `python3 -m pip` does not find `pip`. How to install?
+    - Do a web search
+    - I found these steps: 
+        - `sudo apt update`
+        - `sudo apt install python3-pip`
+        - test this install using `python3 -m pip`
+- Deleting the VM after creating an image: Some resource check boxes are greyed out
+    - This means you can't delete them
+    - Not a concern; just delete what you can
+- 
+    
    
 ### 2 Log in to the VM
    
@@ -386,14 +415,24 @@ sdc     3:0:0:0       4G
 
 
    
+* On the portal: Search 'gallery' and select **`Azure compute galleries`**
+    * Check for correct subscription and RG
+    * Provide a name like `netid-compute-gallery`
+    * Keep the region the same as for the VM (e.g. West US)
+    * **`Review + create`** > **`Create`**
+    * This gallery will be the 'box' in which we place VM images
 * Select the VM in the Azure Portal and click **Capture**
-* 'Create an image' wizard
-    * Share image to Azure compute gallery: Select **No, capture only a managed image**
+* 'Capture an image' wizard
+    * Share image to Azure compute gallery
+        * Select **Yes, share it to a gallery as a VM image version.**
     * Review + Create > Create
         * Typically takes a couple of minutes > 'Deployment in progress' > Go to resource
         * The resulting VM image can be restarted on small low-cost machines or large high-cost machines
+    * Note this remark in the wizard: 
+        * **`Capturing a virtual machine image will make the virtual machine unusable. This action cannot be undone.`**
+        * From this we expect something destructive happens to the VM... but we still have the image
 
-
+    
 ### 4 Terminate your original VM and start a new VM from the image
 
     
