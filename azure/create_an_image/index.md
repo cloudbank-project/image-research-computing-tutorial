@@ -271,6 +271,13 @@ more than 100 Jupyter kernels available at this time.
 [TOC](#table-of-contents)
 
 
+<BR><BR>
+<img src="../../images/azure/VM_001_PortalSettings.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<BR><BR>
+    
+Above: The Azure portal has a gear icon for changing the account configuration.
+    
+
 * On a browser sign in to the [Azure portal](portal.azure.com) and verify your Subscription
     * Work in the (US) West US region when chosing your VM type (see below)
         * If West US is being difficult: Consider trying West US 2 etcetera alternatives
