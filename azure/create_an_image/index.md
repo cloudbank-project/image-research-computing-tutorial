@@ -450,22 +450,31 @@ goes into more detail on Azure machine images.
 
 - From the Azure portal locate your original VM > Delete (trash icon)
     - Select all check boxes, check 'I have read and understand...', click Delete
+    
+    
+    
 - From your Home location select your Azure Compute Gallery
-    - Here the overview should list the VM image you created in part 3; so select this image by clicking on it
-    - There will be a series of options including **`Add version`**, **`Create VM`** and **`Create VMSS`**
-        - Do not click on **`Create VMSS`**: This creates *multiple* VMs from a single image. (We just want one.)
-        - ***Do*** click on **`Create VM`**
-        - This brings you back to the familiar VM Create wizard; so enter a new name for this VM
-        - You can skip to **`Review + create`**, click on **`Create`** and download a new key file
-        - Log in to this new VM as with the previous one
-            - Start the Cloud Shell
-            - Upload the key file from where you saved it to the Cloud Shell `~/.ssh` directory
-            - Use `chmod 400 key.pem` to give this file the necessary permissions
-            - Use `ssh -i ~/.ssh/key.pem azureuser@12.23.34.45` to log in to the new VM
-        - Once you have logged in: Check to see that your fingerprint file and any other changes are there on the new VM
+    - Here the overview should list the VM image *definition* you created in part 3
+    - Select this definition by clicking on it
+        - This lists image *versions*, probably just the one most recent
+        - Select this image version by clicking on it
+            - Options for this image version include **`Create VM`** and **`Create VMSS`**
+                - Do not click on **`Create VMSS`** (where **`SS`** stands for 'Scale Set')
+                    - This feature allows you to create *multiple* VMs from a single image. (We just want one.)
+                - ***Do*** click on **`Create VM`**
+                    - This brings you to the familiar VM Create wizard
+                        - Enter a new name for this new VM you create from your VM image
+                        - You can skip to **`Review + create`** > **`Create`** > download a new key file
+                        - Log in to the new VM as you did with the original
+                            - Start the Cloud Shell
+                            - Upload the key file to Cloud Shell, `~/.ssh` directory
+                            - `chmod 400 key.pem`
+                            - `ssh -i ~/.ssh/key.pem azureuser@12.23.34.45`
+                            - We hope this recreates our source VM
+                                - On the new VM: Is the fingerprint file present? 
+                                - On the new VM: Are libraries already installed?
 
-    
-    
+
 # Notes on Day 2
     
     
