@@ -344,7 +344,6 @@ more than 100 Jupyter kernels available at this time.
 - Deleting the VM after creating an image: Some resource check boxes are greyed out
     - This means you can't delete them
     - Not a concern; just delete what you can
-- 
     
    
 ### 2 Log in to the VM
@@ -414,23 +413,33 @@ sdc     3:0:0:0       4G
 [TOC](#table-of-contents)
 
 
+We will need a 'box' for images; and this is called an *Azure compute gallery*.
+[This link](https://learn.microsoft.com/en-us/azure/virtual-machines/image-version) 
+goes into more detail on Azure machine images. 
+    
    
-* On the portal: Search 'gallery' and select **`Azure compute galleries`**
+* On the portal: Create an **`Azure compute gallery`**
+    * Search 'gallery' and select **`Azure compute galleries`** > **`+Create`**
     * Check for correct subscription and RG
     * Provide a name like `netid-compute-gallery`
     * Keep the region the same as for the VM (e.g. West US)
     * **`Review + create`** > **`Create`**
     * This gallery will be the 'box' in which we place VM images
+    
+    
 * Select the VM in the Azure Portal and click **Capture**
-* 'Capture an image' wizard
-    * Share image to Azure compute gallery
-        * Select **Yes, share it to a gallery as a VM image version.**
-    * Review + Create > Create
-        * Typically takes a couple of minutes > 'Deployment in progress' > Go to resource
-        * The resulting VM image can be restarted on small low-cost machines or large high-cost machines
-    * Note this remark in the wizard: 
-        * **`Capturing a virtual machine image will make the virtual machine unusable. This action cannot be undone.`**
-        * From this we expect something destructive happens to the VM... but we still have the image
+    * 'Capture an image' wizard
+        * Share image to Azure compute gallery
+            * Select **Yes, share it to a gallery as a VM image version.**
+        * **`Target VM image definition`**:
+            * Select **`Create new`**
+            * Enter required (red asterisk) values including a name like `yournetid-image-definition`
+        * Review + Create > Create
+            * Typically takes a couple of minutes > 'Deployment in progress' > Go to resource
+            * The resulting VM image can be restarted on small low-cost machines or large high-cost machines
+        * Note this remark in the wizard: 
+            * **`Capturing a virtual machine image will make the virtual machine unusable. This action cannot be undone.`**
+            * From this we expect something destructive happens to the VM... but we still have the image
 
     
 ### 4 Terminate your original VM and start a new VM from the image
