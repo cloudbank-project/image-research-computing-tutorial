@@ -289,7 +289,7 @@ Above: The Azure portal has a gear icon for changing the account configuration.
 <img src="../../images/azure/vm01.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR>
     
-> ***If you run into problems here: Check the [section below](#potential-issues). 
+> ***Problems here? Check the [Potential Issues section below](#potential-issues).*** 
 
     
 * From the Resource Group overview click `+Create`
@@ -357,19 +357,18 @@ Above: The Azure portal has a gear icon for changing the account configuration.
     - Expand “show advanced settings”
     - Choose your own RG 
     - choose Create your storage account
-    - choose Create your file share (if none in your resource group).
+    - choose Create your file share (if none in your resource group)
 - Can't see the **`.ssh`** folder from **`~`**
-    - Use `cd ~; ls -al` to list all folders
-    - This is where you place the VM access key file (`.pem` file extension)
-- `python3 -m pip` does not find `pip`. How to install?
+    - Folders starting with a period **`.`** are not visible to plain **`ls`** commands
+    - Therefore: After **`cd ~`** use **`ls -al`** to list all folders
+    - This folder **`.ssh`** is where you place VM access key files (`.pem` file extension)
+        - The idea is to keep them out of the way but accessible
+- `python3 -m pip` does not find `pip`. How to install **`pip`**?
     - Do a web search
-    - I found these steps: 
+    - I found these steps:
         - `sudo apt update`
         - `sudo apt install python3-pip`
         - test this install using `python3 -m pip`
-- Deleting the VM after creating an image: Some resource check boxes are greyed out
-    - This means you can't delete them
-    - Not a concern; just delete what you can
     
    
 ### 2 Log in to the VM
@@ -474,8 +473,17 @@ goes into more detail on Azure machine images.
 [TOC](#table-of-contents)
    
 
+Once you have created a VM image you should be able to safely delete your VM and 
+then create a new one, same as the original, from the image.
+    
 - From the Azure portal locate your original VM > Delete (trash icon)
     - Select all check boxes, check 'I have read and understand...', click Delete
+        - IF some resource check boxes are greyed out
+            - This means you can't delete them
+            - Not a concern; just delete what you can
+            - If you are working with a spare data disk
+                - Don't delete it
+                - After you start a new VM from the image of the original: Try and attach this data disk
     
     
     
