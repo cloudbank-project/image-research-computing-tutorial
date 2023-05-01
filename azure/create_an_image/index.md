@@ -32,6 +32,9 @@
 [TOC](#table-of-contents)
 
 
+[Blog on the distinctions between VMs and Containers](https://phoenixnap.com/kb/containers-vs-vms)
+
+
 Read through this overview and proceed to the walkthrough activities for
 Virtual Machines (VMs) on Azure. VMs are self-contained computers; also called ***instances***. 
 A single physical computer may host more than one Virtual Machine.  
