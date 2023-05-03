@@ -593,7 +593,7 @@ Click the link to **see all images** so you can select...
     
     
 <BR><BR>
-<img src="../../images/azure/TL011_SeeAllImages.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<img src="../../images/azure/TL011_SeeAllImages.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR><BR>
     
     
@@ -602,7 +602,7 @@ Click the link to **see all images** so you can select...
 
     
 <BR><BR>
-<img src="../../images/azure/TL012_UbuntuServer2204LTS.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<img src="../../images/azure/TL012_UbuntuServer2204LTS.png" alt="drawing" width="400" style="display: block; margin: auto;"/>
 <BR><BR>
     
     
@@ -612,7 +612,7 @@ Instead of a key file (.pem) we will use a username (Example: **`mynetidadmin`**
 
     
 <BR><BR>
-<img src="../../images/azure/TL013_Password.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<img src="../../images/azure/TL013_Password.png" alt="drawing" width="500" style="display: block; margin: auto;"/>
 <BR><BR>
 
     
