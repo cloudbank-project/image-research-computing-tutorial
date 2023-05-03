@@ -620,25 +620,45 @@ Instead of a key file (.pem) we will use a username (Example: **`mynetidadmin`**
     
 #### VM Wizard: **Discs** tab   
 
+
+Nothing to do here.
+    
+    
+#### VM Wizard: **Networking** tab   
+
+
+Use the dropdown to co-select **`http`** and **`https`** in addition to **`ssh`**.
     
 
     
-#### VM Wizard: **Networking** tab   
-    
-    
+<BR><BR>
+<img src="../../images/azure/TL020_Networking.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR><BR>
     
     
 #### VM Wizard: **Management** tab   
 
+ 
     
+<BR><BR>
+<img src="../../images/azure/TL021_Management.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR><BR>
     
+
     
 #### VM Wizard: **Monitoring** tab   
 
     
+<BR><BR>
+<img src="../../images/azure/TL022_Monitoring.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR><BR>
+    
     
 #### VM Wizard: **Advanced** tab   
 
+<BR><BR>
+<img src="../../images/azure/TL023_Advanced.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR><BR>
     
     
 #### VM Wizard: **Tags** tab
@@ -652,6 +672,11 @@ Nothing to do here.
     
 Make sure everything looks ok and click Create. 
 There is no key file to download because we switched to using a password.
+
+    
+<BR><BR>
+<img src="../../images/azure/TL024_Completed.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR><BR>
 
     
 ### Install libraries
