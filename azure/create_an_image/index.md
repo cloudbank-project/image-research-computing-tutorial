@@ -528,37 +528,49 @@ then create a new one, same as the original, from the image.
 
 ### Jupyter overview
 
+
     
-As noted up at the top: Jupyter is an interactive programming environment that we tend to use
-via a web browser. The center of mass of the Jupyter development project is at UC Berkeley. 
+[TOC](#table-of-contents)
+    
+
+As noted up at the top: Jupyter is an interactive programming (and story-telling) 
+environment. We access this environment via a web browser. The center of mass of the 
+Jupyter project is UC Berkeley. 
     
     
 Here our objective is to install a Jupyter Hub on a single (small) Azure VM. 
 This small-format Jupyter Hub is intended for just a few people. You might set this 
-up for yourself and four colleagues for example. 
-In that case, this Littlest Jupyter Hub provides you with five distinct Jupyter environments, 
+up for yourself and four colleagues, for example. 
+In such a case, this Littlest Jupyter Hub provides five distinct Jupyter environments, 
 one for each User. 
 The 'big brother' full-scale version of a Jupyter Hub is built on a cluster of machines and can
 serve six or a dozen or twenty or even a hundred or a thousand users. (That is an example of 
 cloud scaling.)
     
+    
+Building a Littlest Jupyter Hub is going to be almost identical to the Monday activity
+of starting an Azure VM. The small differences include adding in some Custom information
+that will result in the **`Create`** step going the extra mile to set up the Jupyter Hub
+service. 
+    
 
-After doing the initial Jupyter Hub build using the Azure portal you will log in as the 
+After doing this Jupyter Hub build on the Azure portal you log in as the system 
 administrator and make some modifications to the environment. You then clone a data 
-science repository and check it out one of the Jupyter notebooks. 
+science repository take a look at a Jupyter notebook therein. 
     
 
 A Jupyter notebook consists of text boxes called cells. Some contain code and others 
-contain markdown (formatted text). 
+contain markdown (formatted text). Cells are 'executed' individually using ctrl + enter
+or shift + enter. 
     
 
-    
-[TOC](#table-of-contents)
 
 ### Website instructions
 
-[TOC](#table-of-contents)
     
+[TOC](#table-of-contents)
+
+
 - The anchor point for the Littlest Jupyter Hub is [here](https://tljh.jupyter.org/en/latest/)...
     - But to get started go to this [Install to Azure](https://tljh.jupyter.org/en/latest/install/azure.html) page
     - and follow the steps provided...
@@ -731,7 +743,11 @@ Start a terminal (still logged in as the admin) and run this `git` command:
 git clone https://github.com/robfatland/ocean
 ```
     
-Now you should see a folder called `ocean` in the navigator.
+Now you should see a folder called `ocean` in the navigator. Navigate to this folder 
+and start the notebook called **`Biooptics.ipynb`**. Use the Run menu to run all of 
+the cells in this notebook. This will take a minute or two; and when it is done you
+might take a moment to look through the results. You can also see the markdown behind
+the rendering by double-clicking on a text cell.
     
 
 
