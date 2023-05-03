@@ -3,6 +3,12 @@
 [TOC](#table-of-contents)
 
 
+[Streamlined view of this page](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)
+
+
+[Editing view of this page](https://github.com/cloudbank-project/image-research-computing-tutorial/edit/gh-pages/azure/create_an_image/index.md)
+
+
 [Jump to hands-on activity](#walkthrough-for-vms-day-1)
 
 
@@ -656,6 +662,14 @@ Use the dropdown to co-select **`http`** and **`https`** in addition to **`ssh`*
     
 #### VM Wizard: **Advanced** tab   
 
+    
+    
+Here at last is where the magic happens, in the **`cloud init`** script text box. 
+The little script you copy from the Littlest Jupyter instructions to this box will run once your VM is operational.
+This will install the Jupyter Hub on your VM; but be warned it takes about ten minutes. 
+Once this is done you can use the ip address of the VM to connect through your browser.
+    
+    
 <BR><BR>
 <img src="../../images/azure/TL023_Advanced.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 <BR><BR>
