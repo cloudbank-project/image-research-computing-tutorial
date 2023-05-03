@@ -577,9 +577,13 @@ or shift + enter.
         - after you first read the following
     
     
-> ***Caution: Since those instructions were created the VM Wizard has changed format; so just 
+> ***Caution 1: Since those instructions were created the VM Wizard has changed format; so just 
 > about everything is still *there* but the order is a little scrambled. To help you navigate this
 > the next section consists of screencaps of the various tabs in the wizard taken yesterday.***
+
+    
+> ***Caution 2: Many of the Wizard choices are filled in properly by default. If it looks reasonable to you
+> as-is just leave it that way; only change it if it contradicts what the instructions are asking you to modify.***
 
 
 ### Screencaps from the build
