@@ -563,11 +563,80 @@ given Jupyter notebook consists of cells, some containing code and others contai
     
 [TOC](#table-of-contents)
 
+
+We begin in familiar territory: Making our way on the Azure portal to Virtual Machines and the **`Create+`** button
+
     
 <BR><BR>
-<img src="../../images/azure/VM_002_PortalSettings.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<img src="../../images/azure/TL002_VMs.png" alt="drawing" width="300" style="display: block; margin: auto;"/>
 <BR><BR>
     
+
+Once the wizard starts we see again there are eight tabs to work through. 
+    
+
+<BR><BR>
+<img src="../../images/azure/TL010_VMTabs.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<BR><BR>
+    
+    
+#### VM Wizard: **Basics** tab   
+    
+<BR><BR>
+<img src="../../images/azure/TL011_SeeAllImages.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<BR><BR>
+    
+    
+    
+    
+<BR><BR>
+<img src="../../images/azure/TL012_UbuntuServer2204LTS.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<BR><BR>
+    
+    
+    
+    
+<BR><BR>
+<img src="../../images/azure/TL013_Password.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
+<BR><BR>
+
+    
+    
+    
+#### VM Wizard: **Discs** tab   
+
+    
+
+    
+#### VM Wizard: **Networking** tab   
+    
+    
+    
+    
+#### VM Wizard: **Management** tab   
+
+    
+    
+    
+#### VM Wizard: **Monitoring** tab   
+
+    
+    
+#### VM Wizard: **Advanced** tab   
+
+    
+    
+#### VM Wizard: **Tags** tab
+    
+    
+Nothing to do here.
+    
+    
+#### VM Wizard: **Review and Create** tab
+    
+    
+Make sure it looks ok and click Create. There is no key file to download because we switched to using a password.
+
     
 ### Install libraries
 
