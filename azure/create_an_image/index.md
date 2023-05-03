@@ -6,7 +6,7 @@
 [Streamlined view of this page](https://cloudbank-project.github.io/image-research-computing-tutorial/azure/create_an_image/)
 
 
-[Editing view of this page](https://github.com/cloudbank-project/image-research-computing-tutorial/edit/gh-pages/azure/create_an_image/index.md)
+[Editing view of this page](https://github.com/cloudbank-project/image-research-computing-tutorial/edit/gh-pages/azure/create_an_image)
 
 
 [Jump to hands-on activity](#walkthrough-for-vms-day-1)
