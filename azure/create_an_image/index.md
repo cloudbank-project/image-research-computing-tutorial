@@ -703,6 +703,10 @@ page, **`boot diagnostics`** (left sidebar), **`Serial log`** tab.
 <BR><BR>
 <img src="../../images/azure/TL030_Progress.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 <BR><BR>
+    
+    
+At this point, when the Littlest Jupyter Hub install is done, you should be able to log in as
+the administrator User. 
 
     
 ### Install libraries
@@ -710,10 +714,13 @@ page, **`boot diagnostics`** (left sidebar), **`Serial log`** tab.
     
 [TOC](#table-of-contents)
 
+
+    
+At this point the instructions and screencaps are great; no need for 'updated' screencaps here. 
+In addition to the 
     
     
-    
-### Clone and examine a data science repository# Notes on Day 2
+### Clone and examine a data science repository
     
     
 
