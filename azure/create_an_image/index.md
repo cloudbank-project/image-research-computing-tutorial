@@ -523,21 +523,27 @@ then create a new one, same as the original, from the image.
 ### Jupyter overview
 
     
-As noted at up at the top: Jupyter is an interactive programming environment that we tend to use
-via a web browser. The center of mass of the Jupyter development project is at UC Berkeley. Here
-our objective is to install a Jupyter Hub on an Azure VM. This particular Jupyter Hub is intended 
-to be very small; the kind of thing you might set up for yourself and four colleagues on a single 
-VM. The Hub will provide you with five distinct User-based Jupyter environments, one for each 
-person. Because it only requires one VM to operate it is called the Littlest Jupyter Hub. It's
-'big brother' full-scale Jupyter Hub is built on a cluster of machines to serve six or a dozen or 
-even a hundred or a thousand users. 
+As noted up at the top: Jupyter is an interactive programming environment that we tend to use
+via a web browser. The center of mass of the Jupyter development project is at UC Berkeley. 
+    
+    
+Here our objective is to install a Jupyter Hub on a single (small) Azure VM. 
+This small-format Jupyter Hub is intended for just a few people. You might set this 
+up for yourself and four colleagues for example. 
+In that case, this Littlest Jupyter Hub provides you with five distinct Jupyter environments, 
+one for each User. 
+The 'big brother' full-scale version of a Jupyter Hub is built on a cluster of machines and can
+serve six or a dozen or twenty or even a hundred or a thousand users. (That is an example of 
+cloud scaling.)
     
 
-After doing the initial build -- which again will be through the browser -- you will have the same
-small VM running a Jupyter Hub. You log in as the administrator and make a few modifications to
-the environment. You can then clone a data science repository and try it out. Remember that a
-given Jupyter notebook consists of cells, some containing code and others containing markdown
-(formatted text). 
+After doing the initial Jupyter Hub build using the Azure portal you will log in as the 
+administrator and make some modifications to the environment. You then clone a data 
+science repository and check it out one of the Jupyter notebooks. 
+    
+
+A Jupyter notebook consists of text boxes called cells. Some contain code and others 
+contain markdown (formatted text). 
     
 
     
@@ -581,20 +587,29 @@ Once the wizard starts we see again there are eight tabs to work through.
     
     
 #### VM Wizard: **Basics** tab   
+
+
+Click the link to **see all images** so you can select...
+    
     
 <BR><BR>
 <img src="../../images/azure/TL011_SeeAllImages.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
 <BR><BR>
     
     
-    
+
+...Ubuntu Server 22.04 LTS
+
     
 <BR><BR>
 <img src="../../images/azure/TL012_UbuntuServer2204LTS.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
 <BR><BR>
     
     
-    
+
+Instead of a key file (.pem) we will use a username (Example: **`mynetidadmin`**) and a password.
+
+
     
 <BR><BR>
 <img src="../../images/azure/TL013_Password.png" alt="drawing" width="800" style="display: block; margin: auto;"/>
@@ -635,7 +650,8 @@ Nothing to do here.
 #### VM Wizard: **Review and Create** tab
     
     
-Make sure it looks ok and click Create. There is no key file to download because we switched to using a password.
+Make sure everything looks ok and click Create. 
+There is no key file to download because we switched to using a password.
 
     
 ### Install libraries
