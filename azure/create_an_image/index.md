@@ -664,10 +664,12 @@ Use the dropdown to co-select **`http`** and **`https`** in addition to **`ssh`*
 
     
     
-Here at last is where the magic happens, in the **`cloud init`** script text box. 
-The little script you copy from the Littlest Jupyter instructions to this box will run once your VM is operational.
+Here at last is where the magic happens, in the **`Custom data`** script text box. 
+The script you copy from the Littlest Jupyter instructions to this box (and be sure to modify
+the admin username to be the one you entered on the Basics tab) 
+will start to run once your VM is operational.
 This will install the Jupyter Hub on your VM; but be warned it takes about ten minutes. 
-Once this is done you can use the ip address of the VM to connect through your browser.
+
     
     
 <BR><BR>
@@ -690,6 +692,16 @@ There is no key file to download because we switched to using a password.
     
 <BR><BR>
 <img src="../../images/azure/TL024_Completed.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
+<BR><BR>
+
+Once the Jupyter Hub installation is completed (remember this takes about 10 minutes): Paste the ip address 
+of your VM into a browser tab address window. If you try entering the ip address and nothing useful happens: 
+It is not done installing yet. You can monitor your install progress at this location: Your VM resource
+page, **`boot diagnostics`** (left sidebar), **`Serial log`** tab. 
+
+    
+<BR><BR>
+<img src="../../images/azure/TL030_Progress.png" alt="drawing" width="600" style="display: block; margin: auto;"/>
 <BR><BR>
 
     
