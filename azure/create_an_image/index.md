@@ -718,7 +718,9 @@ page, **`boot diagnostics`** (left sidebar), **`Serial log`** tab.
     
     
 At this point, when the Littlest Jupyter Hub install is done, you should be able to log in as
-the administrator User. 
+the administrator User. Try starting a Jupyter notebook; then create and run a cell.
+    
+
 
     
 ### Install libraries
@@ -727,23 +729,30 @@ the administrator User.
 [TOC](#table-of-contents)
 
 
+The objective is now to modify the Jupyter Hub environment by installing some packages.    
+At this point the instructions and screencaps are great; no need for 'updated' screencaps. 
+In addition to the **`gdal`** and **`there`** library installs: Also install these packages:
     
-At this point the instructions and screencaps are great; no need for 'updated' screencaps here. 
-In addition to the **`gdal`** and **`there`** library installs: Also install `xarray` and 
-`matplotlib` and `networkx`. 
+
+```
+sudo -E pip install matplotlib
+sudo -E pip install xarray[complete] 
+```
 
     
     
 ### Clone and examine a data science repository
     
+This is a stretch activity. 
 Start a terminal (still logged in as the admin) and run this `git` command: 
     
     
 ```
+cd ~
 git clone https://github.com/robfatland/ocean
 ```
     
-Now you should see a folder called `ocean` in the navigator. Navigate to this folder 
+Now you should have a folder called `ocean` in the navigator. Navigate to this folder 
 and start the notebook called **`Biooptics.ipynb`**. Use the Run menu to run all of 
 the cells in this notebook. This will take a minute or two; and when it is done you
 might take a moment to look through the results. You can also see the markdown behind
