@@ -717,11 +717,22 @@ the administrator User.
 
     
 At this point the instructions and screencaps are great; no need for 'updated' screencaps here. 
-In addition to the 
+In addition to the **`gdal`** and **`there`** library installs: Also install `xarray` and 
+`matplotlib` and `networkx`. 
+
     
     
 ### Clone and examine a data science repository
     
+Start a terminal (still logged in as the admin) and run this `git` command: 
     
+    
+```
+git clone https://github.com/robfatland/ocean
+```
+    
+Now you should see a folder called `ocean` in the navigator.
+    
+
 
 
